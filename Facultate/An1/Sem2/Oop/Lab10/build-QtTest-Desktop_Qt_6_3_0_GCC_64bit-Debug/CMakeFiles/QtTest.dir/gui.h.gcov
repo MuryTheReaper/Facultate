@@ -1,0 +1,57 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/gui.h
+        -:    1:#ifndef GUI_H
+        -:    2:#define GUI_H
+        -:    3:
+        -:    4:#include "disciplina.h"
+        -:    5:#include "services.h"
+        -:    6:#include <QHBoxLayout>
+        -:    7:#include <QLineEdit>
+        -:    8:#include <QListWidget>
+        -:    9:#include <QPushButton>
+        -:   10:#include <QWidget>
+        -:   11:
+        -:   12:class guiMain : public QWidget {
+        -:   13:
+        -:   14:private:
+        -:   15:  services &serv;
+        -:   16:  QHBoxLayout *mainly = (new QHBoxLayout);
+        -:   17:  QLineEdit *txtDenumire = (new QLineEdit);
+        -:   18:  QLineEdit *txtTip = (new QLineEdit);
+        -:   19:  QLineEdit *txtProfesor = (new QLineEdit);
+        -:   20:  QLineEdit *txtOre = (new QLineEdit);
+        -:   21:  QListWidget *list = (new QListWidget);
+        -:   22:  QPushButton *btnAdd = (new QPushButton("Add"));
+        -:   23:  QPushButton *btnModify = (new QPushButton("Modify"));
+        -:   24:  QPushButton *btnFind = (new QPushButton("Find"));
+        -:   25:  QPushButton *btnRemove = (new QPushButton("Remove"));
+        -:   26:  QPushButton *btnUndo = (new QPushButton("Undo"));
+        -:   27:  QPushButton *btnFilterByProf = (new QPushButton("FilterByProfesor"));
+        -:   28:  QPushButton *btnFilterByOre = (new QPushButton("FilterByOreUp"));
+        -:   29:  QPushButton *btnSortByDenumire = (new QPushButton("SortByDenumire"));
+        -:   30:  QPushButton *btnSortByOre = (new QPushButton("SortByOre"));
+        -:   31:  QPushButton *btnSortByMixt = (new QPushButton("SortByMixt"));
+        -:   32:
+        -:   33:  void initGUI();
+        -:   34:  void connect_signals();
+        -:   35:  void reloadList(const std::vector<disciplina> &list);
+        -:   36:
+        -:   37:  void addDisciplina();
+        -:   38:  void modifyDisciplina();
+        -:   39:  void removeDisciplina();
+        -:   40:  void findDisciplina();
+        -:   41:  void undoDisciplina();
+        -:   42:  void filterByProfDisciplina();
+        -:   43:  void filterByOreDisciplina();
+        -:   44:  void sortByDenumireDisciplina();
+        -:   45:  void sortByOreDisciplina();
+        -:   46:  void sortByMixtDisciplina();
+        -:   47:
+        -:   48:public:
+    #####:   49:  guiMain(services &serv) : serv{serv} {
+    #####:   50:    initGUI();
+    #####:   51:    connect_signals();
+    #####:   52:    reloadList(serv.get_all());
+    #####:   53:  }
+        -:   54:};
+        -:   55:
+        -:   56:#endif // GUI_H

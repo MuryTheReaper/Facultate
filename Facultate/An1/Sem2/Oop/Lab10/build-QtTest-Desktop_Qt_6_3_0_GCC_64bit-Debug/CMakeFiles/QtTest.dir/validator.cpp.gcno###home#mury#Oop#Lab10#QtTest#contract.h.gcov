@@ -1,0 +1,32 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/contract.h
+        -:    1:#pragma once
+        -:    2:#include "disciplina.h"
+        -:    3:#include <vector>
+        -:    4:
+        -:    5:class contract {
+        -:    6:private:
+        -:    7:  std::vector<disciplina> c_list;
+        -:    8:
+        -:    9:public:
+       8*:   10:  contract() = default;
+------------------
+_ZN8contractC2Ev:
+function _ZN8contractC2Ev called 8 returned 100% blocks executed 100%
+        8:   10:  contract() = default;
+call    0 returned 8
+------------------
+_ZN8contractC2Ev:
+function _ZN8contractC2Ev called 0 returned 0% blocks executed 0%
+    #####:   10:  contract() = default;
+call    0 never executed
+------------------
+        -:   11:
+        -:   12:  void add_to_contract(const disciplina &x);
+        -:   13:
+        -:   14:  void addrandom_to_contract(std::vector<disciplina> list,
+        -:   15:                             long unsigned int nr);
+        -:   16:
+        -:   17:  void delete_all();
+        -:   18:
+        -:   19:  const std::vector<disciplina> &get_all();
+        -:   20:};

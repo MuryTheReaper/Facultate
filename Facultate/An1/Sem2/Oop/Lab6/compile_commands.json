@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/main.cpp.o -c /home/mury/Oop/Lab6/main.cpp",
+  "file": "/home/mury/Oop/Lab6/main.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/disciplina.cpp.o -c /home/mury/Oop/Lab6/disciplina.cpp",
+  "file": "/home/mury/Oop/Lab6/disciplina.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/repository.cpp.o -c /home/mury/Oop/Lab6/repository.cpp",
+  "file": "/home/mury/Oop/Lab6/repository.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/services.cpp.o -c /home/mury/Oop/Lab6/services.cpp",
+  "file": "/home/mury/Oop/Lab6/services.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/ui.cpp.o -c /home/mury/Oop/Lab6/ui.cpp",
+  "file": "/home/mury/Oop/Lab6/ui.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/validator.cpp.o -c /home/mury/Oop/Lab6/validator.cpp",
+  "file": "/home/mury/Oop/Lab6/validator.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6",
+  "command": "/usr/bin/c++   -Wall -o CMakeFiles/c_app.dir/teste.cpp.o -c /home/mury/Oop/Lab6/teste.cpp",
+  "file": "/home/mury/Oop/Lab6/teste.cpp"
+}
+]

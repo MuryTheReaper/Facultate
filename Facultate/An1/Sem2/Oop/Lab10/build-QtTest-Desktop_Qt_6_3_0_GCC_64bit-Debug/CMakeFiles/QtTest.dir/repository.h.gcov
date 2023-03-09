@@ -1,0 +1,62 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/repository.h
+        -:    1:#pragma once
+        -:    2:#include "disciplina.h"
+        -:    3:#include "my_vector.h"
+        -:    4:#include <vector> // NOLINT
+        -:    5://#include <ostream>
+        -:    6:
+        -:    7:class repository {
+        -:    8:
+        -:    9:private:
+        -:   10:  std::vector<disciplina> list;
+        -:   11:
+        -:   12:  bool exist(const disciplina &x) const;
+        -:   13:
+        -:   14:public:
+       8*:   15:  repository() = default;
+------------------
+_ZN10repositoryC2Ev:
+        8:   15:  repository() = default;
+------------------
+_ZN10repositoryC2Ev:
+    #####:   15:  repository() = default;
+------------------
+        -:   16:
+        -:   17:  repository(const repository &x) = delete;
+        -:   18:
+       8*:   19:  ~repository() = default;
+------------------
+_ZN10repositoryD2Ev:
+        8:   19:  ~repository() = default;
+------------------
+_ZN10repositoryD2Ev:
+    #####:   19:  ~repository() = default;
+------------------
+        -:   20:
+        -:   21:  repository &operator=(const repository &) = delete;
+        -:   22:
+        -:   23:  repository(repository &&) = default;
+        -:   24:
+        -:   25:  repository &operator=(repository &&) = delete;
+        -:   26:
+        -:   27:  void add(const disciplina &x);
+        -:   28:
+        -:   29:  void remove(const disciplina &x);
+        -:   30:
+        -:   31:  void modify(const disciplina &x);
+        -:   32:
+        -:   33:  const disciplina &find(const disciplina &x) const;
+        -:   34:
+        -:   35:  const std::vector<disciplina> &get_all() const noexcept;
+        -:   36:};
+        -:   37:
+        -:   38:class repoException {
+        -:   39:
+        -:   40:private:
+        -:   41:  std::string msg;
+        -:   42:
+        -:   43:public:
+      108:   44:  repoException(std::string m) : msg{m} {}
+    #####:   45:  std::string getMsg() const { return msg; }
+        -:   46:  friend std::ostream &operator<<(std::ostream &out, const repoException &ex);
+        -:   47:};

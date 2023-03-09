@@ -1,0 +1,335 @@
+        -:    0:Source:/home/mury/Qt/6.3.0/gcc_64/include/QtCore/qbasicatomic.h
+        -:    1:/****************************************************************************
+        -:    2:**
+        -:    3:** Copyright (C) 2011 Thiago Macieira <thiago@kde.org>
+        -:    4:** Copyright (C) 2018 Intel Corporation.
+        -:    5:** Contact: https://www.qt.io/licensing/
+        -:    6:**
+        -:    7:** This file is part of the QtCore module of the Qt Toolkit.
+        -:    8:**
+        -:    9:** $QT_BEGIN_LICENSE:LGPL$
+        -:   10:** Commercial License Usage
+        -:   11:** Licensees holding valid commercial Qt licenses may use this file in
+        -:   12:** accordance with the commercial license agreement provided with the
+        -:   13:** Software or, alternatively, in accordance with the terms contained in
+        -:   14:** a written agreement between you and The Qt Company. For licensing terms
+        -:   15:** and conditions see https://www.qt.io/terms-conditions. For further
+        -:   16:** information use the contact form at https://www.qt.io/contact-us.
+        -:   17:**
+        -:   18:** GNU Lesser General Public License Usage
+        -:   19:** Alternatively, this file may be used under the terms of the GNU Lesser
+        -:   20:** General Public License version 3 as published by the Free Software
+        -:   21:** Foundation and appearing in the file LICENSE.LGPL3 included in the
+        -:   22:** packaging of this file. Please review the following information to
+        -:   23:** ensure the GNU Lesser General Public License version 3 requirements
+        -:   24:** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+        -:   25:**
+        -:   26:** GNU General Public License Usage
+        -:   27:** Alternatively, this file may be used under the terms of the GNU
+        -:   28:** General Public License version 2.0 or (at your option) the GNU General
+        -:   29:** Public license version 3 or any later version approved by the KDE Free
+        -:   30:** Qt Foundation. The licenses are as published by the Free Software
+        -:   31:** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
+        -:   32:** included in the packaging of this file. Please review the following
+        -:   33:** information to ensure the GNU General Public License requirements will
+        -:   34:** be met: https://www.gnu.org/licenses/gpl-2.0.html and
+        -:   35:** https://www.gnu.org/licenses/gpl-3.0.html.
+        -:   36:**
+        -:   37:** $QT_END_LICENSE$
+        -:   38:**
+        -:   39:****************************************************************************/
+        -:   40:
+        -:   41:#include <QtCore/qglobal.h>
+        -:   42:
+        -:   43:#ifndef QBASICATOMIC_H
+        -:   44:#define QBASICATOMIC_H
+        -:   45:
+        -:   46:#if defined(QT_BOOTSTRAPPED)
+        -:   47:#  include <QtCore/qatomic_bootstrap.h>
+        -:   48:
+        -:   49:// If C++11 atomics are supported, use them!
+        -:   50:// Note that constexpr support is sometimes disabled in QNX or INTEGRITY builds,
+        -:   51:// but their libraries have <atomic>.
+        -:   52:#elif defined(Q_COMPILER_ATOMICS)
+        -:   53:#  include <QtCore/qatomic_cxx11.h>
+        -:   54:
+        -:   55:// No fallback
+        -:   56:#else
+        -:   57:#  error "Qt requires C++11 support"
+        -:   58:#endif
+        -:   59:
+        -:   60:QT_WARNING_PUSH
+        -:   61:QT_WARNING_DISABLE_MSVC(4522)
+        -:   62:
+        -:   63:QT_BEGIN_NAMESPACE
+        -:   64:
+        -:   65:#if 0
+        -:   66:// silence syncqt warnings
+        -:   67:QT_END_NAMESPACE
+        -:   68:#pragma qt_no_master_include
+        -:   69:#pragma qt_sync_stop_processing
+        -:   70:#endif
+        -:   71:
+        -:   72:// New atomics
+        -:   73:
+        -:   74:#define QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:   75:
+        -:   76:template <typename T>
+        -:   77:class QBasicAtomicInteger
+        -:   78:{
+        -:   79:public:
+        -:   80:    typedef T Type;
+        -:   81:    typedef QAtomicOps<T> Ops;
+        -:   82:    // static check that this is a valid integer
+        -:   83:    static_assert(QTypeInfo<T>::isIntegral, "template parameter is not an integral type");
+        -:   84:    static_assert(QAtomicOpsSupport<sizeof(T)>::IsSupported, "template parameter is an integral of a size not supported on this platform");
+        -:   85:
+        -:   86:    typename Ops::Type _q_value;
+        -:   87:
+        -:   88:    // Everything below is either implemented in ../arch/qatomic_XXX.h or (as
+        -:   89:    // fallback) in qgenericatomic.h
+    #####:   90:    T loadRelaxed() const noexcept { return Ops::loadRelaxed(_q_value); }
+------------------
+_ZNK19QBasicAtomicIntegerIiE11loadRelaxedEv:
+    #####:   90:    T loadRelaxed() const noexcept { return Ops::loadRelaxed(_q_value); }
+------------------
+_ZNK19QBasicAtomicIntegerIiE11loadRelaxedEv:
+    #####:   90:    T loadRelaxed() const noexcept { return Ops::loadRelaxed(_q_value); }
+------------------
+        -:   91:    void storeRelaxed(T newValue) noexcept { Ops::storeRelaxed(_q_value, newValue); }
+        -:   92:
+        -:   93:    T loadAcquire() const noexcept { return Ops::loadAcquire(_q_value); }
+        -:   94:    void storeRelease(T newValue) noexcept { Ops::storeRelease(_q_value, newValue); }
+        -:   95:    operator T() const noexcept { return loadAcquire(); }
+        -:   96:    T operator=(T newValue) noexcept { storeRelease(newValue); return newValue; }
+        -:   97:
+        -:   98:    static constexpr bool isReferenceCountingNative() noexcept { return Ops::isReferenceCountingNative(); }
+        -:   99:    static constexpr bool isReferenceCountingWaitFree() noexcept { return Ops::isReferenceCountingWaitFree(); }
+        -:  100:
+        -:  101:    bool ref() noexcept { return Ops::ref(_q_value); }
+    #####:  102:    bool deref() noexcept { return Ops::deref(_q_value); }
+------------------
+_ZN19QBasicAtomicIntegerIiE5derefEv:
+    #####:  102:    bool deref() noexcept { return Ops::deref(_q_value); }
+------------------
+_ZN19QBasicAtomicIntegerIiE5derefEv:
+    #####:  102:    bool deref() noexcept { return Ops::deref(_q_value); }
+------------------
+        -:  103:
+        -:  104:    static constexpr bool isTestAndSetNative() noexcept { return Ops::isTestAndSetNative(); }
+        -:  105:    static constexpr bool isTestAndSetWaitFree() noexcept { return Ops::isTestAndSetWaitFree(); }
+        -:  106:
+        -:  107:    bool testAndSetRelaxed(T expectedValue, T newValue) noexcept
+        -:  108:    { return Ops::testAndSetRelaxed(_q_value, expectedValue, newValue); }
+        -:  109:    bool testAndSetAcquire(T expectedValue, T newValue) noexcept
+        -:  110:    { return Ops::testAndSetAcquire(_q_value, expectedValue, newValue); }
+        -:  111:    bool testAndSetRelease(T expectedValue, T newValue) noexcept
+        -:  112:    { return Ops::testAndSetRelease(_q_value, expectedValue, newValue); }
+        -:  113:    bool testAndSetOrdered(T expectedValue, T newValue) noexcept
+        -:  114:    { return Ops::testAndSetOrdered(_q_value, expectedValue, newValue); }
+        -:  115:
+        -:  116:    bool testAndSetRelaxed(T expectedValue, T newValue, T &currentValue) noexcept
+        -:  117:    { return Ops::testAndSetRelaxed(_q_value, expectedValue, newValue, &currentValue); }
+        -:  118:    bool testAndSetAcquire(T expectedValue, T newValue, T &currentValue) noexcept
+        -:  119:    { return Ops::testAndSetAcquire(_q_value, expectedValue, newValue, &currentValue); }
+        -:  120:    bool testAndSetRelease(T expectedValue, T newValue, T &currentValue) noexcept
+        -:  121:    { return Ops::testAndSetRelease(_q_value, expectedValue, newValue, &currentValue); }
+        -:  122:    bool testAndSetOrdered(T expectedValue, T newValue, T &currentValue) noexcept
+        -:  123:    { return Ops::testAndSetOrdered(_q_value, expectedValue, newValue, &currentValue); }
+        -:  124:
+        -:  125:    static constexpr bool isFetchAndStoreNative() noexcept { return Ops::isFetchAndStoreNative(); }
+        -:  126:    static constexpr bool isFetchAndStoreWaitFree() noexcept { return Ops::isFetchAndStoreWaitFree(); }
+        -:  127:
+        -:  128:    T fetchAndStoreRelaxed(T newValue) noexcept
+        -:  129:    { return Ops::fetchAndStoreRelaxed(_q_value, newValue); }
+        -:  130:    T fetchAndStoreAcquire(T newValue) noexcept
+        -:  131:    { return Ops::fetchAndStoreAcquire(_q_value, newValue); }
+        -:  132:    T fetchAndStoreRelease(T newValue) noexcept
+        -:  133:    { return Ops::fetchAndStoreRelease(_q_value, newValue); }
+        -:  134:    T fetchAndStoreOrdered(T newValue) noexcept
+        -:  135:    { return Ops::fetchAndStoreOrdered(_q_value, newValue); }
+        -:  136:
+        -:  137:    static constexpr bool isFetchAndAddNative() noexcept { return Ops::isFetchAndAddNative(); }
+        -:  138:    static constexpr bool isFetchAndAddWaitFree() noexcept { return Ops::isFetchAndAddWaitFree(); }
+        -:  139:
+        -:  140:    T fetchAndAddRelaxed(T valueToAdd) noexcept
+        -:  141:    { return Ops::fetchAndAddRelaxed(_q_value, valueToAdd); }
+        -:  142:    T fetchAndAddAcquire(T valueToAdd) noexcept
+        -:  143:    { return Ops::fetchAndAddAcquire(_q_value, valueToAdd); }
+        -:  144:    T fetchAndAddRelease(T valueToAdd) noexcept
+        -:  145:    { return Ops::fetchAndAddRelease(_q_value, valueToAdd); }
+        -:  146:    T fetchAndAddOrdered(T valueToAdd) noexcept
+        -:  147:    { return Ops::fetchAndAddOrdered(_q_value, valueToAdd); }
+        -:  148:
+        -:  149:    T fetchAndSubRelaxed(T valueToAdd) noexcept
+        -:  150:    { return Ops::fetchAndSubRelaxed(_q_value, valueToAdd); }
+        -:  151:    T fetchAndSubAcquire(T valueToAdd) noexcept
+        -:  152:    { return Ops::fetchAndSubAcquire(_q_value, valueToAdd); }
+        -:  153:    T fetchAndSubRelease(T valueToAdd) noexcept
+        -:  154:    { return Ops::fetchAndSubRelease(_q_value, valueToAdd); }
+        -:  155:    T fetchAndSubOrdered(T valueToAdd) noexcept
+        -:  156:    { return Ops::fetchAndSubOrdered(_q_value, valueToAdd); }
+        -:  157:
+        -:  158:    T fetchAndAndRelaxed(T valueToAdd) noexcept
+        -:  159:    { return Ops::fetchAndAndRelaxed(_q_value, valueToAdd); }
+        -:  160:    T fetchAndAndAcquire(T valueToAdd) noexcept
+        -:  161:    { return Ops::fetchAndAndAcquire(_q_value, valueToAdd); }
+        -:  162:    T fetchAndAndRelease(T valueToAdd) noexcept
+        -:  163:    { return Ops::fetchAndAndRelease(_q_value, valueToAdd); }
+        -:  164:    T fetchAndAndOrdered(T valueToAdd) noexcept
+        -:  165:    { return Ops::fetchAndAndOrdered(_q_value, valueToAdd); }
+        -:  166:
+        -:  167:    T fetchAndOrRelaxed(T valueToAdd) noexcept
+        -:  168:    { return Ops::fetchAndOrRelaxed(_q_value, valueToAdd); }
+        -:  169:    T fetchAndOrAcquire(T valueToAdd) noexcept
+        -:  170:    { return Ops::fetchAndOrAcquire(_q_value, valueToAdd); }
+        -:  171:    T fetchAndOrRelease(T valueToAdd) noexcept
+        -:  172:    { return Ops::fetchAndOrRelease(_q_value, valueToAdd); }
+        -:  173:    T fetchAndOrOrdered(T valueToAdd) noexcept
+        -:  174:    { return Ops::fetchAndOrOrdered(_q_value, valueToAdd); }
+        -:  175:
+        -:  176:    T fetchAndXorRelaxed(T valueToAdd) noexcept
+        -:  177:    { return Ops::fetchAndXorRelaxed(_q_value, valueToAdd); }
+        -:  178:    T fetchAndXorAcquire(T valueToAdd) noexcept
+        -:  179:    { return Ops::fetchAndXorAcquire(_q_value, valueToAdd); }
+        -:  180:    T fetchAndXorRelease(T valueToAdd) noexcept
+        -:  181:    { return Ops::fetchAndXorRelease(_q_value, valueToAdd); }
+        -:  182:    T fetchAndXorOrdered(T valueToAdd) noexcept
+        -:  183:    { return Ops::fetchAndXorOrdered(_q_value, valueToAdd); }
+        -:  184:
+        -:  185:    T operator++() noexcept
+        -:  186:    { return fetchAndAddOrdered(1) + 1; }
+        -:  187:    T operator++(int) noexcept
+        -:  188:    { return fetchAndAddOrdered(1); }
+        -:  189:    T operator--() noexcept
+        -:  190:    { return fetchAndSubOrdered(1) - 1; }
+        -:  191:    T operator--(int) noexcept
+        -:  192:    { return fetchAndSubOrdered(1); }
+        -:  193:
+        -:  194:    T operator+=(T v) noexcept
+        -:  195:    { return fetchAndAddOrdered(v) + v; }
+        -:  196:    T operator-=(T v) noexcept
+        -:  197:    { return fetchAndSubOrdered(v) - v; }
+        -:  198:    T operator&=(T v) noexcept
+        -:  199:    { return fetchAndAndOrdered(v) & v; }
+        -:  200:    T operator|=(T v) noexcept
+        -:  201:    { return fetchAndOrOrdered(v) | v; }
+        -:  202:    T operator^=(T v) noexcept
+        -:  203:    { return fetchAndXorOrdered(v) ^ v; }
+        -:  204:
+        -:  205:
+        -:  206:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  207:    QBasicAtomicInteger() = default;
+    #####:  208:    constexpr QBasicAtomicInteger(T value) noexcept : _q_value(value) {}
+        -:  209:    QBasicAtomicInteger(const QBasicAtomicInteger &) = delete;
+        -:  210:    QBasicAtomicInteger &operator=(const QBasicAtomicInteger &) = delete;
+        -:  211:    QBasicAtomicInteger &operator=(const QBasicAtomicInteger &) volatile = delete;
+        -:  212:#endif
+        -:  213:};
+        -:  214:typedef QBasicAtomicInteger<int> QBasicAtomicInt;
+        -:  215:
+        -:  216:template <typename X>
+        -:  217:class QBasicAtomicPointer
+        -:  218:{
+        -:  219:public:
+        -:  220:    typedef X *Type;
+        -:  221:    typedef QAtomicOps<Type> Ops;
+        -:  222:    typedef typename Ops::Type AtomicType;
+        -:  223:
+        -:  224:    AtomicType _q_value;
+        -:  225:
+        -:  226:    Type loadRelaxed() const noexcept { return Ops::loadRelaxed(_q_value); }
+        -:  227:    void storeRelaxed(Type newValue) noexcept { Ops::storeRelaxed(_q_value, newValue); }
+        -:  228:
+        -:  229:    operator Type() const noexcept { return loadAcquire(); }
+        -:  230:    Type operator=(Type newValue) noexcept { storeRelease(newValue); return newValue; }
+        -:  231:
+        -:  232:    // Atomic API, implemented in qatomic_XXX.h
+        -:  233:    Type loadAcquire() const noexcept { return Ops::loadAcquire(_q_value); }
+        -:  234:    void storeRelease(Type newValue) noexcept { Ops::storeRelease(_q_value, newValue); }
+        -:  235:
+        -:  236:    static constexpr bool isTestAndSetNative() noexcept { return Ops::isTestAndSetNative(); }
+        -:  237:    static constexpr bool isTestAndSetWaitFree() noexcept { return Ops::isTestAndSetWaitFree(); }
+        -:  238:
+        -:  239:    bool testAndSetRelaxed(Type expectedValue, Type newValue) noexcept
+        -:  240:    { return Ops::testAndSetRelaxed(_q_value, expectedValue, newValue); }
+        -:  241:    bool testAndSetAcquire(Type expectedValue, Type newValue) noexcept
+        -:  242:    { return Ops::testAndSetAcquire(_q_value, expectedValue, newValue); }
+        -:  243:    bool testAndSetRelease(Type expectedValue, Type newValue) noexcept
+        -:  244:    { return Ops::testAndSetRelease(_q_value, expectedValue, newValue); }
+        -:  245:    bool testAndSetOrdered(Type expectedValue, Type newValue) noexcept
+        -:  246:    { return Ops::testAndSetOrdered(_q_value, expectedValue, newValue); }
+        -:  247:
+        -:  248:    bool testAndSetRelaxed(Type expectedValue, Type newValue, Type &currentValue) noexcept
+        -:  249:    { return Ops::testAndSetRelaxed(_q_value, expectedValue, newValue, &currentValue); }
+        -:  250:    bool testAndSetAcquire(Type expectedValue, Type newValue, Type &currentValue) noexcept
+        -:  251:    { return Ops::testAndSetAcquire(_q_value, expectedValue, newValue, &currentValue); }
+        -:  252:    bool testAndSetRelease(Type expectedValue, Type newValue, Type &currentValue) noexcept
+        -:  253:    { return Ops::testAndSetRelease(_q_value, expectedValue, newValue, &currentValue); }
+        -:  254:    bool testAndSetOrdered(Type expectedValue, Type newValue, Type &currentValue) noexcept
+        -:  255:    { return Ops::testAndSetOrdered(_q_value, expectedValue, newValue, &currentValue); }
+        -:  256:
+        -:  257:    static constexpr bool isFetchAndStoreNative() noexcept { return Ops::isFetchAndStoreNative(); }
+        -:  258:    static constexpr bool isFetchAndStoreWaitFree() noexcept { return Ops::isFetchAndStoreWaitFree(); }
+        -:  259:
+        -:  260:    Type fetchAndStoreRelaxed(Type newValue) noexcept
+        -:  261:    { return Ops::fetchAndStoreRelaxed(_q_value, newValue); }
+        -:  262:    Type fetchAndStoreAcquire(Type newValue) noexcept
+        -:  263:    { return Ops::fetchAndStoreAcquire(_q_value, newValue); }
+        -:  264:    Type fetchAndStoreRelease(Type newValue) noexcept
+        -:  265:    { return Ops::fetchAndStoreRelease(_q_value, newValue); }
+        -:  266:    Type fetchAndStoreOrdered(Type newValue) noexcept
+        -:  267:    { return Ops::fetchAndStoreOrdered(_q_value, newValue); }
+        -:  268:
+        -:  269:    static constexpr bool isFetchAndAddNative() noexcept { return Ops::isFetchAndAddNative(); }
+        -:  270:    static constexpr bool isFetchAndAddWaitFree() noexcept { return Ops::isFetchAndAddWaitFree(); }
+        -:  271:
+        -:  272:    Type fetchAndAddRelaxed(qptrdiff valueToAdd) noexcept
+        -:  273:    { return Ops::fetchAndAddRelaxed(_q_value, valueToAdd); }
+        -:  274:    Type fetchAndAddAcquire(qptrdiff valueToAdd) noexcept
+        -:  275:    { return Ops::fetchAndAddAcquire(_q_value, valueToAdd); }
+        -:  276:    Type fetchAndAddRelease(qptrdiff valueToAdd) noexcept
+        -:  277:    { return Ops::fetchAndAddRelease(_q_value, valueToAdd); }
+        -:  278:    Type fetchAndAddOrdered(qptrdiff valueToAdd) noexcept
+        -:  279:    { return Ops::fetchAndAddOrdered(_q_value, valueToAdd); }
+        -:  280:
+        -:  281:    Type fetchAndSubRelaxed(qptrdiff valueToAdd) noexcept
+        -:  282:    { return Ops::fetchAndSubRelaxed(_q_value, valueToAdd); }
+        -:  283:    Type fetchAndSubAcquire(qptrdiff valueToAdd) noexcept
+        -:  284:    { return Ops::fetchAndSubAcquire(_q_value, valueToAdd); }
+        -:  285:    Type fetchAndSubRelease(qptrdiff valueToAdd) noexcept
+        -:  286:    { return Ops::fetchAndSubRelease(_q_value, valueToAdd); }
+        -:  287:    Type fetchAndSubOrdered(qptrdiff valueToAdd) noexcept
+        -:  288:    { return Ops::fetchAndSubOrdered(_q_value, valueToAdd); }
+        -:  289:
+        -:  290:    Type operator++() noexcept
+        -:  291:    { return fetchAndAddOrdered(1) + 1; }
+        -:  292:    Type operator++(int) noexcept
+        -:  293:    { return fetchAndAddOrdered(1); }
+        -:  294:    Type operator--() noexcept
+        -:  295:    { return fetchAndSubOrdered(1) - 1; }
+        -:  296:    Type operator--(int) noexcept
+        -:  297:    { return fetchAndSubOrdered(1); }
+        -:  298:    Type operator+=(qptrdiff valueToAdd) noexcept
+        -:  299:    { return fetchAndAddOrdered(valueToAdd) + valueToAdd; }
+        -:  300:    Type operator-=(qptrdiff valueToSub) noexcept
+        -:  301:    { return fetchAndSubOrdered(valueToSub) - valueToSub; }
+        -:  302:
+        -:  303:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  304:    QBasicAtomicPointer() = default;
+        -:  305:    constexpr QBasicAtomicPointer(Type value) noexcept : _q_value(value) {}
+        -:  306:    QBasicAtomicPointer(const QBasicAtomicPointer &) = delete;
+        -:  307:    QBasicAtomicPointer &operator=(const QBasicAtomicPointer &) = delete;
+        -:  308:    QBasicAtomicPointer &operator=(const QBasicAtomicPointer &) volatile = delete;
+        -:  309:#endif
+        -:  310:};
+        -:  311:
+        -:  312:#ifndef Q_BASIC_ATOMIC_INITIALIZER
+        -:  313:#  define Q_BASIC_ATOMIC_INITIALIZER(a) { (a) }
+        -:  314:#endif
+        -:  315:
+        -:  316:QT_END_NAMESPACE
+        -:  317:
+        -:  318:QT_WARNING_POP
+        -:  319:
+        -:  320:#endif // QBASICATOMIC_H

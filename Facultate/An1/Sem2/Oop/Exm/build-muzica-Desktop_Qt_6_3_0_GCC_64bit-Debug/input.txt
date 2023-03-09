@@ -1,0 +1,10 @@
+1;model1;red;1;
+2;model2;daw;2;
+3;model2;dawd;2;
+4;model1;dawd;4;
+5;model3;gtr;1;
+6;model1;grtg;2;
+7;model1;rva;1;
+8;model1;adw;1;
+9;model1;dawgt;1;
+10;model1;aaa;5;

@@ -1,0 +1,26 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/disciplina.cpp
+        -:    1:#include "disciplina.h"
+        -:    2:
+function _ZeqRK10disciplinaS1_ called 208 returned 100% blocks executed 100%
+      208:    3:bool operator==(const disciplina& x,const disciplina& y){
+        -:    4:    
+      208:    5:    return x.get_denumire()==y.get_denumire();
+call    0 returned 208
+call    1 returned 208
+call    2 returned 208
+call    3 returned 208
+call    4 returned 208
+        -:    6:
+        -:    7:    /*if(x.get_ore()!=y.get_ore()){
+        -:    8:        return false;
+        -:    9:    }
+        -:   10:
+        -:   11:    if(x.get_profesor()!=y.get_profesor()){
+        -:   12:        return false;
+        -:   13:    }
+        -:   14:
+        -:   15:    if(x.get_tip()!=y.get_tip()){
+        -:   16:        return false;
+        -:   17:    }*/
+        -:   18:    
+        -:   19:}

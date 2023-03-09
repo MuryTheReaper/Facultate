@@ -1,0 +1,263 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/gui.cpp
+        -:    1:#include "gui.h"
+        -:    2:#include <QFormLayout>
+        -:    3:#include <QLabel>
+        -:    4:#include <QMessageBox>
+        -:    5:
+    #####:    6:void guiMain::initGUI() {
+    #####:    7:  setLayout(mainly);
+        -:    8:
+        -:    9:  // formul din dreapta
+    #####:   10:  QWidget *widForm = (new QWidget);
+    #####:   11:  QFormLayout *formLayout = (new QFormLayout);
+        -:   12:
+    #####:   13:  widForm->setLayout(formLayout);
+        -:   14:
+    #####:   15:  QLabel *x = (new QLabel("Denumire:"));
+    #####:   16:  formLayout->addRow(x, txtDenumire);
+        -:   17:
+    #####:   18:  x = (new QLabel("Tip:"));
+    #####:   19:  formLayout->addRow(x, txtTip);
+        -:   20:
+    #####:   21:  x = (new QLabel("Profesor:"));
+    #####:   22:  formLayout->addRow(x, txtProfesor);
+        -:   23:
+    #####:   24:  x = (new QLabel("Ore:"));
+    #####:   25:  formLayout->addRow(x, txtOre);
+        -:   26:
+        -:   27:  // butoane de sub form
+        -:   28:  // butoane pt introducere txt
+    #####:   29:  QWidget *formbtn1 = (new QWidget);
+    #####:   30:  QWidget *formbtn2 = (new QWidget);
+    #####:   31:  QHBoxLayout *formbtnLayout1 = (new QHBoxLayout);
+    #####:   32:  QHBoxLayout *formbtnLayout2 = (new QHBoxLayout);
+        -:   33:
+    #####:   34:  formbtn1->setLayout(formbtnLayout1);
+        -:   35:
+    #####:   36:  formbtnLayout1->addWidget(btnAdd);
+    #####:   37:  formbtnLayout1->addWidget(btnModify);
+    #####:   38:  formbtnLayout1->addWidget(btnFind);
+        -:   39:
+    #####:   40:  formbtn2->setLayout(formbtnLayout2);
+        -:   41:
+    #####:   42:  formbtnLayout2->addWidget(btnRemove);
+    #####:   43:  formbtnLayout2->addWidget(btnUndo);
+        -:   44:
+    #####:   45:  formLayout->addRow(formbtn1);
+    #####:   46:  formLayout->addRow(formbtn2);
+        -:   47:
+        -:   48:  // butoane pentru filtrare
+    #####:   49:  QWidget *formbtnfilter = (new QWidget);
+    #####:   50:  QHBoxLayout *formbtnfilterLayout = (new QHBoxLayout);
+        -:   51:
+    #####:   52:  formbtnfilter->setLayout(formbtnfilterLayout);
+        -:   53:
+    #####:   54:  formbtnfilterLayout->addWidget(btnFilterByProf);
+    #####:   55:  formbtnfilterLayout->addWidget(btnFilterByOre);
+        -:   56:
+    #####:   57:  formLayout->addRow(formbtnfilter);
+        -:   58:
+        -:   59:  // lista cu date
+    #####:   60:  QWidget *widList = (new QWidget);
+    #####:   61:  QVBoxLayout *ListLayout = (new QVBoxLayout);
+    #####:   62:  widList->setLayout(ListLayout);
+    #####:   63:  ListLayout->addWidget(list);
+        -:   64:
+        -:   65:  // butoane de sub lista
+    #####:   66:  QWidget *listbtn = (new QWidget);
+    #####:   67:  QHBoxLayout *listbtnLayout = (new QHBoxLayout);
+        -:   68:
+    #####:   69:  listbtn->setLayout(listbtnLayout);
+        -:   70:
+    #####:   71:  listbtnLayout->addWidget(btnSortByDenumire);
+    #####:   72:  listbtnLayout->addWidget(btnSortByOre);
+    #####:   73:  listbtnLayout->addWidget(btnSortByMixt);
+        -:   74:
+    #####:   75:  ListLayout->addWidget(listbtn);
+        -:   76:
+        -:   77:  // construire fereastra
+    #####:   78:  mainly->addWidget(widList);
+    #####:   79:  mainly->addWidget(widForm);
+    #####:   80:}
+        -:   81:
+    #####:   82:void guiMain::connect_signals() {
+    #####:   83:  QObject::connect(btnAdd, &QPushButton::clicked, this,
+        -:   84:                   &guiMain::addDisciplina);
+        -:   85:
+    #####:   86:  QObject::connect(btnModify, &QPushButton::clicked, this,
+        -:   87:                   &guiMain::modifyDisciplina);
+        -:   88:
+    #####:   89:  QObject::connect(btnRemove, &QPushButton::clicked, this,
+        -:   90:                   &guiMain::removeDisciplina);
+        -:   91:
+    #####:   92:  QObject::connect(btnFind, &QPushButton::clicked, this,
+        -:   93:                   &guiMain::findDisciplina);
+        -:   94:
+    #####:   95:  QObject::connect(btnUndo, &QPushButton::clicked, this,
+        -:   96:                   &guiMain::undoDisciplina);
+        -:   97:
+    #####:   98:  QObject::connect(btnFilterByOre, &QPushButton::clicked, this,
+        -:   99:                   &guiMain::filterByOreDisciplina);
+        -:  100:
+    #####:  101:  QObject::connect(btnFilterByProf, &QPushButton::clicked, this,
+        -:  102:                   &guiMain::filterByProfDisciplina);
+        -:  103:
+    #####:  104:  QObject::connect(btnSortByDenumire, &QPushButton::clicked, this,
+        -:  105:                   &guiMain::sortByDenumireDisciplina);
+        -:  106:
+    #####:  107:  QObject::connect(btnSortByOre, &QPushButton::clicked, this,
+        -:  108:                   &guiMain::sortByOreDisciplina);
+        -:  109:
+    #####:  110:  QObject::connect(btnSortByMixt, &QPushButton::clicked, this,
+        -:  111:                   &guiMain::sortByMixtDisciplina);
+        -:  112:
+    #####:  113:  QObject::connect(list, &QListWidget::itemSelectionChanged, this, [&]() {
+    #####:  114:    auto selected = list->selectedItems();
+    #####:  115:    if (selected.isEmpty()) {
+    #####:  116:      txtDenumire->setText("");
+    #####:  117:      txtTip->setText("");
+    #####:  118:      txtProfesor->setText("");
+    #####:  119:      txtOre->setText("");
+        -:  120:    } else {
+    #####:  121:      auto item = selected.at(0);
+    #####:  122:      auto denumire = item->data(Qt::UserRole).toString().toStdString();
+    #####:  123:      disciplina x = serv.find(denumire, "1", ".", ".");
+    #####:  124:      txtDenumire->setText(QString::fromStdString(x.get_denumire()));
+    #####:  125:      txtTip->setText(QString::fromStdString(x.get_tip()));
+    #####:  126:      txtProfesor->setText(QString::fromStdString(x.get_profesor()));
+    #####:  127:      txtOre->setText(QString::fromStdString(std::to_string(x.get_ore())));
+    #####:  128:    }
+    #####:  129:  });
+    #####:  130:}
+        -:  131:
+    #####:  132:void guiMain::addDisciplina() {
+        -:  133:  try {
+    #####:  134:    serv.add(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+    #####:  135:             txtTip->text().toStdString(), txtProfesor->text().toStdString());
+    #####:  136:    reloadList(serv.get_all());
+    =====:  137:  } catch (repoException &ex) {
+    =====:  138:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  139:  } catch (validateException &ex) {
+    =====:  140:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  141:  }
+    #####:  142:}
+        -:  143:
+    #####:  144:void guiMain::modifyDisciplina() {
+        -:  145:  try {
+    #####:  146:    serv.modify(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+    #####:  147:                txtTip->text().toStdString(),
+    #####:  148:                txtProfesor->text().toStdString());
+    #####:  149:    reloadList(serv.get_all());
+    =====:  150:  } catch (repoException &ex) {
+    =====:  151:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  152:  } catch (validateException &ex) {
+    =====:  153:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  154:  }
+    #####:  155:}
+        -:  156:
+    #####:  157:void guiMain::removeDisciplina() {
+        -:  158:  try {
+    #####:  159:    serv.remove(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+    #####:  160:                txtTip->text().toStdString(),
+    #####:  161:                txtProfesor->text().toStdString());
+    #####:  162:    reloadList(serv.get_all());
+    =====:  163:  } catch (repoException &ex) {
+    =====:  164:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  165:  } catch (validateException &ex) {
+    =====:  166:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  167:  }
+    #####:  168:}
+        -:  169:
+    #####:  170:void guiMain::findDisciplina() {
+        -:  171:  try {
+        -:  172:    disciplina const &x =
+    #####:  173:        serv.find(txtDenumire->text().toStdString(), "1", ".", ".");
+        -:  174:
+    #####:  175:    auto items = list->findItems(QString::fromStdString(x.get_denumire()),
+    #####:  176:                                 Qt::MatchContains);
+    #####:  177:    items[0]->setData(Qt::BackgroundRole, QBrush{Qt::green, Qt::SolidPattern});
+    #####:  178:  } catch (repoException &ex) {
+    =====:  179:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  180:  } catch (validateException &ex) {
+    =====:  181:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  182:  }
+    #####:  183:}
+        -:  184:
+    #####:  185:void guiMain::undoDisciplina() {
+        -:  186:  try {
+    #####:  187:    serv.undo();
+    #####:  188:    reloadList(serv.get_all());
+    =====:  189:  } catch (repoException &ex) {
+    =====:  190:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  191:  } catch (validateException &ex) {
+    =====:  192:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  193:  } catch (servException &ex) {
+    =====:  194:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  195:  }
+    #####:  196:}
+        -:  197:
+    #####:  198:void guiMain::filterByProfDisciplina() {
+        -:  199:  try {
+    #####:  200:    reloadList(serv.filter_profesor(txtProfesor->text().toStdString()));
+    =====:  201:  } catch (repoException &ex) {
+    =====:  202:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  203:  } catch (validateException &ex) {
+    =====:  204:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  205:  }
+    #####:  206:}
+        -:  207:
+    #####:  208:void guiMain::filterByOreDisciplina() {
+        -:  209:  try {
+    #####:  210:    reloadList(serv.filter_ore_up(txtOre->text().toStdString()));
+    =====:  211:  } catch (repoException &ex) {
+    =====:  212:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  213:  } catch (validateException &ex) {
+    =====:  214:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  215:  }
+    #####:  216:}
+        -:  217:
+    #####:  218:void guiMain::sortByDenumireDisciplina() {
+        -:  219:  try {
+    #####:  220:    reloadList(serv.sort_denumire());
+    =====:  221:  } catch (repoException &ex) {
+    =====:  222:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  223:  } catch (validateException &ex) {
+    =====:  224:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  225:  }
+    #####:  226:}
+        -:  227:
+    #####:  228:void guiMain::sortByOreDisciplina() {
+        -:  229:  try {
+    #####:  230:    reloadList(serv.sort_ore());
+    =====:  231:  } catch (repoException &ex) {
+    =====:  232:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  233:  } catch (validateException &ex) {
+    =====:  234:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  235:  }
+    #####:  236:}
+        -:  237:
+    #####:  238:void guiMain::sortByMixtDisciplina() {
+        -:  239:  try {
+    #####:  240:    reloadList(serv.sort_mix());
+    =====:  241:  } catch (repoException &ex) {
+    =====:  242:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  243:  } catch (validateException &ex) {
+    =====:  244:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+    =====:  245:  }
+    #####:  246:}
+        -:  247:
+    #####:  248:void guiMain::reloadList(const std::vector<disciplina> &list) {
+    #####:  249:  this->list->clear();
+    #####:  250:  for (const auto &x : list) {
+    #####:  251:    QListWidgetItem *item = (new QListWidgetItem);
+        -:  252:
+        -:  253:    std::string txt =
+    #####:  254:        x.get_denumire() + " | " + x.get_tip() + " | " + x.get_profesor();
+    #####:  255:    txt.append(" | ");
+    #####:  256:    txt.append(std::to_string(x.get_ore()));
+        -:  257:
+    #####:  258:    item->setText(QString::fromStdString(txt));
+    #####:  259:    item->setData(Qt::UserRole, QString::fromStdString(x.get_denumire()));
+    #####:  260:    this->list->addItem(item);
+    #####:  261:  }
+    #####:  262:}

@@ -1,0 +1,680 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/services.cpp
+        -:    1:#include "services.h"
+        -:    2:#include "disciplina.h"
+        -:    3:#include "repository.h"
+        -:    4:#include "undo.h"
+        -:    5:#include <algorithm>
+        -:    6:#include <fstream>
+        -:    7:#include <iterator>
+        -:    8:#include <memory>
+        -:    9:#include <vector>
+        -:   10:#include <chrono>
+        -:   11:#include <random>
+        -:   12:
+function _ZN8services3addERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 92 returned 96% blocks executed 64%
+       92:   13:void services::add(const std::string &denumire, const std::string &ore,
+        -:   14:                   const std::string &tip, const std::string &profesor) {
+        -:   15:
+       92:   16:  val.validate(denumire, ore, tip, profesor);
+call    0 returned 92
+branch  1 taken 92 (fallthrough)
+branch  2 taken 0 (throw)
+       92:   17:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+call    0 returned 92
+branch  1 taken 92 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 92
+branch  4 taken 92 (fallthrough)
+branch  5 taken 0 (throw)
+       92:   18:  repo.add(x);
+call    0 returned 92
+branch  1 taken 88 (fallthrough)
+branch  2 taken 4 (throw)
+       88:   19:  undoList.push_back(std::make_unique<UndoAdd>(x, repo));
+call    0 returned 88
+branch  1 taken 88 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 88
+call    4 returned 88
+branch  5 taken 88 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 88
+call    8 returned 88
+call    9 never executed
+call   10 never executed
+       92:   20:}
+call    0 returned 88
+call    1 returned 4
+        -:   21:
+function _ZN8services6removeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 12 returned 100% blocks executed 57%
+       12:   22:void services::remove(const std::string &denumire, const std::string &ore,
+        -:   23:                      const std::string &tip, const std::string &profesor) {
+        -:   24:
+       12:   25:  val.validate(denumire, ore, tip, profesor);
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   26:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+branch  4 taken 12 (fallthrough)
+branch  5 taken 0 (throw)
+       12:   27:  undoList.push_back(std::make_unique<UndoRemove>(repo.find(x), repo));
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+branch  4 taken 12 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 12
+call    7 returned 12
+branch  8 taken 12 (fallthrough)
+branch  9 taken 0 (throw)
+call   10 returned 12
+call   11 returned 12
+call   12 never executed
+call   13 never executed
+       12:   28:  repo.remove(x);
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   29:}
+call    0 returned 12
+call    1 never executed
+        -:   30:
+function _ZN8services4findERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 4 returned 100% blocks executed 69%
+        4:   31:const disciplina &services::find(const std::string &denumire,
+        -:   32:                                 const std::string &ore, const std::string &tip,
+        -:   33:                                 const std::string &profesor) {
+        -:   34:
+        4:   35:  val.validate(denumire, ore, tip, profesor);
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   36:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+        8:   37:  return repo.find(x);
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   38:}
+call    0 returned 4
+call    1 never executed
+        -:   39:
+function _ZN8services6modifyERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 8 returned 100% blocks executed 57%
+        8:   40:void services::modify(const std::string &denumire, const std::string &ore,
+        -:   41:                      const std::string &tip, const std::string &profesor) {
+        -:   42:
+        8:   43:  val.validate(denumire, ore, tip, profesor);
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:   44:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+        8:   45:  undoList.push_back(std::make_unique<UndoModify>(repo.find(x), repo));
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 8
+call    7 returned 8
+branch  8 taken 8 (fallthrough)
+branch  9 taken 0 (throw)
+call   10 returned 8
+call   11 returned 8
+call   12 never executed
+call   13 never executed
+        8:   46:  repo.modify(x);
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:   47:}
+call    0 returned 8
+call    1 never executed
+        -:   48:
+        -:   49:/*const std::vector<disciplina>
+        -:   50:services::filter(std::function<bool(const disciplina &)> fct) const {
+        -:   51:
+        -:   52:  std::vector<disciplina> rez;
+        -:   53:  for (const auto &x : repo.get_all()) {
+        -:   54:    if (fct(x)) {
+        -:   55:      rez.push_back(x);
+        -:   56:    }
+        -:   57:  }
+        -:   58:  return rez;
+        -:   59:}*/
+        -:   60:const std::vector<disciplina>
+function _ZNK8services10filter_stlESt8functionIFbRK10disciplinaEE called 8 returned 100% blocks executed 75%
+        8:   61:services::filter_stl(std::function<bool(const disciplina &)> fct) const {
+        8:   62:  std::vector<disciplina> rez;
+call    0 returned 8
+        -:   63:
+        8:   64:  std::copy_if(repo.get_all().begin(), repo.get_all().end(),
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 8
+call    7 returned 8
+call    8 returned 8
+call    9 returned 8
+call   10 returned 8
+branch 11 taken 8 (fallthrough)
+branch 12 taken 0 (throw)
+call   13 returned 8
+call   14 never executed
+        -:   65:               std::back_inserter(rez), fct);
+        -:   66:
+        8:   67:  return rez;
+    =====:   68:}
+call    0 never executed
+        -:   69:
+        -:   70:const std::vector<disciplina>
+function _ZNK8services13filter_ore_upERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 4 returned 100% blocks executed 50%
+        4:   71:services::filter_ore_up(const std::string &ore) const {
+        -:   72:
+        4:   73:  val.validate(".", ore, ".", ".");
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+branch 10 taken 4 (fallthrough)
+branch 11 taken 0 (throw)
+call   12 returned 4
+branch 13 taken 4 (fallthrough)
+branch 14 taken 0 (throw)
+call   15 returned 4
+call   16 returned 4
+call   17 returned 4
+call   18 returned 4
+call   19 returned 4
+call   20 returned 4
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+        4:   74:  int o = std::stoi(ore);
+call    0 returned 4
+function _ZZNK8services13filter_ore_upERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENKUlRK10disciplinaE_clESA_ called 12 returned 100% blocks executed 100%
+       16:   75:  return filter_stl([o](const disciplina &x) { return x.get_ore() > o; });
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+call    6 returned 12
+        -:   76:}
+        -:   77:
+        -:   78:const std::vector<disciplina>
+function _ZNK8services15filter_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 4 returned 100% blocks executed 49%
+        4:   79:services::filter_profesor(const std::string &profesor) const {
+        -:   80:
+        4:   81:  val.validate(".", "1", ".", profesor);
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+branch 10 taken 4 (fallthrough)
+branch 11 taken 0 (throw)
+call   12 returned 4
+branch 13 taken 4 (fallthrough)
+branch 14 taken 0 (throw)
+call   15 returned 4
+call   16 returned 4
+call   17 returned 4
+call   18 returned 4
+call   19 returned 4
+call   20 returned 4
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+        -:   82:  return filter_stl(
+function _ZZNK8services15filter_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENKUlRK10disciplinaE_clESA_ called 12 returned 100% blocks executed 100%
+       16:   83:        [&](const disciplina &x) { return x.get_profesor() == profesor; });
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+call    6 returned 12
+call    7 returned 12
+call    8 returned 12
+        -:   84:}
+        -:   85:
+        -:   86:/*const std::vector<disciplina> services::sort(
+        -:   87:    std::function<bool(const disciplina &, const disciplina &)> fct) const {
+        -:   88:
+        -:   89:  std::vector<disciplina> v{repo.get_all()};
+        -:   90:  for (size_t i = 0; i < v.size(); i++) {
+        -:   91:    for (size_t j = i + 1; j < v.size(); j++) {
+        -:   92:      if (!fct(v[i], v[j])) {
+        -:   93:        disciplina aux = v[i];
+        -:   94:        v[i] = v[j];
+        -:   95:        v[j] = aux;
+        -:   96:      }
+        -:   97:    }
+        -:   98:  }
+        -:   99:  return v;
+        -:  100:}*/
+        -:  101:
+function _ZNK8services8sort_stlESt8functionIFbRK10disciplinaS3_EE called 12 returned 100% blocks executed 71%
+       12:  102:const std::vector<disciplina> services::sort_stl(
+        -:  103:    std::function<bool(const disciplina &, const disciplina &)> fct) const {
+        -:  104:
+       12:  105:  std::vector<disciplina> v{repo.get_all()};
+call    0 returned 12
+call    1 returned 12
+       12:  106:  std::sort(v.begin(), v.end(), fct);
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+call    4 returned 12
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 12
+call    9 never executed
+        -:  107:
+       12:  108:  return v;
+    =====:  109:}
+call    0 never executed
+        -:  110:
+function _ZN8services13sort_denumireEv called 4 returned 100% blocks executed 75%
+        4:  111:const std::vector<disciplina> services::sort_denumire() {
+        -:  112:
+function _ZZN8services13sort_denumireEvENKUlRK10disciplinaS2_E_clES2_S2_ called 12 returned 100% blocks executed 100%
+       12:  113:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       12:  114:      return x.get_denumire() < y.get_denumire();
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+call    3 returned 12
+call    4 returned 12
+        4:  115:    });
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+        -:  116:}
+        -:  117:
+function _ZN8services8sort_oreEv called 4 returned 100% blocks executed 75%
+        4:  118:const std::vector<disciplina> services::sort_ore() {
+        -:  119:
+function _ZZN8services8sort_oreEvENKUlRK10disciplinaS2_E_clES2_S2_ called 12 returned 100% blocks executed 100%
+       12:  120:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       12:  121:      return x.get_ore() < y.get_ore();
+call    0 returned 12
+call    1 returned 12
+        4:  122:    });
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+        -:  123:}
+        -:  124:
+function _ZN8services8sort_mixEv called 4 returned 100% blocks executed 75%
+        4:  125:const std::vector<disciplina> services::sort_mix() {
+        -:  126:
+function _ZZN8services8sort_mixEvENKUlRK10disciplinaS2_E_clES2_S2_ called 20 returned 100% blocks executed 100%
+       20:  127:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       20:  128:      if (x.get_profesor() == y.get_profesor()) {
+call    0 returned 20
+call    1 returned 20
+call    2 returned 20
+call    3 returned 20
+call    4 returned 20
+branch  5 taken 8 (fallthrough)
+branch  6 taken 12
+        8:  129:          return x.get_tip() < y.get_tip();
+call    0 returned 8
+call    1 returned 8
+call    2 returned 8
+call    3 returned 8
+call    4 returned 8
+        -:  130:        }
+       12:  131:      return x.get_profesor() < y.get_profesor();
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+call    3 returned 12
+call    4 returned 12
+        4:  132:    });
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+        -:  133:}
+        -:  134:
+function _ZN8services15add_to_contractERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 12 returned 100% blocks executed 67%
+       12:  135:void services::add_to_contract(const std::string &denumire,
+        -:  136:                               const std::string &ore, const std::string &tip,
+        -:  137:                               const std::string &profesor) {
+       12:  138:  val.validate(denumire, ore, tip, profesor);
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:  139:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+branch  4 taken 12 (fallthrough)
+branch  5 taken 0 (throw)
+       12:  140:  contr.add_to_contract(repo.find(x));
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+branch  4 taken 12 (fallthrough)
+branch  5 taken 0 (throw)
+       12:  141:}
+call    0 returned 12
+call    1 never executed
+        -:  142:
+function _ZN8services21addrandom_to_contractEm called 4 returned 100% blocks executed 75%
+        4:  143:void services::addrandom_to_contract(long unsigned int nr) {
+        4:  144:  contr.addrandom_to_contract(get_all(), nr);
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 4
+call    6 never executed
+        4:  145:}
+        -:  146:
+function _ZN8services15export_contractENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 4 returned 100% blocks executed 70%
+        4:  147:void services::export_contract(std::string file) {
+        4:  148:  file.append(".csv");
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:  149:  std::ofstream f(file);
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        -:  150:
+        4:  151:  const std::vector<disciplina> &list{get_all_contract()};
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        -:  152:
+        8:  153:  for (const auto &disc : list) {
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+call    3 returned 8
+branch  4 taken 4
+branch  5 taken 4 (fallthrough)
+        8:  154:      f << disc.get_denumire() << "," << disc.get_tip() << ","
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+call    3 never executed
+call    4 never executed
+        4:  155:        << disc.get_profesor() << "," << disc.get_ore() << "\n";
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 4
+call    7 returned 4
+branch  8 taken 4 (fallthrough)
+branch  9 taken 0 (throw)
+call   10 returned 4
+branch 11 taken 4 (fallthrough)
+branch 12 taken 0 (throw)
+call   13 returned 4
+call   14 returned 4
+branch 15 taken 4 (fallthrough)
+branch 16 taken 0 (throw)
+call   17 returned 4
+branch 18 taken 4 (fallthrough)
+branch 19 taken 0 (throw)
+call   20 returned 4
+call   21 returned 4
+branch 22 taken 4 (fallthrough)
+branch 23 taken 0 (throw)
+call   24 returned 4
+branch 25 taken 4 (fallthrough)
+branch 26 taken 0 (throw)
+call   27 returned 4
+call   28 returned 4
+call   29 never executed
+        -:  156:    }
+        -:  157:
+        4:  158:  f.close();
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:  159:}
+call    0 returned 4
+call    1 never executed
+        -:  160:
+        -:  161:const std::unordered_map<std::string, profesor_frecventa> &
+function _ZN8services25raport_profesor_frecventaB5cxx11Ev called 8 returned 100% blocks executed 100%
+        8:  162:services::raport_profesor_frecventa() {
+        -:  163:
+        8:  164:  rap.make_raport_prof_frec(get_all());
+call    0 returned 8
+call    1 returned 8
+        8:  165:  return rap.get_raport();
+call    0 returned 8
+        -:  166:}
+        -:  167:
+function _ZlsRSoRK13servException called 4 returned 100% blocks executed 100%
+        4:  168:std::ostream &operator<<(std::ostream &out, const servException &ex) {
+        -:  169:
+        4:  170:  out << ex.msg;
+call    0 returned 4
+        4:  171:  return out;
+        -:  172:}
+        -:  173:
+function _ZN8services4undoEv called 20 returned 80% blocks executed 68%
+       20:  174:void services::undo() {
+       20:  175:  if (undoList.empty()) {
+call    0 returned 20
+branch  1 taken 4 (fallthrough)
+branch  2 taken 16
+        4:  176:      throw servException("Nu mai exista operatii");
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+call   10 returned 0
+call   11 never executed
+call   12 never executed
+call   13 never executed
+        -:  177:    }
+        -:  178:
+       16:  179:  undoList.back()->do_undo();
+call    0 returned 16
+call    1 returned 16
+call    2 returned 16
+       16:  180:  undoList.pop_back();
+call    0 returned 16
+       16:  181:}
+        -:  182:
+function _ZN8services9addrandomERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:  183:void services::addrandom(const std::string &nr){
+        -:  184:  try{
+    #####:  185:    int n = std::stoi(nr);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  186:    while (n) {
+branch  0 never executed
+branch  1 never executed
+    #####:  187:        std::mt19937 mt{std::random_device{}()};
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+call   10 never executed
+    #####:  188:        const int size = 1000;
+    #####:  189:        std::uniform_int_distribution<> dist(0, size - 1);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  190:        std::string o =
+    #####:  191:            std::to_string(dist(mt)); // numar aleator intre [0,size-1]
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:  192:
+    #####:  193:        const int size_l = 10;
+function _ZZN8services9addrandomERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENKUlvE_clEv called 0 returned 0% blocks executed 0%
+    #####:  194:        auto randchar = []() -> char {
+        -:  195:            const std::string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    #####:  196:                                        "abcdefghijklmnopqrstuvwxyz";
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  197:            const size_t max_index = (charset.size() - 1);
+call    0 never executed
+    #####:  198:            return charset[rand() % max_index];
+call    0 never executed
+call    1 never executed
+    #####:  199:          };
+call    0 never executed
+    #####:  200:        std::uniform_int_distribution<> dist_l(1, size_l - 1);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  201:        const int length = dist_l(mt);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  202:        std::string d(length, 0);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  203:        std::string t(length, 0);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  204:        std::string p(length, 0);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  205:
+    #####:  206:        std::generate_n(d.begin(), length, randchar);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  207:        std::generate_n(t.begin(), length, randchar);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  208:        std::generate_n(p.begin(), length, randchar);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  209:
+    #####:  210:        val.validate(d,o,t,p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  211:        disciplina x{d, std::stoi(o), t, p};
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:  212:        repo.add(x);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  213:        n--;
+    #####:  214:      }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+    =====:  215:  }catch(const std::invalid_argument &e) {
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+    =====:  216:    std::cout << "Numar invalid\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    =====:  217:  }
+call    0 never executed
+call    1 never executed
+    #####:  218:}

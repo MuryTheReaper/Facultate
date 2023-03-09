@@ -1,0 +1,35 @@
+//problema 9
+
+9a.
+
+adaugaSf(l1...ln, e)={ (e), l=vid
+                       l1 + adaugaSf(l2...ln, e), altfel }
+
+9b.
+
+concat(l1...ln, L1...Lm)={ vid, l and L = vid
+                           l, l!= vid si L = vid
+                           L, L!= vid si l = vid
+                           concat(adaugaSf(l1...ln, L1), L2...Lm)), l and L != vid }
+
+
+//problema 8
+
+8a.
+
+
+cmmdc(a, b) = { a, b=0
+                cmmdc(b, a%b), b!=0 }
+
+
+all_cmmdc(l1...ln) = { vid, n<2
+                       cmmdc(l1, l2), n==2
+                       cmmdc(l1, all_cmmdc(l2...ln)), n>2 }
+
+8b.
+
+insert(l1...ln, e, k) = { vid, l = vid
+                          e + l1...ln, k==1
+                          l1 + insert(l2...ln, e, k-1), k>1 }
+
+

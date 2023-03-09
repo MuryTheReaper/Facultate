@@ -1,0 +1,48 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/validator.cpp
+        -:    0:Graph:validator.cpp.gcno
+        -:    0:Data:validator.cpp.gcda
+        -:    0:Runs:5
+        -:    1:#include "validator.h"
+        -:    2:#include <string.h> // NOLINT
+        -:    3:
+        5:    4:std::ostream &operator<<(std::ostream &out, const validateException &ex) {
+       25:    5:  for (const auto &msgs : ex.msg) {
+       20:    6:    out << msgs + " ";
+        -:    7:  }
+        5:    8:  return out;
+        -:    9:}
+        -:   10:
+      180:   11:void validator::validate(const std::string &denumire, const std::string &ore,
+        -:   12:                         const std::string &tip, const std::string &profesor) {
+        -:   13:
+      180:   14:  std::vector<std::string> msgs;
+      180:   15:  if (denumire.size() == 0) {
+        5:   16:    msgs.push_back("Denumire vida!");
+        -:   17:  }
+      180:   18:  if (tip.size() == 0) {
+        5:   19:    msgs.push_back("Tip vid!");
+        -:   20:  }
+      180:   21:  if (profesor.size() == 0) {
+        5:   22:    msgs.push_back("Profesor vid!");
+        -:   23:  }
+      395:   24:  for (const auto &c : ore) {
+      220:   25:    if (strchr("0123456789", c) == nullptr) {
+        5:   26:      msgs.push_back("Numar de ore invalid!");
+        5:   27:      break;
+        -:   28:    }
+        -:   29:  }
+        -:   30:
+      180:   31:  if (msgs.size() > 0) {
+        5:   32:    throw validateException(msgs);
+        -:   33:  }
+      180:   34:}
+        -:   35:
+        1:   36:std::string validateException::getMsg() const {
+        1:   37:  std::string msgs;
+        5:   38:  for (const auto &x : msg) {
+        4:   39:    msgs.append(x);
+        4:   40:    msgs.append("\n");
+        -:   41:  }
+        -:   42:  // msgs.erase()
+        1:   43:  return msgs;
+    =====:   44:}

@@ -1,0 +1,30 @@
+Precond
+    Exista MD
+Postcond
+    Null_Tvaloare daca MD vid
+    TValoare care apare de cele mai multe ori in MD
+
+
+Daca MD vid atunci
+    return Null_TValoare
+
+intializam vector V de Tvaloare si NR de int
+
+p<-prim
+cat timp p!=nullptr atunci
+    key<-[p].element.second
+    Daca key nu este V atunci
+        aduagam in V pe key
+        adaugam in NR pe key
+    altfel
+        adaugam in NR pe key
+    p<-p.urm
+
+pentru i=0,dimesiunea lui V atunci
+    nr<-nr de aparitii al lui V[i] in NR
+    daca nr>max atunci
+        max<-nr
+        poz<-i
+
+
+return V[poz]

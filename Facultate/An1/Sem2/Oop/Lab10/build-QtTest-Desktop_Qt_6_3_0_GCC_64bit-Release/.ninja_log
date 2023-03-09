@@ -1,0 +1,17 @@
+# ninja log v5
+0	18	1651080471425648220	QtTest_autogen/timestamp	d76b11a59b1f5ca
+0	18	1651080471425648220	QtTest_autogen/mocs_compilation.cpp	d76b11a59b1f5ca
+0	18	1651080471425648220	/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Release/QtTest_autogen/timestamp	d76b11a59b1f5ca
+0	18	1651080471425648220	/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Release/QtTest_autogen/mocs_compilation.cpp	d76b11a59b1f5ca
+18	32	1651080471441648263	CMakeFiles/QtTest.dir/QtTest_autogen/mocs_compilation.cpp.o	9eceb01b3dfe0f7b
+18	372	1651080471781649186	CMakeFiles/QtTest.dir/disciplina.cpp.o	42595ca362d23ba0
+20	555	1651080471965649685	CMakeFiles/QtTest.dir/validator.cpp.o	cb1f2cccadffa285
+19	717	1651080472125650120	CMakeFiles/QtTest.dir/repository.cpp.o	fd1af58da18caf56
+19	836	1651080472245650446	CMakeFiles/QtTest.dir/raport.cpp.o	b09b87f0fbb76b46
+18	1081	1651080472489651109	CMakeFiles/QtTest.dir/contract.cpp.o	a916ce3099d0efeb
+19	1375	1651080472785651912	CMakeFiles/QtTest.dir/ui.cpp.o	85700bf8a0886668
+19	1478	1651080472889652195	CMakeFiles/QtTest.dir/teste.cpp.o	520f622ff0a2ea0f
+18	1790	1651080473201653043	CMakeFiles/QtTest.dir/main.cpp.o	90f00e2d1a77e23a
+19	2143	1651080473553653999	CMakeFiles/QtTest.dir/services.cpp.o	bdc050f9c2653a1e
+20	2451	1651080473861654836	CMakeFiles/QtTest.dir/gui.cpp.o	f0298b559ba57072
+2451	2830	1651080474237655858	QtTest	83f6b2dccd0a7591

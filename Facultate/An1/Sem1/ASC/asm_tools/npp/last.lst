@@ -1,0 +1,42 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 00FF5602                        x dw -256,256h
+    14 00000004 00FF0000                        y dw 256|-256, 256h & 256
+    15 00000008 0004                            z db $-z,y-x
+    16 0000000A 8000                            a db 512>>2, -512<<2
+    16          ******************       warning: byte data exceeds bounds [-w+number-overflow]
+    17 0000000C FEFF0000                        b dw z-a, !(z-a)
+    18 00000010 0C000000(0B000000)              c dd ($-b)+(d-$), $-2*y+3
+    18          ******************       error: relative call to absolute address not supported by OBJ format
+    19 00000018 80FF                            d db -128, 128^(~128)
+    20 0000001A <res 00000018>                  e times 2 resw 6
+    21                                  ; our code starts here
+    22                                  segment code use32 class=code
+    23                                      start:
+    24                                          ; mov eax,0
+    25                                          ; mov edx,0
+    26                                          ; mov eax, 123456
+    27                                          ; mov ebx,0
+    28                                          ; mov ecx,5
+    29                                          ; .repeta
+    30                                          ; mov bl,al
+    31                                          ; shl bl,4
+    32                                          ; rol bl,4
+    33                                          ; add dl,bl
+    34                                          ; shr eax,4
+    35                                          ; loop .repeta
+    36 00000000 660FB6442D06                    movzx ax,[6+ebp*2]
+    37                                      
+    38                                          ; exit(0)
+    39 00000006 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    40 00000008 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

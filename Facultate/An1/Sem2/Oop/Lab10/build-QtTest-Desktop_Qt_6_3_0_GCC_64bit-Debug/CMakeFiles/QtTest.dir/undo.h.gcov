@@ -1,0 +1,63 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/undo.h
+        -:    1:#pragma once
+        -:    2:#include "disciplina.h"
+        -:    3:#include "repository.h"
+        -:    4:
+        -:    5:class UndoAction {
+        -:    6:public:
+        -:    7:  virtual void do_undo() = 0;
+        -:    8:
+     108*:    9:  virtual ~UndoAction() = default;
+------------------
+_ZN10UndoActionD0Ev:
+    #####:    9:  virtual ~UndoAction() = default;
+------------------
+_ZN10UndoActionD2Ev:
+      108:    9:  virtual ~UndoAction() = default;
+------------------
+        -:   10:
+      108:   11:  UndoAction() = default;
+        -:   12:
+        -:   13:  UndoAction(const UndoAction &x) = delete;
+        -:   14:
+        -:   15:  UndoAction &operator=(const UndoAction &) = delete;
+        -:   16:
+        -:   17:  UndoAction(UndoAction &&) = default;
+        -:   18:
+        -:   19:  UndoAction &operator=(UndoAction &&) = delete;
+        -:   20:};
+        -:   21:
+        -:   22:class UndoAdd : public UndoAction {
+        -:   23:private:
+        -:   24:  disciplina to_add;
+        -:   25:  repository &repo;
+        -:   26:
+        -:   27:public:
+       88:   28:  UndoAdd(disciplina to_add, repository &repo) : to_add{to_add}, repo{repo} {}
+        -:   29:
+        8:   30:  void do_undo() override { repo.remove(to_add); }
+        -:   31:};
+        -:   32:
+        -:   33:class UndoRemove : public UndoAction {
+        -:   34:private:
+        -:   35:  disciplina to_remove;
+        -:   36:  repository &repo;
+        -:   37:
+        -:   38:public:
+       12:   39:  UndoRemove(disciplina to_remove, repository &repo)
+       12:   40:      : to_remove{to_remove}, repo{repo} {}
+        -:   41:
+        4:   42:  void do_undo() override { repo.add(to_remove); }
+        -:   43:};
+        -:   44:
+        -:   45:class UndoModify : public UndoAction {
+        -:   46:private:
+        -:   47:  disciplina to_modify;
+        -:   48:  repository &repo;
+        -:   49:
+        -:   50:public:
+        8:   51:  UndoModify(disciplina to_modify, repository &repo)
+        8:   52:      : to_modify{to_modify}, repo{repo} {}
+        -:   53:
+        4:   54:  void do_undo() override { repo.modify(to_modify); }
+        -:   55:};

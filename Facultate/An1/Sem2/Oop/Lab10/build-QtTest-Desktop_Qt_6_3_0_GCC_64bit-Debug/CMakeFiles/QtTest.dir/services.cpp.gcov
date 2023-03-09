@@ -1,0 +1,219 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/services.cpp
+        -:    1:#include "services.h"
+        -:    2:#include "disciplina.h"
+        -:    3:#include "repository.h"
+        -:    4:#include "undo.h"
+        -:    5:#include <algorithm>
+        -:    6:#include <fstream>
+        -:    7:#include <iterator>
+        -:    8:#include <memory>
+        -:    9:#include <vector>
+        -:   10:#include <chrono>
+        -:   11:#include <random>
+        -:   12:
+       92:   13:void services::add(const std::string &denumire, const std::string &ore,
+        -:   14:                   const std::string &tip, const std::string &profesor) {
+        -:   15:
+       92:   16:  val.validate(denumire, ore, tip, profesor);
+       92:   17:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+       92:   18:  repo.add(x);
+       88:   19:  undoList.push_back(std::make_unique<UndoAdd>(x, repo));
+       92:   20:}
+        -:   21:
+       12:   22:void services::remove(const std::string &denumire, const std::string &ore,
+        -:   23:                      const std::string &tip, const std::string &profesor) {
+        -:   24:
+       12:   25:  val.validate(denumire, ore, tip, profesor);
+       12:   26:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+       12:   27:  undoList.push_back(std::make_unique<UndoRemove>(repo.find(x), repo));
+       12:   28:  repo.remove(x);
+       12:   29:}
+        -:   30:
+        4:   31:const disciplina &services::find(const std::string &denumire,
+        -:   32:                                 const std::string &ore, const std::string &tip,
+        -:   33:                                 const std::string &profesor) {
+        -:   34:
+        4:   35:  val.validate(denumire, ore, tip, profesor);
+        4:   36:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+        8:   37:  return repo.find(x);
+        4:   38:}
+        -:   39:
+        8:   40:void services::modify(const std::string &denumire, const std::string &ore,
+        -:   41:                      const std::string &tip, const std::string &profesor) {
+        -:   42:
+        8:   43:  val.validate(denumire, ore, tip, profesor);
+        8:   44:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+        8:   45:  undoList.push_back(std::make_unique<UndoModify>(repo.find(x), repo));
+        8:   46:  repo.modify(x);
+        8:   47:}
+        -:   48:
+        -:   49:/*const std::vector<disciplina>
+        -:   50:services::filter(std::function<bool(const disciplina &)> fct) const {
+        -:   51:
+        -:   52:  std::vector<disciplina> rez;
+        -:   53:  for (const auto &x : repo.get_all()) {
+        -:   54:    if (fct(x)) {
+        -:   55:      rez.push_back(x);
+        -:   56:    }
+        -:   57:  }
+        -:   58:  return rez;
+        -:   59:}*/
+        -:   60:const std::vector<disciplina>
+        8:   61:services::filter_stl(std::function<bool(const disciplina &)> fct) const {
+        8:   62:  std::vector<disciplina> rez;
+        -:   63:
+        8:   64:  std::copy_if(repo.get_all().begin(), repo.get_all().end(),
+        -:   65:               std::back_inserter(rez), fct);
+        -:   66:
+        8:   67:  return rez;
+    =====:   68:}
+        -:   69:
+        -:   70:const std::vector<disciplina>
+        4:   71:services::filter_ore_up(const std::string &ore) const {
+        -:   72:
+        4:   73:  val.validate(".", ore, ".", ".");
+        4:   74:  int o = std::stoi(ore);
+       16:   75:  return filter_stl([o](const disciplina &x) { return x.get_ore() > o; });
+        -:   76:}
+        -:   77:
+        -:   78:const std::vector<disciplina>
+        4:   79:services::filter_profesor(const std::string &profesor) const {
+        -:   80:
+        4:   81:  val.validate(".", "1", ".", profesor);
+        -:   82:  return filter_stl(
+       16:   83:        [&](const disciplina &x) { return x.get_profesor() == profesor; });
+        -:   84:}
+        -:   85:
+        -:   86:/*const std::vector<disciplina> services::sort(
+        -:   87:    std::function<bool(const disciplina &, const disciplina &)> fct) const {
+        -:   88:
+        -:   89:  std::vector<disciplina> v{repo.get_all()};
+        -:   90:  for (size_t i = 0; i < v.size(); i++) {
+        -:   91:    for (size_t j = i + 1; j < v.size(); j++) {
+        -:   92:      if (!fct(v[i], v[j])) {
+        -:   93:        disciplina aux = v[i];
+        -:   94:        v[i] = v[j];
+        -:   95:        v[j] = aux;
+        -:   96:      }
+        -:   97:    }
+        -:   98:  }
+        -:   99:  return v;
+        -:  100:}*/
+        -:  101:
+       12:  102:const std::vector<disciplina> services::sort_stl(
+        -:  103:    std::function<bool(const disciplina &, const disciplina &)> fct) const {
+        -:  104:
+       12:  105:  std::vector<disciplina> v{repo.get_all()};
+       12:  106:  std::sort(v.begin(), v.end(), fct);
+        -:  107:
+       12:  108:  return v;
+    =====:  109:}
+        -:  110:
+        4:  111:const std::vector<disciplina> services::sort_denumire() {
+        -:  112:
+       12:  113:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       12:  114:      return x.get_denumire() < y.get_denumire();
+        4:  115:    });
+        -:  116:}
+        -:  117:
+        4:  118:const std::vector<disciplina> services::sort_ore() {
+        -:  119:
+       12:  120:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       12:  121:      return x.get_ore() < y.get_ore();
+        4:  122:    });
+        -:  123:}
+        -:  124:
+        4:  125:const std::vector<disciplina> services::sort_mix() {
+        -:  126:
+       20:  127:  return sort_stl([](const disciplina &x, const disciplina &y) {
+       20:  128:      if (x.get_profesor() == y.get_profesor()) {
+        8:  129:          return x.get_tip() < y.get_tip();
+        -:  130:        }
+       12:  131:      return x.get_profesor() < y.get_profesor();
+        4:  132:    });
+        -:  133:}
+        -:  134:
+       12:  135:void services::add_to_contract(const std::string &denumire,
+        -:  136:                               const std::string &ore, const std::string &tip,
+        -:  137:                               const std::string &profesor) {
+       12:  138:  val.validate(denumire, ore, tip, profesor);
+       12:  139:  disciplina x{denumire, std::stoi(ore), tip, profesor};
+       12:  140:  contr.add_to_contract(repo.find(x));
+       12:  141:}
+        -:  142:
+        4:  143:void services::addrandom_to_contract(long unsigned int nr) {
+        4:  144:  contr.addrandom_to_contract(get_all(), nr);
+        4:  145:}
+        -:  146:
+        4:  147:void services::export_contract(std::string file) {
+        4:  148:  file.append(".csv");
+        4:  149:  std::ofstream f(file);
+        -:  150:
+        4:  151:  const std::vector<disciplina> &list{get_all_contract()};
+        -:  152:
+        8:  153:  for (const auto &disc : list) {
+        8:  154:      f << disc.get_denumire() << "," << disc.get_tip() << ","
+        4:  155:        << disc.get_profesor() << "," << disc.get_ore() << "\n";
+        -:  156:    }
+        -:  157:
+        4:  158:  f.close();
+        4:  159:}
+        -:  160:
+        -:  161:const std::unordered_map<std::string, profesor_frecventa> &
+        8:  162:services::raport_profesor_frecventa() {
+        -:  163:
+        8:  164:  rap.make_raport_prof_frec(get_all());
+        8:  165:  return rap.get_raport();
+        -:  166:}
+        -:  167:
+        4:  168:std::ostream &operator<<(std::ostream &out, const servException &ex) {
+        -:  169:
+        4:  170:  out << ex.msg;
+        4:  171:  return out;
+        -:  172:}
+        -:  173:
+       20:  174:void services::undo() {
+       20:  175:  if (undoList.empty()) {
+        4:  176:      throw servException("Nu mai exista operatii");
+        -:  177:    }
+        -:  178:
+       16:  179:  undoList.back()->do_undo();
+       16:  180:  undoList.pop_back();
+       16:  181:}
+        -:  182:
+    #####:  183:void services::addrandom(const std::string &nr){
+        -:  184:  try{
+    #####:  185:    int n = std::stoi(nr);
+    #####:  186:    while (n) {
+    #####:  187:        std::mt19937 mt{std::random_device{}()};
+    #####:  188:        const int size = 1000;
+    #####:  189:        std::uniform_int_distribution<> dist(0, size - 1);
+        -:  190:        std::string o =
+    #####:  191:            std::to_string(dist(mt)); // numar aleator intre [0,size-1]
+        -:  192:
+    #####:  193:        const int size_l = 10;
+    #####:  194:        auto randchar = []() -> char {
+        -:  195:            const std::string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    #####:  196:                                        "abcdefghijklmnopqrstuvwxyz";
+    #####:  197:            const size_t max_index = (charset.size() - 1);
+    #####:  198:            return charset[rand() % max_index];
+    #####:  199:          };
+    #####:  200:        std::uniform_int_distribution<> dist_l(1, size_l - 1);
+    #####:  201:        const int length = dist_l(mt);
+    #####:  202:        std::string d(length, 0);
+    #####:  203:        std::string t(length, 0);
+    #####:  204:        std::string p(length, 0);
+        -:  205:
+    #####:  206:        std::generate_n(d.begin(), length, randchar);
+    #####:  207:        std::generate_n(t.begin(), length, randchar);
+    #####:  208:        std::generate_n(p.begin(), length, randchar);
+        -:  209:
+    #####:  210:        val.validate(d,o,t,p);
+    #####:  211:        disciplina x{d, std::stoi(o), t, p};
+    #####:  212:        repo.add(x);
+    #####:  213:        n--;
+    #####:  214:      }
+    =====:  215:  }catch(const std::invalid_argument &e) {
+    =====:  216:    std::cout << "Numar invalid\n";
+    =====:  217:  }
+    #####:  218:}

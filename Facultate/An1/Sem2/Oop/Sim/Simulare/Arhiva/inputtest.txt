@@ -1,0 +1,11 @@
+tip1;model1;2022;red;3700;
+tip2;model2;2022;blue;3700;
+tip3;model2;2022;black;3700;
+tip4;model1;2022;yellow;3700;
+tip5;model3;2002;red;3700;
+tip6;model1;2010;red;3700;
+tip7;model1;2010;red;3700;
+tip8;model1;2010;red;3700;
+tip9;model1;2010;red;3700;
+tip10;model1;2010;red;3700;
+

@@ -1,0 +1,5 @@
+1;Titlu2;Artist1;1;
+3;OOOOOP;Artist3;10;
+4;Titlu5;Artist4;5;
+5;Titlu55;Artist2;0;
+6;Titlu6;Artist2;5;

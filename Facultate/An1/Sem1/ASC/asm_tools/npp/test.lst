@@ -1,0 +1,31 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 0C                          a db 12
+    14 00000001 0A                          b db 10
+    15 00000002 1B                          c db 27
+    16 00000003 7D                          d db 125
+    17                                  ; our code starts here
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                          
+    21 00000000 A1[02000000]                    mov EAX, [c] ;EAX = c = 27
+    22 00000005 0305[03000000]                  add EAX, [d] ;EAX = c+d = 27+125 = 152
+    23 0000000B 8B1D[00000000]                  mov EBX, [a] ;EBX = a = 12
+    24 00000011 031D[03000000]                  add EBX, [d] ;EBX = a+d = 12+125 = 137
+    25 00000017 29D8                            sub EAX, EBX ;EAX = EAX-EBX = (c+d)-(a+d) = 152-137 = 15
+    26 00000019 0305[01000000]                  add EAX, [b] ;EAX = EAX+b = (c+d)-(a+d)+b = 15+10 = 25
+    27                                          
+    28                                  
+    29                                          ; exit(0)
+    30 0000001F 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    31 00000021 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

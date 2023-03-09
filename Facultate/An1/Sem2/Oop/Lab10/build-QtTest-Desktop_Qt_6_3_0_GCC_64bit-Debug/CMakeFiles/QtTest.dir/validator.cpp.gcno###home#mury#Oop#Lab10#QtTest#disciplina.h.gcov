@@ -1,0 +1,426 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/disciplina.h
+        -:    1:#pragma once
+        -:    2:#include <iostream> // NOLINT
+        -:    3:#include <ostream>  // NOLINT
+        -:    4:
+        -:    5:class disciplina {
+        -:    6:
+        -:    7:private:
+        -:    8:  std::string denumire;
+        -:    9:  int ore;
+        -:   10:  std::string tip;
+        -:   11:  std::string profesor;
+        -:   12:
+        -:   13:public:
+        -:   14:  disciplina() : ore{0} {}
+        -:   15:
+     144*:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+     144*:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+------------------
+_ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_:
+function _ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_ called 144 returned 100% blocks executed 62%
+      144:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+      144:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+call    0 returned 144
+call    1 returned 144
+branch  2 taken 144 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 144
+branch  5 taken 144 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 never executed
+call    8 never executed
+------------------
+_ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_:
+function _ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_ called 0 returned 0% blocks executed 0%
+    #####:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+    #####:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+------------------
+        -:   19:
+     161*:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 161 returned 100% blocks executed 100%
+      161:   20:  ~disciplina() = default;
+call    0 returned 161
+call    1 returned 161
+call    2 returned 161
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaD2Ev:
+function _ZN10disciplinaD2Ev called 0 returned 0% blocks executed 0%
+    #####:   20:  ~disciplina() = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+        -:   21:
+function _ZN10disciplinaaSERKS_ called 4 returned 100% blocks executed 100%
+        4:   22:  disciplina &operator=(const disciplina &) = default;
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+        -:   23:
+     108*:   24:  disciplina(disciplina &&) = default;
+------------------
+_ZN10disciplinaC2EOS_:
+function _ZN10disciplinaC2EOS_ called 108 returned 100% blocks executed 100%
+      108:   24:  disciplina(disciplina &&) = default;
+call    0 returned 108
+call    1 returned 108
+call    2 returned 108
+------------------
+_ZN10disciplinaC2EOS_:
+function _ZN10disciplinaC2EOS_ called 0 returned 0% blocks executed 0%
+    #####:   24:  disciplina(disciplina &&) = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaC2EOS_:
+function _ZN10disciplinaC2EOS_ called 0 returned 0% blocks executed 0%
+    #####:   24:  disciplina(disciplina &&) = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+        -:   25:
+      72*:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+_ZN10disciplinaaSEOS_:
+function _ZN10disciplinaaSEOS_ called 72 returned 100% blocks executed 100%
+       72:   26:  disciplina &operator=(disciplina &&) = default;
+call    0 returned 72
+call    1 returned 72
+call    2 returned 72
+------------------
+_ZN10disciplinaaSEOS_:
+function _ZN10disciplinaaSEOS_ called 0 returned 0% blocks executed 0%
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaaSEOS_:
+function _ZN10disciplinaaSEOS_ called 0 returned 0% blocks executed 0%
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+_ZN10disciplinaaSEOS_:
+function _ZN10disciplinaaSEOS_ called 0 returned 0% blocks executed 0%
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+------------------
+        -:   27:
+     392*:   28:  disciplina(const disciplina &x)
+     392*:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+     392*:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 392 returned 100% blocks executed 62%
+      392:   28:  disciplina(const disciplina &x)
+      392:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 returned 392
+call    1 returned 392
+branch  2 taken 392 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 392
+branch  5 taken 392 (fallthrough)
+branch  6 taken 0 (throw)
+        -:   30:    // std::cout << "Copy constructor was used\n";
+      392:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 0 returned 0% blocks executed 0%
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 0 returned 0% blocks executed 0%
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 0 returned 0% blocks executed 0%
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 0 returned 0% blocks executed 0%
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+_ZN10disciplinaC2ERKS_:
+function _ZN10disciplinaC2ERKS_ called 0 returned 0% blocks executed 0%
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+call    0 never executed
+call    1 never executed
+------------------
+        -:   32:
+     597*:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 597 returned 100% blocks executed 100%
+      597:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 returned 597
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+function _ZNK10disciplina12get_denumireB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+call    0 never executed
+------------------
+        -:   34:
+      64*:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+function _ZNK10disciplina7get_oreEv called 0 returned 0% blocks executed 0%
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+function _ZNK10disciplina7get_oreEv called 64 returned 100% blocks executed 100%
+       64:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+function _ZNK10disciplina7get_oreEv called 0 returned 0% blocks executed 0%
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+function _ZNK10disciplina7get_oreEv called 0 returned 0% blocks executed 0%
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+function _ZNK10disciplina7get_oreEv called 0 returned 0% blocks executed 0%
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+        -:   36:
+      44*:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+function _ZNK10disciplina7get_tipB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+call    0 never executed
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+function _ZNK10disciplina7get_tipB5cxx11Ev called 44 returned 100% blocks executed 100%
+       44:   37:  const std::string get_tip() const noexcept { return tip; }
+call    0 returned 44
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+function _ZNK10disciplina7get_tipB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+call    0 never executed
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+function _ZNK10disciplina7get_tipB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+call    0 never executed
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+function _ZNK10disciplina7get_tipB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+call    0 never executed
+------------------
+        -:   38:
+     160*:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 160 returned 100% blocks executed 100%
+      160:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 returned 160
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 never executed
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+function _ZNK10disciplina12get_profesorB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+call    0 never executed
+------------------
+        -:   40:
+function _ZN10disciplina14set_disciplinaERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 4 returned 100% blocks executed 100%
+        4:   41:  void set_disciplina(const std::string &x) noexcept { denumire = x; }
+call    0 returned 4
+        -:   42:
+      16*:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+------------------
+_ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+function _ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 16 returned 100% blocks executed 100%
+       16:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+call    0 returned 16
+------------------
+_ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+function _ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+call    0 never executed
+------------------
+        -:   44:
+      16*:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+_ZN10disciplina7set_oreERKi:
+function _ZN10disciplina7set_oreERKi called 16 returned 100% blocks executed 100%
+       16:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+_ZN10disciplina7set_oreERKi:
+function _ZN10disciplina7set_oreERKi called 0 returned 0% blocks executed 0%
+    #####:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+        -:   46:
+      16*:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+------------------
+_ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+function _ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 16 returned 100% blocks executed 100%
+       16:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+call    0 returned 16
+------------------
+_ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+function _ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+call    0 never executed
+------------------
+        -:   48:
+        -:   49:  friend bool operator==(const disciplina &x, const disciplina &y);
+        -:   50:};

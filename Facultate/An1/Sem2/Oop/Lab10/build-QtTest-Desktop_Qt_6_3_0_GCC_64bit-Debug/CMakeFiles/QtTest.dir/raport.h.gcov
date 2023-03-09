@@ -1,0 +1,53 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/raport.h
+        -:    1:#pragma once
+        -:    2:#include "disciplina.h"
+        -:    3:#include <string>
+        -:    4:#include <unordered_map>
+        -:    5:#include <vector>
+        -:    6:
+        -:    7:class profesor_frecventa {
+        -:    8:private:
+        -:    9:  std::string profesor;
+        -:   10:  int frecventa = 0;
+        -:   11:
+        -:   12:public:
+       24:   13:  profesor_frecventa() = default;
+        -:   14:
+        -:   15:  const std::string get_profesor() const noexcept { return profesor; }
+        -:   16:
+       24:   17:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+        -:   18:
+       8*:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+_ZNK18profesor_frecventa13get_frecventaEv:
+        8:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+_ZNK18profesor_frecventa13get_frecventaEv:
+    #####:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+        -:   20:
+       24:   21:  void set_frecventa(const int &x) noexcept { frecventa = x; }
+        -:   22:
+        8:   23:  void change_frecventa(const int &x) noexcept { frecventa += x; }
+        -:   24:};
+        -:   25:
+        -:   26:class raport {
+        -:   27:private:
+        -:   28:  std::unordered_map<std::string, profesor_frecventa> rap_prof_frec;
+        -:   29:
+        -:   30:public:
+       8*:   31:  raport() = default;
+------------------
+_ZN6raportC2Ev:
+        8:   31:  raport() = default;
+------------------
+_ZN6raportC2Ev:
+    #####:   31:  raport() = default;
+------------------
+        -:   32:
+        -:   33:  void make_raport_prof_frec(const std::vector<disciplina> &list);
+        -:   34:
+        8:   35:  const std::unordered_map<std::string, profesor_frecventa> &get_raport() {
+        8:   36:    return rap_prof_frec;
+        -:   37:  }
+        -:   38:};

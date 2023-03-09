@@ -1,0 +1,56 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/raport.cpp
+        -:    1:#include "raport.h"
+        -:    2:#include "disciplina.h"
+        -:    3:#include <algorithm>
+        -:    4:#include <functional>
+        -:    5:#include <vector>
+        -:    6:
+function _ZN6raport21make_raport_prof_frecERKSt6vectorI10disciplinaSaIS1_EE called 8 returned 100% blocks executed 68%
+        8:    7:void raport::make_raport_prof_frec(const std::vector<disciplina> &list) {
+        -:    8:
+        8:    9:  rap_prof_frec.clear();
+call    0 returned 8
+       32:   10:  for (auto const &x : list) {
+call    0 returned 8
+call    1 returned 8
+call    2 returned 24
+call    3 returned 24
+call    4 returned 32
+branch  5 taken 24
+branch  6 taken 8 (fallthrough)
+       24:   11:    profesor_frecventa e;
+call    0 returned 24
+       24:   12:    e.set_profesor(x.get_profesor());
+call    0 returned 24
+call    1 returned 24
+call    2 returned 24
+       24:   13:    e.set_frecventa(1);
+call    0 returned 24
+       24:   14:    bool ok = rap_prof_frec.insert({x.get_profesor(), e}).second;
+call    0 returned 24
+call    1 returned 24
+branch  2 taken 24 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 24
+branch  5 taken 24 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 24
+call    8 returned 24
+call    9 never executed
+call   10 never executed
+       24:   15:    if (!ok) {
+branch  0 taken 8 (fallthrough)
+branch  1 taken 16
+        8:   16:      rap_prof_frec.at(x.get_profesor()).change_frecventa(1);
+call    0 returned 8
+call    1 returned 8
+branch  2 taken 8 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 8
+call    5 returned 8
+call    6 never executed
+        -:   17:    }
+       24:   18:  }
+call    0 returned 24
+call    1 never executed
+        8:   19:}

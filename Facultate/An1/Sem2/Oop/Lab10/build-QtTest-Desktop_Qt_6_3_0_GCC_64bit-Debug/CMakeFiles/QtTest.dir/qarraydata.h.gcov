@@ -1,0 +1,256 @@
+        -:    0:Source:/home/mury/Qt/6.3.0/gcc_64/include/QtCore/qarraydata.h
+        -:    1:/****************************************************************************
+        -:    2:**
+        -:    3:** Copyright (C) 2020 The Qt Company Ltd.
+        -:    4:** Copyright (C) 2019 Intel Corporation.
+        -:    5:** Contact: https://www.qt.io/licensing/
+        -:    6:**
+        -:    7:** This file is part of the QtCore module of the Qt Toolkit.
+        -:    8:**
+        -:    9:** $QT_BEGIN_LICENSE:LGPL$
+        -:   10:** Commercial License Usage
+        -:   11:** Licensees holding valid commercial Qt licenses may use this file in
+        -:   12:** accordance with the commercial license agreement provided with the
+        -:   13:** Software or, alternatively, in accordance with the terms contained in
+        -:   14:** a written agreement between you and The Qt Company. For licensing terms
+        -:   15:** and conditions see https://www.qt.io/terms-conditions. For further
+        -:   16:** information use the contact form at https://www.qt.io/contact-us.
+        -:   17:**
+        -:   18:** GNU Lesser General Public License Usage
+        -:   19:** Alternatively, this file may be used under the terms of the GNU Lesser
+        -:   20:** General Public License version 3 as published by the Free Software
+        -:   21:** Foundation and appearing in the file LICENSE.LGPL3 included in the
+        -:   22:** packaging of this file. Please review the following information to
+        -:   23:** ensure the GNU Lesser General Public License version 3 requirements
+        -:   24:** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+        -:   25:**
+        -:   26:** GNU General Public License Usage
+        -:   27:** Alternatively, this file may be used under the terms of the GNU
+        -:   28:** General Public License version 2.0 or (at your option) the GNU General
+        -:   29:** Public license version 3 or any later version approved by the KDE Free
+        -:   30:** Qt Foundation. The licenses are as published by the Free Software
+        -:   31:** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
+        -:   32:** included in the packaging of this file. Please review the following
+        -:   33:** information to ensure the GNU General Public License requirements will
+        -:   34:** be met: https://www.gnu.org/licenses/gpl-2.0.html and
+        -:   35:** https://www.gnu.org/licenses/gpl-3.0.html.
+        -:   36:**
+        -:   37:** $QT_END_LICENSE$
+        -:   38:**
+        -:   39:****************************************************************************/
+        -:   40:
+        -:   41:#ifndef QARRAYDATA_H
+        -:   42:#define QARRAYDATA_H
+        -:   43:
+        -:   44:#include <QtCore/qpair.h>
+        -:   45:#include <QtCore/qatomic.h>
+        -:   46:#include <string.h>
+        -:   47:
+        -:   48:QT_BEGIN_NAMESPACE
+        -:   49:
+        -:   50:template <class T> struct QTypedArrayData;
+        -:   51:
+        -:   52:struct QArrayData
+        -:   53:{
+        -:   54:    enum AllocationOption {
+        -:   55:        Grow,
+        -:   56:        KeepSize
+        -:   57:    };
+        -:   58:
+        -:   59:    enum GrowthPosition {
+        -:   60:        GrowsAtEnd,
+        -:   61:        GrowsAtBeginning
+        -:   62:    };
+        -:   63:
+        -:   64:   enum ArrayOption {
+        -:   65:        ArrayOptionDefault = 0,
+        -:   66:        CapacityReserved     = 0x1  //!< the capacity was reserved by the user, try to keep it
+        -:   67:    };
+        -:   68:    Q_DECLARE_FLAGS(ArrayOptions, ArrayOption)
+        -:   69:
+        -:   70:    QBasicAtomicInt ref_;
+        -:   71:    ArrayOptions flags;
+        -:   72:    qsizetype alloc;
+        -:   73:
+        -:   74:    qsizetype allocatedCapacity() noexcept
+        -:   75:    {
+        -:   76:        return alloc;
+        -:   77:    }
+        -:   78:
+    #####:   79:    qsizetype constAllocatedCapacity() const noexcept
+        -:   80:    {
+    #####:   81:        return alloc;
+        -:   82:    }
+        -:   83:
+        -:   84:    /// Returns true if sharing took place
+        -:   85:    bool ref() noexcept
+        -:   86:    {
+        -:   87:        ref_.ref();
+        -:   88:        return true;
+        -:   89:    }
+        -:   90:
+        -:   91:    /// Returns false if deallocation is necessary
+    #####:   92:    bool deref() noexcept
+        -:   93:    {
+    #####:   94:        return ref_.deref();
+        -:   95:    }
+------------------
+_ZN10QArrayData5derefEv:
+    #####:   92:    bool deref() noexcept
+        -:   93:    {
+    #####:   94:        return ref_.deref();
+        -:   95:    }
+------------------
+_ZN10QArrayData5derefEv:
+    #####:   92:    bool deref() noexcept
+        -:   93:    {
+    #####:   94:        return ref_.deref();
+        -:   95:    }
+------------------
+        -:   96:
+    #####:   97:    bool isShared() const noexcept
+        -:   98:    {
+    #####:   99:        return ref_.loadRelaxed() != 1;
+        -:  100:    }
+        -:  101:
+        -:  102:    // Returns true if a detach is necessary before modifying the data
+        -:  103:    // This method is intentionally not const: if you want to know whether
+        -:  104:    // detaching is necessary, you should be in a non-const function already
+    #####:  105:    bool needsDetach() const noexcept
+        -:  106:    {
+    #####:  107:        return ref_.loadRelaxed() > 1;
+        -:  108:    }
+        -:  109:
+    #####:  110:    qsizetype detachCapacity(qsizetype newSize) const noexcept
+        -:  111:    {
+    #####:  112:        if (flags & CapacityReserved && newSize < constAllocatedCapacity())
+    #####:  113:            return constAllocatedCapacity();
+    #####:  114:        return newSize;
+        -:  115:    }
+        -:  116:
+        -:  117:    [[nodiscard]]
+        -:  118:#if defined(Q_CC_GNU)
+        -:  119:    __attribute__((__malloc__))
+        -:  120:#endif
+        -:  121:    static Q_CORE_EXPORT void *allocate(QArrayData **pdata, qsizetype objectSize, qsizetype alignment,
+        -:  122:            qsizetype capacity, AllocationOption option = QArrayData::KeepSize) noexcept;
+        -:  123:    [[nodiscard]] static Q_CORE_EXPORT QPair<QArrayData *, void *> reallocateUnaligned(QArrayData *data, void *dataPointer,
+        -:  124:            qsizetype objectSize, qsizetype newCapacity, AllocationOption option) noexcept;
+        -:  125:    static Q_CORE_EXPORT void deallocate(QArrayData *data, qsizetype objectSize,
+        -:  126:            qsizetype alignment) noexcept;
+        -:  127:};
+        -:  128:
+        -:  129:Q_DECLARE_OPERATORS_FOR_FLAGS(QArrayData::ArrayOptions)
+        -:  130:
+        -:  131:template <class T>
+        -:  132:struct QTypedArrayData
+        -:  133:    : QArrayData
+        -:  134:{
+        -:  135:    struct AlignmentDummy { QArrayData header; T data; };
+        -:  136:
+    #####:  137:    [[nodiscard]] static QPair<QTypedArrayData *, T *> allocate(qsizetype capacity, AllocationOption option = QArrayData::KeepSize)
+        -:  138:    {
+        -:  139:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+        -:  140:        QArrayData *d;
+    #####:  141:        void *result = QArrayData::allocate(&d, sizeof(T), alignof(AlignmentDummy), capacity, option);
+        -:  142:#if __has_builtin(__builtin_assume_aligned)
+    #####:  143:        result = __builtin_assume_aligned(result, Q_ALIGNOF(AlignmentDummy));
+        -:  144:#endif
+    #####:  145:        return qMakePair(static_cast<QTypedArrayData *>(d), static_cast<T *>(result));
+        -:  146:    }
+        -:  147:
+        -:  148:    static QPair<QTypedArrayData *, T *>
+    #####:  149:    reallocateUnaligned(QTypedArrayData *data, T *dataPointer, qsizetype capacity, AllocationOption option)
+        -:  150:    {
+        -:  151:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+        -:  152:        QPair<QArrayData *, void *> pair =
+    #####:  153:                QArrayData::reallocateUnaligned(data, dataPointer, sizeof(T), capacity, option);
+    #####:  154:        return qMakePair(static_cast<QTypedArrayData *>(pair.first), static_cast<T *>(pair.second));
+        -:  155:    }
+        -:  156:
+    #####:  157:    static void deallocate(QArrayData *data) noexcept
+        -:  158:    {
+        -:  159:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+    #####:  160:        QArrayData::deallocate(data, sizeof(T), alignof(AlignmentDummy));
+    #####:  161:    }
+------------------
+_ZN15QTypedArrayDataIP15QListWidgetItemE10deallocateEP10QArrayData:
+    #####:  157:    static void deallocate(QArrayData *data) noexcept
+        -:  158:    {
+        -:  159:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+    #####:  160:        QArrayData::deallocate(data, sizeof(T), alignof(AlignmentDummy));
+    #####:  161:    }
+------------------
+_ZN15QTypedArrayDataIDsE10deallocateEP10QArrayData:
+    #####:  157:    static void deallocate(QArrayData *data) noexcept
+        -:  158:    {
+        -:  159:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+    #####:  160:        QArrayData::deallocate(data, sizeof(T), alignof(AlignmentDummy));
+    #####:  161:    }
+------------------
+_ZN15QTypedArrayDataIcE10deallocateEP10QArrayData:
+    #####:  157:    static void deallocate(QArrayData *data) noexcept
+        -:  158:    {
+        -:  159:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+    #####:  160:        QArrayData::deallocate(data, sizeof(T), alignof(AlignmentDummy));
+    #####:  161:    }
+------------------
+_ZN15QTypedArrayDataIDsE10deallocateEP10QArrayData:
+    #####:  157:    static void deallocate(QArrayData *data) noexcept
+        -:  158:    {
+        -:  159:        static_assert(sizeof(QTypedArrayData) == sizeof(QArrayData));
+    #####:  160:        QArrayData::deallocate(data, sizeof(T), alignof(AlignmentDummy));
+    #####:  161:    }
+------------------
+        -:  162:
+    #####:  163:    static T *dataStart(QArrayData *data, qsizetype alignment) noexcept
+        -:  164:    {
+        -:  165:        // Alignment is a power of two
+    #####:  166:        Q_ASSERT(alignment >= qsizetype(alignof(QArrayData)) && !(alignment & (alignment - 1)));
+    #####:  167:        void *start =  reinterpret_cast<void *>(
+    #####:  168:            (quintptr(data) + sizeof(QArrayData) + alignment - 1) & ~(alignment - 1));
+    #####:  169:        return static_cast<T *>(start);
+        -:  170:    }
+        -:  171:};
+        -:  172:
+        -:  173:namespace QtPrivate {
+        -:  174:struct Q_CORE_EXPORT QContainerImplHelper
+        -:  175:{
+        -:  176:    enum CutResult { Null, Empty, Full, Subset };
+        -:  177:    static constexpr CutResult mid(qsizetype originalLength, qsizetype *_position, qsizetype *_length)
+        -:  178:    {
+        -:  179:        qsizetype &position = *_position;
+        -:  180:        qsizetype &length = *_length;
+        -:  181:        if (position > originalLength) {
+        -:  182:            position = 0;
+        -:  183:            length = 0;
+        -:  184:            return Null;
+        -:  185:        }
+        -:  186:
+        -:  187:        if (position < 0) {
+        -:  188:            if (length < 0 || length + position >= originalLength) {
+        -:  189:                position = 0;
+        -:  190:                length = originalLength;
+        -:  191:                return Full;
+        -:  192:            }
+        -:  193:            if (length + position <= 0) {
+        -:  194:                position = length = 0;
+        -:  195:                return Null;
+        -:  196:            }
+        -:  197:            length += position;
+        -:  198:            position = 0;
+        -:  199:        } else if (size_t(length) > size_t(originalLength - position)) {
+        -:  200:            length = originalLength - position;
+        -:  201:        }
+        -:  202:
+        -:  203:        if (position == 0 && length == originalLength)
+        -:  204:            return Full;
+        -:  205:
+        -:  206:        return length > 0 ? Subset : Empty;
+        -:  207:    }
+        -:  208:};
+        -:  209:}
+        -:  210:
+        -:  211:QT_END_NAMESPACE
+        -:  212:
+        -:  213:#endif // include guard

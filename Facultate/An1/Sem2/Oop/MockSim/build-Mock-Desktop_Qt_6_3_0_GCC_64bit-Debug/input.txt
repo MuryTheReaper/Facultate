@@ -1,0 +1,4 @@
+tip1;model1;100;red;12.3;
+tip2;model1;100;blue;12.3;
+tip3;model1;100;green;12.3;
+tip4;model1;100;black;12.3;

@@ -1,0 +1,128 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, fopen, fclose, fprintf, scanf              ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                  import printf msvcrt.dll  
+    10                                  import fprintf msvcrt.dll                         ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    11                                  import fopen msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  import scanf msvcrt.dll 
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16                                      ; 3.Apeluri de functii sistem
+    17                                      ; Se dau doua numere naturale a si b (a, b: dword, definite in segmentul de date). 
+    18                                      ; Sa se calculeze suma lor si sa se afiseze in urmatorul format: "<a> + <b> = <result>"
+    19                                      ; Exemplu: "1 + 2 = 3"
+    20                                      ; Valorile vor fi afisate in format decimal (baza 10) cu semn.
+    21                                      
+    22                                      ; a dd 78
+    23                                      ; b dd 123
+    24                                      ; format_afis db "%d + %d = %d",0
+    25                                      
+    26                                      ; 28.Operatii cu fisiere text
+    27                                      ; Se da un nume de fisier (definit in segmentul de date). 
+    28                                      ; Sa se creeze un fisier cu numele dat,
+    29                                      ; apoi sa se citeasca de la tastatura cuvinte pana cand se citeste de la tastatura caracterul '$'.
+    30                                      ; Sa se scrie in fisier doar cuvintele care contin cel putin o litera mica (lowercase). 
+    31                                      
+    32 00000000 4C6162385F696E2E74-         nume_fisier db "Lab8_in.txt",0
+    32 00000009 787400             
+    33 0000000C 7700                        mod_acces db "w",0
+    34 0000000E 257300                      format_citire db "%s",0
+    35 00000011 2000                        spatiu db ' ',0
+    36 00000013 FFFFFFFF                    descriptor_fisier dd -1
+    37 00000017 00<rept>                    x times 101 db 0
+    38                                      
+    39                                      
+    40                                      
+    41                                  ; our code starts here
+    42                                  segment code use32 class=code
+    43                                      start:
+    44                                          ;3.Apeluri de functii sistem
+    45                                          ; mov EAX, [a]
+    46                                          ; add EAX, [b]  ;EAX = a+b = 201
+    47                                          ; ;printf("%d + %d = %d", a, b, EAX), afisam pe ecran un mesaj
+    48                                          ; push EAX
+    49                                          ; push dword [b]
+    50                                          ; push dword [a]
+    51                                          ; push dword format_afis
+    52                                          ; call [printf] 
+    53                                          ; add ESP, 4*4  ;intoarcem pointarul stivei la momentul initial
+    54                                          
+    55                                          ;28.Operatii cu fisiere text
+    56                                          ; ;EAX=fopen("Lab8_in.txt","w"), deschidem fisierul/se creaza fisierul, in mod scriere
+    57 00000000 68[0C000000]                    push dword mod_acces
+    58 00000005 68[00000000]                    push dword nume_fisier
+    59 0000000A FF15[00000000]                  call [fopen]
+    60 00000010 83C408                          add ESP, 4*2    ;intoarcem stiva la momentul initial
+    61 00000013 83F800                          cmp EAX, 0   
+    62 00000016 0F848D000000                    je sfarsit      ;daca nu s-a deschid fisierul sarim la sfarsit
+    63 0000001C A3[13000000]                    mov [descriptor_fisier], EAX    ;pastram descriptorul fisierului in memorie
+    64                                          citire:
+    65 00000021 60                                  pushAD  ;ne asiguram ca nu stricam registrii
+    66                                              ;scanf("%s", &n), citim de la tastatura cuvinte(siruri de caractere)
+    67 00000022 68[17000000]                        push dword x
+    68 00000027 68[0E000000]                        push dword format_citire
+    69 0000002C FF15[00000000]                      call [scanf]
+    70 00000032 83C408                              add ESP, 4*2    ;intoarcem stiva la momentul initial
+    71 00000035 61                                  popAD   ;punem registrii inapoi
+    72 00000036 803D[17000000]24                    cmp byte [x], '$' 
+    73 0000003D 745B                                je inchide     ;daca dam peste caracterul '$' inseamna ca trebuie sa oprim citirea
+    74                                              
+    75 0000003F BE[17000000]                        mov ESI, x
+    76 00000044 B964000000                          mov ECX, 100
+    77 00000049 BB00000000                          mov EBX, 0  ;EBX o sa functioneza ca un OK, EBX=0 daca cuvantul citit nu are niciun caracter litera mica
+    78                                                          ;EBX=1 daca  cuvantul are cel putin o litera mica
+    79 0000004E FC                                  CLD     ;parcurgem crescator literele cuvantului
+    80                                              repeta_literamica:
+    81 0000004F AC                                      LODSB   ;punem in AL literele cuvantului
+    82 00000050 3C00                                    cmp AL, 0   ;daca AL=0 => am ajuns la sfarsitul cuvantului
+    83 00000052 7415                                    je end_repeta_literamica
+    84 00000054 3C61                                    cmp AL, 'a'
+    85 00000056 7302                                    jAE mare_a      ;AL>=a
+    86 00000058 EB0D                                        jmp next
+    87                                                  mare_a:
+    88 0000005A 3C7A                                        cmp AL, 'z' ;AL<=z
+    89 0000005C 7602                                        jBE mic_z
+    90 0000005E EB07                                            jmp next
+    91                                                      mic_z:
+    92 00000060 BB01000000                                      mov EBX, 1 ;am gasit litera mica in cuvant => EBX=1
+    93 00000065 EB02                                            jmp end_repeta_literamica
+    94                                                  next:
+    95 00000067 E2E6                                 loop repeta_literamica
+    96                                               
+    97                                               end_repeta_literamica:
+    98 00000069 83FB01                                  cmp EBX, 1  ;Daca am gasit litera mica in cuvant il punem in fisier
+    99 0000006C 752A                                    jne nextt
+   100 0000006E 60                                          pushAD  ;ne asiguram ca nu stricam registrii
+   101                                                      ;fprintf(descriptor_fisier, x), scriem in fisier cuvantul care respecta regula
+   102 0000006F 68[17000000]                                push dword x
+   103 00000074 FF35[13000000]                              push dword [descriptor_fisier]
+   104 0000007A FF15[00000000]                              call [fprintf]
+   105 00000080 83C408                                      add ESP, 4*2    ;intoarcem stiva la momentul initial
+   106                                                      
+   107                                                      ;fprintf(descriptor_fisier, spatiu), scriem in fisier caracterul spatiu ca sa despartim cuvntele intre ele
+   108 00000083 68[11000000]                                push dword spatiu
+   109 00000088 FF35[13000000]                              push dword [descriptor_fisier]
+   110 0000008E FF15[00000000]                              call [fprintf]
+   111 00000094 83C408                                      add ESP, 4*2
+   112 00000097 61                                          popAD   ;punem registrii inapoi
+   113                                                  nextt:
+   114                                               
+   115 00000098 EB87                            jmp citire
+   116                                          inchide:
+   117                                          
+   118                                          ;fclose(descdescriptor_fisier), inchidem fisierul
+   119 0000009A FF35[13000000]                  push dword [descriptor_fisier]
+   120 000000A0 FF15[00000000]                  call [fclose]
+   121 000000A6 83C404                          add ESP, 4  ;intoarcem stiva la momentul initial
+   122                                          
+   123                                          sfarsit:
+   124                                          
+   125                                          ; exit(0)
+   126 000000A9 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   127 000000AB FF15[00000000]                  call    [exit]       ; call exit to terminate the program

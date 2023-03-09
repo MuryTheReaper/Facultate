@@ -1,0 +1,189 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/repository.cpp
+        -:    1:#include "repository.h"
+        -:    2:#include "my_vector.h"
+        -:    3:#include <algorithm> // NOLINT
+        -:    4:#include <vector>
+        -:    5:
+function _ZN10repository3addERK10disciplina called 96 returned 96% blocks executed 63%
+       96:    6:void repository::add(const disciplina &x) {
+        -:    7:
+       96:    8:  if (exist(x)) {
+call    0 returned 96
+branch  1 taken 4 (fallthrough)
+branch  2 taken 92
+        4:    9:    throw repoException("Exista deja disciplina: " + x.get_denumire());
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+call   10 returned 0
+call   11 never executed
+call   12 never executed
+call   13 never executed
+        -:   10:  }
+       92:   11:  list.push_back(x);
+call    0 returned 92
+       92:   12:}
+        -:   13:
+function _ZNK10repository5existERK10disciplina called 120 returned 100% blocks executed 86%
+      120:   14:bool repository::exist(const disciplina &x) const {
+        -:   15:
+        -:   16:  try {
+      120:   17:    find(x);
+call    0 returned 120
+branch  1 taken 24 (fallthrough)
+branch  2 taken 96 (throw)
+       24:   18:    return true;
+       96:   19:  } catch (repoException &) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 96
+call    2 returned 96
+       96:   20:    return false;
+       96:   21:  }
+        -:   22:}
+        -:   23:
+function _ZNK10repository4findERK10disciplina called 156 returned 38% blocks executed 69%
+      156:   24:const disciplina &repository::find(const disciplina &x) const {
+        -:   25:
+      256:   26:  for (const auto &y : list) {
+call    0 returned 156
+call    1 returned 156
+call    2 returned 160
+call    3 returned 100
+call    4 returned 256
+branch  5 taken 160
+branch  6 taken 96 (fallthrough)
+      160:   27:    if (x == y) {
+call    0 returned 160
+branch  1 taken 160 (fallthrough)
+branch  2 taken 0 (throw)
+branch  3 taken 60 (fallthrough)
+branch  4 taken 100
+       60:   28:      return y;
+        -:   29:    }
+        -:   30:  }
+        -:   31:
+       96:   32:  throw repoException("Nu exista disciplina: " + x.get_denumire());
+call    0 returned 96
+call    1 returned 96
+call    2 returned 96
+branch  3 taken 96 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 96
+branch  6 taken 96 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 96
+call    9 returned 96
+call   10 returned 0
+call   11 never executed
+call   12 never executed
+call   13 never executed
+        -:   33:}
+        -:   34:
+function _ZNK10repository7get_allEv called 92 returned 100% blocks executed 100%
+       92:   35:const std::vector<disciplina> &repository::get_all() const noexcept {
+        -:   36:
+       92:   37:  return list;
+        -:   38:}
+        -:   39:
+function _ZlsRSoRK13repoException called 12 returned 100% blocks executed 100%
+       12:   40:std::ostream &operator<<(std::ostream &out, const repoException &ex) {
+        -:   41:
+       12:   42:  out << ex.msg;
+call    0 returned 12
+       12:   43:  return out;
+        -:   44:}
+        -:   45:
+function _ZN10repository6removeERK10disciplina called 24 returned 83% blocks executed 64%
+       24:   46:void repository::remove(const disciplina &x) {
+        -:   47:
+       24:   48:  if (!exist(x)) {
+call    0 returned 24
+branch  1 taken 4 (fallthrough)
+branch  2 taken 20
+        4:   49:    throw repoException("Nu exista disciplina: " + x.get_denumire());
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+call   10 returned 0
+call   11 never executed
+call   12 never executed
+call   13 never executed
+        -:   50:  }
+       20:   51:  list.erase(std::remove(list.begin(), list.end(), x));
+call    0 returned 20
+call    1 returned 20
+call    2 returned 20
+call    3 returned 20
+call    4 returned 20
+branch  5 taken 20 (fallthrough)
+branch  6 taken 0 (throw)
+        -:   52:  // list.remove(x);
+       20:   53:}
+        -:   54:
+function _ZN10repository6modifyERK10disciplina called 16 returned 75% blocks executed 77%
+       16:   55:void repository::modify(const disciplina &x) {
+        -:   56:
+       16:   57:  bool ok = false;
+       20:   58:  for (auto &y : list) {
+call    0 returned 16
+call    1 returned 16
+call    2 returned 16
+call    3 returned 4
+call    4 returned 20
+branch  5 taken 16
+branch  6 taken 4 (fallthrough)
+       16:   59:    if (x == y) {
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
+branch  2 taken 0 (throw)
+branch  3 taken 12 (fallthrough)
+branch  4 taken 4
+       12:   60:      y.set_ore(x.get_ore());
+call    0 returned 12
+call    1 returned 12
+       12:   61:      y.set_tip(x.get_tip());
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+       12:   62:      y.set_profesor(x.get_profesor());
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+       12:   63:      ok = true;
+       12:   64:      break;
+        -:   65:    }
+        -:   66:  }
+       16:   67:  if (!ok) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 12
+        4:   68:    throw repoException("Nu exista disciplina: " + x.get_denumire());
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+call    5 returned 4
+branch  6 taken 4 (fallthrough)
+branch  7 taken 0 (throw)
+call    8 returned 4
+call    9 returned 4
+call   10 returned 0
+call   11 never executed
+call   12 never executed
+call   13 never executed
+        -:   69:  }
+       12:   70:}

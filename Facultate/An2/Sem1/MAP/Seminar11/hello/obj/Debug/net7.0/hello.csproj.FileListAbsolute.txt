@@ -1,0 +1,15 @@
+/home/mury/MAP/Seminar11/hello/bin/Debug/net7.0/hello
+/home/mury/MAP/Seminar11/hello/bin/Debug/net7.0/hello.deps.json
+/home/mury/MAP/Seminar11/hello/bin/Debug/net7.0/hello.runtimeconfig.json
+/home/mury/MAP/Seminar11/hello/bin/Debug/net7.0/hello.dll
+/home/mury/MAP/Seminar11/hello/bin/Debug/net7.0/hello.pdb
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.csproj.AssemblyReference.cache
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.GeneratedMSBuildEditorConfig.editorconfig
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.AssemblyInfoInputs.cache
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.AssemblyInfo.cs
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.csproj.CoreCompileInputs.cache
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.dll
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/refint/hello.dll
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.pdb
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/hello.genruntimeconfig.cache
+/home/mury/MAP/Seminar11/hello/obj/Debug/net7.0/ref/hello.dll

@@ -1,0 +1,13 @@
+goleste( d-i/o )
+    pre: d - dictionar ordonat
+    post: d' - dictionar ordonat vid
+
+    pentru i=0,d.cp executa
+        d.next[i]<-i+1
+    sf.pentru
+
+    d.size=0
+    d.primLiber=0
+    d.prim=-1
+
+sf.alg

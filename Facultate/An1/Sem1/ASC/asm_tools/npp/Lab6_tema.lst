@@ -1,0 +1,109 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                  
+    14                                      ;Se da un sir de 3 dublucuvinte, fiecare dublucuvant continand 2 valori pe cuvant
+    15                                      ;(despachetate, deci fiecare cifra hexa e precedata de un 0). 
+    16                                      ;Sa se creeze un sir de octeti care sa contina acele valori (impachetate deci pe un singur octet), 
+    17                                      ;ordonate crescator in memorie, acestea fiind considerate numere cu semn.
+    18 00000000 0A09020704030C0B08-         s dd 0702090Ah, 0B0C0304h, 05060108h
+    18 00000009 010605             
+    19                                      l equ $-s
+    20 0000000C 00<rept>                    d times l/2 db 0
+    21                                      ;9Ah=-102, 72h=114, 34h=52, BCh=-68, 18h=24, 56h=86
+    22                                      ;9Ah, BCh, 18h, 34h, 56h, 72h (sortat crescator)
+    23                                  
+    24                                  ; our code starts here
+    25                                  segment code use32 class=code
+    26                                      start:
+    27                                          ;de la stanga la dreapta(crescator)
+    28 00000000 B906000000                      mov ECX, l/2      ;punem in ECX lungimea lui d, pentru loop
+    29 00000005 BE[00000000]                    mov ESI, s        ;punem in ESI adresa unde incepe s
+    30 0000000A BF[0C000000]                    mov EDI, d        ;punem in EDI adresa unde incepe d
+    31 0000000F FC                              CLD               ;setam DF=0 pentru parcurgere crescatoare
+    32 00000010 E33F                            jecxz sfarsit     ;ne asiguram ca nu intram cu ECX=0 in loop
+    33                                          repeta:           
+    34 00000012 66AD                                LODSW         ;extragem din s cuvantul de forma 0X0Yh
+    35 00000014 51                                  push ECX      ;protejam ECX din cauza operatiei de rotire pe biti
+    36 00000015 B104                                mov CL, 4     ;pregatim rotirea cu 4 pozitii    
+    37 00000017 D2CC                                ror AH, CL    ;rotim partea superioara a lui a AH, 0Xh devine X0h
+    38 00000019 59                                  pop ECX       ;revenim la ECX initial
+    39 0000001A 00E0                                add AL, AH    ;combinam cele 2 parti ale cuvantului initia in AL, 0X0Yh(din AX) devine XYh(in AL)
+    40 0000001C AA                                  STOSB         ;stocam octetul obtinut din AL in sirul d
+    41 0000001D E2F3                            loop repeta
+    42                                          
+    43                                          ;sortare crescatoare de la stanga la dreapta
+    44 0000001F BE00000000                      mov ESI, 0        ;punem in ESI=0, indice pentru sortare
+    45                                          repeta_i:
+    46 00000024 89F7                                mov EDI, ESI  
+    47 00000026 47                                  inc EDI       ;EDI=ESI+1, indice pentru sortare    
+    48                                              repeta_j:
+    49 00000027 8A86[0C000000]                          mov AL, [d+ESI]
+    50 0000002D 8A9F[0C000000]                          mov BL, [d+EDI]
+    51 00000033 38D8                                    cmp AL,BL         ;se face 'compararea' dintre AL(elementul de pe pozitia ESI) cu BL(elementul de pe pozitia EDI)
+    52 00000035 7F02                                    jG swap           ;daca AL>BL atunci se interschimba, daca nu se trece mai departe la urmatorul element
+    53 00000037 EB0C                                       jmp next
+    54                                                  swap:
+    55 00000039 889E[0C000000]                              mov [d+ESI],BL    ;interschimbarea elementelor
+    56 0000003F 8887[0C000000]                              mov [d+EDI],AL
+    57                                                  next:
+    58 00000045 47                                      inc EDI           ;trecem la urmatorul element cu care se compara
+    59 00000046 83FF06                              cmp EDI, l/2          ;daca nu mai sunt elemente cu care se compara se trece mai departe
+    60 00000049 72DC                                jB repeta_j
+    61 0000004B 46                              inc ESI                   ;se trece la urmatorul element de comparat
+    62 0000004C 83FE05                          cmp ESI, l/2-1            ;daca nu mai este nimic de comparat se termina programul
+    63 0000004F 72D3                            jB repeta_i
+    64                                          sfarsit:
+    65                                                  
+    66                                                  
+    67                                                  
+    68                                          ; de la dreapta la stanga(descrescator)
+    69                                          ; mov ECX, l/2      ;punem in ECX lungimea lui d, pentru loop
+    70                                          ; mov ESI, s+l-2            ;punem in ESI adresa unde se termina s
+    71                                          ; mov EDI, d+l/2-1          ;punem in EDI adresa unde se termina d
+    72                                          ; STD               ;setam DF=1 pentru parcurgere descrescatoare
+    73                                          ; jecxz sfarsit     ;ne asiguram ca nu intram cu ECX=0 in loop
+    74                                          ; repeta:           
+    75                                              ; LODSW         ;extragem din s cuvantul de forma 0X0Yh
+    76                                              ; push ECX      ;protejam ECX din cauza operatiei de rotire pe biti
+    77                                              ; mov CL, 4     ;pregatim rotirea cu 4 pozitii    
+    78                                              ; ror AH, CL    ;rotim partea superioara a lui a AH, 0Xh devine X0h
+    79                                              ; pop ECX       ;revenim la ECX initial
+    80                                              ; add AL, AH    ;combinam cele 2 parti ale cuvantului initia in AL, 0X0Yh(din AX) devine XYh(in AL)
+    81                                              ; STOSB         ;stocam octetul obtinut din AL in sirul d
+    82                                          ; loop repeta
+    83                                                     
+    84                                          ;sortare crescatoare de la dreapta la stanga
+    85                                          ; mov ESI, l/2-1       ;punem in ESI=l/2-1, indice pentru sortare
+    86                                          ; repeta_i:
+    87                                              ; mov EDI, ESI  
+    88                                              ; dec EDI       ;EDI=ESI-1, indice pentru sortare    
+    89                                              ; repeta_j:
+    90                                                  ; mov AL, [d+ESI]
+    91                                                  ; mov BL, [d+EDI]
+    92                                                  ; cmp AL,BL         ;se face 'compararea' dintre AL(elementul de pe pozitia ESI) cu BL(elementul de pe pozitia EDI)
+    93                                                  ; jL swap           ;daca AL<BL atunci se interschimba, daca nu se trece mai departe la urmatorul element
+    94                                                     ; jmp next
+    95                                                  ; swap:
+    96                                                      ; mov [d+ESI],BL    ;interschimbarea elementelor
+    97                                                      ; mov [d+EDI],AL
+    98                                                  ; next:
+    99                                                  ; dec EDI           ;trecem la urmatorul element cu care se compara
+   100                                              ; cmp EDI, 0          ;daca nu mai sunt elemente cu care se compara se trece mai departe
+   101                                              ; jGE repeta_j
+   102                                          ; dec ESI                   ;se trece la urmatorul element de comparat
+   103                                          ; cmp ESI, 0            ;daca nu mai este nimic de comparat se termina programul
+   104                                          ; jG repeta_i
+   105                                          ; sfarsit:
+   106                                          
+   107 00000051 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   108 00000053 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

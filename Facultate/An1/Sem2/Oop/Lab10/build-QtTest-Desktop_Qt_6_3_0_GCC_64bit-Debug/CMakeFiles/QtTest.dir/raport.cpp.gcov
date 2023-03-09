@@ -1,0 +1,20 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/raport.cpp
+        -:    1:#include "raport.h"
+        -:    2:#include "disciplina.h"
+        -:    3:#include <algorithm>
+        -:    4:#include <functional>
+        -:    5:#include <vector>
+        -:    6:
+        8:    7:void raport::make_raport_prof_frec(const std::vector<disciplina> &list) {
+        -:    8:
+        8:    9:  rap_prof_frec.clear();
+       32:   10:  for (auto const &x : list) {
+       24:   11:    profesor_frecventa e;
+       24:   12:    e.set_profesor(x.get_profesor());
+       24:   13:    e.set_frecventa(1);
+       24:   14:    bool ok = rap_prof_frec.insert({x.get_profesor(), e}).second;
+       24:   15:    if (!ok) {
+        8:   16:      rap_prof_frec.at(x.get_profesor()).change_frecventa(1);
+        -:   17:    }
+       24:   18:  }
+        8:   19:}

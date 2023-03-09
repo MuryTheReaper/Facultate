@@ -1,0 +1,51 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/main.cpp
+        -:    1:#include "gui.h"
+        -:    2:#include "teste.h"
+        -:    3:#include "ui.h"
+        -:    4:#include "validator.h"
+        -:    5:#include <QtWidgets/QApplication>
+        -:    6:
+function _Z6runGUIiPPc called 0 returned 0% blocks executed 0%
+    #####:    7:void runGUI(int argc, char **argv) {
+    #####:    8:  QApplication app(argc, argv);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:    9:  repository repo;
+call    0 never executed
+        -:   10:  validator val;
+    #####:   11:  services serv{repo, val};
+call    0 never executed
+    #####:   12:  guiMain ui{serv};
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   13:  ui.show();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   14:  app.exec();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   15:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   16:
+function main called 1 returned 100% blocks executed 100%
+        1:   17:int main(int argc, char **argv) {
+        -:   18:
+        1:   19:  test_all();
+call    0 returned 1
+        -:   20:  // runGUI(argc, argv);
+        -:   21:
+        1:   22:  std::cout << "END\n";
+call    0 returned 1
+        1:   23:  return 0;
+        -:   24:}

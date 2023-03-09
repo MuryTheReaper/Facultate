@@ -1,0 +1,179 @@
+        -:    0:Source:/home/mury/Qt/6.3.0/gcc_64/include/QtCore/qbytearrayalgorithms.h
+        -:    1:/****************************************************************************
+        -:    2:**
+        -:    3:** Copyright (C) 2021 The Qt Company Ltd.
+        -:    4:** Contact: https://www.qt.io/licensing/
+        -:    5:**
+        -:    6:** This file is part of the QtCore module of the Qt Toolkit.
+        -:    7:**
+        -:    8:** $QT_BEGIN_LICENSE:LGPL$
+        -:    9:** Commercial License Usage
+        -:   10:** Licensees holding valid commercial Qt licenses may use this file in
+        -:   11:** accordance with the commercial license agreement provided with the
+        -:   12:** Software or, alternatively, in accordance with the terms contained in
+        -:   13:** a written agreement between you and The Qt Company. For licensing terms
+        -:   14:** and conditions see https://www.qt.io/terms-conditions. For further
+        -:   15:** information use the contact form at https://www.qt.io/contact-us.
+        -:   16:**
+        -:   17:** GNU Lesser General Public License Usage
+        -:   18:** Alternatively, this file may be used under the terms of the GNU Lesser
+        -:   19:** General Public License version 3 as published by the Free Software
+        -:   20:** Foundation and appearing in the file LICENSE.LGPL3 included in the
+        -:   21:** packaging of this file. Please review the following information to
+        -:   22:** ensure the GNU Lesser General Public License version 3 requirements
+        -:   23:** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+        -:   24:**
+        -:   25:** GNU General Public License Usage
+        -:   26:** Alternatively, this file may be used under the terms of the GNU
+        -:   27:** General Public License version 2.0 or (at your option) the GNU General
+        -:   28:** Public license version 3 or any later version approved by the KDE Free
+        -:   29:** Qt Foundation. The licenses are as published by the Free Software
+        -:   30:** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
+        -:   31:** included in the packaging of this file. Please review the following
+        -:   32:** information to ensure the GNU General Public License requirements will
+        -:   33:** be met: https://www.gnu.org/licenses/gpl-2.0.html and
+        -:   34:** https://www.gnu.org/licenses/gpl-3.0.html.
+        -:   35:**
+        -:   36:** $QT_END_LICENSE$
+        -:   37:**
+        -:   38:****************************************************************************/
+        -:   39:
+        -:   40:#ifndef QBYTEARRAYALGORITHMS_H
+        -:   41:#define QBYTEARRAYALGORITHMS_H
+        -:   42:
+        -:   43:#include <QtCore/qnamespace.h>
+        -:   44:
+        -:   45:#include <string.h>
+        -:   46:#include <stdarg.h>
+        -:   47:
+        -:   48:#if 0
+        -:   49:#pragma qt_class(QByteArrayAlgorithms)
+        -:   50:#endif
+        -:   51:
+        -:   52:QT_BEGIN_NAMESPACE
+        -:   53:
+        -:   54:class QByteArrayView;
+        -:   55:
+        -:   56:namespace QtPrivate {
+        -:   57:
+        -:   58:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION
+        -:   59:bool startsWith(QByteArrayView haystack, QByteArrayView needle) noexcept;
+        -:   60:
+        -:   61:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION
+        -:   62:bool endsWith(QByteArrayView haystack, QByteArrayView needle) noexcept;
+        -:   63:
+        -:   64:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION
+        -:   65:qsizetype findByteArray(QByteArrayView haystack, qsizetype from, QByteArrayView needle) noexcept;
+        -:   66:
+        -:   67:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION
+        -:   68:qsizetype lastIndexOf(QByteArrayView haystack, qsizetype from, QByteArrayView needle) noexcept;
+        -:   69:
+        -:   70:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION
+        -:   71:qsizetype count(QByteArrayView haystack, QByteArrayView needle) noexcept;
+        -:   72:
+        -:   73:[[nodiscard]] Q_CORE_EXPORT int compareMemory(QByteArrayView lhs, QByteArrayView rhs);
+        -:   74:
+        -:   75:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION QByteArrayView trimmed(QByteArrayView s) noexcept;
+        -:   76:
+        -:   77:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION bool isValidUtf8(QByteArrayView s) noexcept;
+        -:   78:
+        -:   79:template <typename T>
+        -:   80:class ParsedNumber
+        -:   81:{
+        -:   82:    T m_value;
+        -:   83:    quint32 m_error : 1;
+        -:   84:    quint32 m_reserved : 31;
+        -:   85:    void *m_reserved2 = nullptr;
+        -:   86:public:
+        -:   87:    constexpr ParsedNumber() noexcept : m_value(), m_error(true), m_reserved(0) {}
+        -:   88:    constexpr explicit ParsedNumber(T v) : m_value(v), m_error(false), m_reserved(0) {}
+        -:   89:
+        -:   90:    // minimal optional-like API:
+        -:   91:    explicit operator bool() const noexcept { return !m_error; }
+        -:   92:    T &operator*() { Q_ASSERT(*this); return m_value; }
+        -:   93:    const T &operator*() const { Q_ASSERT(*this); return m_value; }
+        -:   94:    T *operator->() noexcept { return *this ? &m_value : nullptr; }
+        -:   95:    const T *operator->() const noexcept { return *this ? &m_value : nullptr; }
+        -:   96:    template <typename U> // not = T, as that'd allow calls that are incompatible with std::optional
+        -:   97:    T value_or(U &&u) const { return *this ? m_value : T(std::forward<U>(u)); }
+        -:   98:};
+        -:   99:
+        -:  100:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION ParsedNumber<double> toDouble(QByteArrayView a) noexcept;
+        -:  101:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION ParsedNumber<float> toFloat(QByteArrayView a) noexcept;
+        -:  102:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION ParsedNumber<qlonglong> toSignedInteger(QByteArrayView data, int base);
+        -:  103:[[nodiscard]] Q_CORE_EXPORT Q_DECL_PURE_FUNCTION ParsedNumber<qulonglong> toUnsignedInteger(QByteArrayView data, int base);
+        -:  104:
+        -:  105:// QByteArrayView has incomplete type here, and we can't include qbytearrayview.h,
+        -:  106:// since it includes qbytearrayalgorithms.h. Use the ByteArrayView template type as
+        -:  107:// a workaround.
+        -:  108:template <typename T, typename ByteArrayView,
+        -:  109:          typename = std::enable_if_t<std::is_same_v<ByteArrayView, QByteArrayView>>>
+        -:  110:static inline T toIntegral(ByteArrayView data, bool *ok, int base)
+        -:  111:{
+        -:  112:    const auto val = [&] {
+        -:  113:        if constexpr (std::is_unsigned_v<T>)
+        -:  114:            return toUnsignedInteger(data, base);
+        -:  115:        else
+        -:  116:            return toSignedInteger(data, base);
+        -:  117:    }();
+        -:  118:    const bool failed = !val || T(*val) != *val;
+        -:  119:    if (ok)
+        -:  120:        *ok = !failed;
+        -:  121:    if (failed)
+        -:  122:        return 0;
+        -:  123:    return T(*val);
+        -:  124:}
+        -:  125:
+        -:  126:} // namespace QtPrivate
+        -:  127:
+        -:  128:/*****************************************************************************
+        -:  129:  Safe and portable C string functions; extensions to standard string.h
+        -:  130: *****************************************************************************/
+        -:  131:
+        -:  132:Q_CORE_EXPORT char *qstrdup(const char *);
+        -:  133:
+    #####:  134:inline size_t qstrlen(const char *str)
+        -:  135:{
+        -:  136:    QT_WARNING_PUSH
+        -:  137:#if defined(Q_CC_GNU) && Q_CC_GNU >= 900 && Q_CC_GNU < 1000
+        -:  138:    // spurious compiler warning (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=91490#c6)
+        -:  139:    // when Q_DECLARE_METATYPE_TEMPLATE_1ARG is used
+        -:  140:    QT_WARNING_DISABLE_GCC("-Wstringop-overflow")
+        -:  141:#endif
+    #####:  142:    return str ? strlen(str) : 0;
+        -:  143:    QT_WARNING_POP
+        -:  144:}
+        -:  145:
+        -:  146:inline size_t qstrnlen(const char *str, size_t maxlen)
+        -:  147:{
+        -:  148:    if (!str)
+        -:  149:        return 0;
+        -:  150:    auto end = static_cast<const char *>(memchr(str, '\0', maxlen));
+        -:  151:    return end ? end - str : maxlen;
+        -:  152:}
+        -:  153:
+        -:  154:// implemented in qbytearray.cpp
+        -:  155:Q_CORE_EXPORT char *qstrcpy(char *dst, const char *src);
+        -:  156:Q_CORE_EXPORT char *qstrncpy(char *dst, const char *src, size_t len);
+        -:  157:
+        -:  158:Q_CORE_EXPORT int qstrcmp(const char *str1, const char *str2);
+        -:  159:
+        -:  160:inline int qstrncmp(const char *str1, const char *str2, size_t len)
+        -:  161:{
+        -:  162:    return (str1 && str2) ? strncmp(str1, str2, len)
+        -:  163:        : (str1 ? 1 : (str2 ? -1 : 0));
+        -:  164:}
+        -:  165:Q_CORE_EXPORT int qstricmp(const char *, const char *);
+        -:  166:Q_CORE_EXPORT int qstrnicmp(const char *, const char *, size_t len);
+        -:  167:Q_CORE_EXPORT int qstrnicmp(const char *, qsizetype, const char *, qsizetype = -1);
+        -:  168:
+        -:  169:// implemented in qvsnprintf.cpp
+        -:  170:Q_CORE_EXPORT int qvsnprintf(char *str, size_t n, const char *fmt, va_list ap);
+        -:  171:Q_CORE_EXPORT int qsnprintf(char *str, size_t n, const char *fmt, ...);
+        -:  172:
+        -:  173:// qChecksum: Internet checksum
+        -:  174:Q_CORE_EXPORT quint16 qChecksum(QByteArrayView data, Qt::ChecksumType standard = Qt::ChecksumIso3309);
+        -:  175:
+        -:  176:QT_END_NAMESPACE
+        -:  177:
+        -:  178:#endif // QBYTEARRAYALGORITHMS_H

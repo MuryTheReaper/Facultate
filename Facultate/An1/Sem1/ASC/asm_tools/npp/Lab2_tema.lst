@@ -1,0 +1,146 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit = printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                  ;Adunare si scadere
+    14                                      ; 3. a,b,c,d - byte
+    15                                      ; a db 12
+    16                                      ; b db 10
+    17                                      ; c db 27
+    18                                      ; d db 125
+    19                                  
+    20                                      ; 28. a,b,c,d - byte
+    21 00000000 0B                          a db 11
+    22 00000001 5A                          b db 90
+    23 00000002 50                          c db 80
+    24 00000003 0A                          d db 10
+    25                                      
+    26                                      ; 3. a,b,c,d - word
+    27                                      ; a dw 321
+    28                                      ; b dw 256
+    29                                      ; c dw 500
+    30                                      ; d dw 400
+    31                                      
+    32                                      ; 28. a,b,c,d - word
+    33                                      ; a dw 300
+    34                                      ; b dw 400
+    35                                      ; c dw 500
+    36                                      ; d dw 600
+    37                                  
+    38                                      
+    39                                  ;Inmultire si impartire 
+    40                                      ; 3. a,b,c - byte, d - word
+    41                                      ; a db 10
+    42                                      ; b db 16
+    43                                      ; c db 11
+    44                                      ; d dw 300
+    45                                      
+    46                                      ; 28. a,b,c - byte, d - word
+    47                                      ; a db 15
+    48                                      ; b db 21
+    49                                      ; c db 12
+    50                                      ; d dw 270
+    51                                      
+    52                                      ; 3. a,b,c,d-byte, e,f,g,h-word
+    53                                      ; e dw 300
+    54                                      ; f dw 400
+    55                                      ; g dw 500
+    56                                      
+    57                                      ;28. a,b,c,d-byte, e,f,g,h-word
+    58                                      ; b db 12
+    59                                      ; c db 31
+    60                                      ; d db 19
+    61                                      ; e dw 300
+    62                                      ; g dw 400
+    63                                      ; h dw 500
+    64                                  ; our code starts here
+    65                                  segment code use32 class=code
+    66                                      start:
+    67                                      ;Adunare si scadere
+    68                                          ; 3. (c+d)-(a+d)+b
+    69                                          ; mov AL, [c]  ;AL = c = 27
+    70                                          ; add AL, [d]  ;AL = c+d = 27+125 = 152
+    71                                          ; mov BL, [a]  ;BL = a = 12
+    72                                          ; add BL, [d]  ;BL = a+d = 12+125 = 137
+    73                                          ; sub AL, BL   ;AL = AL-BL = (c+d)-(a+d) = 152-137 = 15
+    74                                          ; add AL, [b]  ;AL = AL+b = (c+d)-(a+d)+b = 15+10 = 25
+    75                                          
+    76                                          ; 28. a+b-c+d 
+    77 00000000 A0[00000000]                    mov AL, [a] ;AL = a = 11
+    78 00000005 0205[01000000]                  add AL, [b] ;AL = a+b = 11+90 = 101
+    79 0000000B 2A05[02000000]                  sub AL, [c] ;AL = a+b-c = 101-80 = 21
+    80 00000011 0205[03000000]                  add AL, [d] ;AL = a+b-c+d = 21+10 = 30
+    81                                          
+    82                                          ; 3. (b+b+d)-(c+a)
+    83                                          ; mov AX, [b] ;AX= b = 256
+    84                                          ; add AX, [b] ;AX= b+b = 256+256 = 512
+    85                                          ; add AX, [d] ;AX= b+b+d = 512+400 = 912
+    86                                          ; mov BX, [c] ;BX= c = 500
+    87                                          ; add BX, [a] ;BX= c+a = 500+321 = 821
+    88                                          ; sub AX, BX  ;AX= AX-BX = (b+b+d)-(c+a) = 912-821 = 91
+    89                                          
+    90                                          ; 28. (d-c)+(b+b-c-a)+d 
+    91                                          ; mov AX, [d] ;AX = d = 600
+    92                                          ; sub AX, [c] ;AX = d-c = 600-500 = 100
+    93                                          ; mov BX, [b] ;BX = b = 400
+    94                                          ; add BX, [b] ;BX = b+b = 400+400 = 800
+    95                                          ; sub BX, [c] ;BX = b+b-c = 800-500 = 300
+    96                                          ; sub BX, [a] ;BX = b+b-c-a = 300-300 = 0
+    97                                          ; add AX, BX  ;AX = AX+BX = (d-c)+(b+b-c-a) = 100+0 = 100
+    98                                          ; add AX, [d] ;AX = (d-c)+(b+b-c-a)+d = 100+600 = 700
+    99                                          
+   100                                          
+   101                                      ;Inmultire si impartire   
+   102                                          ; 3. [-1+d-2*(b+1)]/a
+   103                                          ; mov AL, [b]  ;AL = b = 16
+   104                                          ; inc AL       ;AL = AL+1 = b+1 = 16+1 = 17
+   105                                          ; mov AH, 2    ;AH = 2
+   106                                          ; mul AH       ;AX = AL*AH = 17*2 = 34
+   107                                          ; neg AX       ;AX = 0-AX = -34
+   108                                          ; add AX, [d]  ;AX = d-2*(b+1) = 300-34 = 266
+   109                                          ; add AX, -1   ;AX = -1+d-2*(b+1) = -1+266 = 265
+   110                                          ; div BYTE [a] ;AL = AX/a = 265/10 = 26,  AH = AX%a = 265%10 = 5
+   111                                          
+   112                                          ; 28. d+10*a-b*c 
+   113                                          ; mov BX, [d]  ;BX = d = 270
+   114                                          ; mov AL, 10   ;AL = 10
+   115                                          ; mov AH, [a]  ;AH = a = 15
+   116                                          ; mul AH       ;AX = AL*AH = 15*10 = 150
+   117                                          ; add BX, AX   ;BX = BX+AX = 150+270 = 420
+   118                                          ; mov AL, [b]  ;AL = b = 21
+   119                                          ; mov AH, [c]  ;AH = c = 12
+   120                                          ; mul AH       ;AX = AL*AH = 21*12 = 252
+   121                                          ; sub BX, AX   ;BX = BX-AX = 420-252 = 168
+   122                                          
+   123                                          ; 3. (e+f)*g 
+   124                                          ; mov AX, [e]   ;AX = e = 300
+   125                                          ; add AX, [f]   ;AX = e + f = 300+400 = 700
+   126                                          ; mul word [g]  ;DX:AX = AX*g = 700*500 = 350000
+   127                                          ; push DX       ;punem DX in stiva
+   128                                          ; push AX       ;punem AX in stiva
+   129                                          ; pop EAX       ;scoatem din stiva DX:AX si punem in EAX
+   130                                          
+   131                                          ; 28. (e+g-h)/3+b*c 
+   132                                          ; mov AX, [e]  ;AX = e = 300
+   133                                          ; add AX, [g]  ;AX = e+g = 300+400 = 700
+   134                                          ; sub AX, [h]  ;AX = e+g-h = 700-500 = 200
+   135                                          ; mov BL, 3    ;BL = 3
+   136                                          ; div BL       ;AL = AX/BL = 200/3 = 66, AH = AX%BL = 200%3 = 2
+   137                                          ; mov BL, AL   ;BX = AL = 66
+   138                                          ; mov BH, 0    ;BH = 0
+   139                                          ; mov AL, [b]  ;AL = b = 12
+   140                                          ; mov AH, [c]  ;AH = c = 31
+   141                                          ; mul AH       ;AX = AL*AH = 12*31 = 372
+   142                                          ; add BX,AX    ;BX = BX+AX = 66+372 = 438
+   143                                          
+   144                                          ; exit(0)
+   145 00000017 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   146 00000019 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

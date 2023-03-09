@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall CMakeFiles/c_app.dir/main.cpp.o CMakeFiles/c_app.dir/disciplina.cpp.o CMakeFiles/c_app.dir/repository.cpp.o CMakeFiles/c_app.dir/services.cpp.o CMakeFiles/c_app.dir/ui.cpp.o CMakeFiles/c_app.dir/validator.cpp.o CMakeFiles/c_app.dir/teste.cpp.o -o c_app 

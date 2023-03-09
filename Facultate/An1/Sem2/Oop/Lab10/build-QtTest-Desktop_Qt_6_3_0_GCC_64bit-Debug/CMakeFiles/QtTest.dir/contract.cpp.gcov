@@ -1,0 +1,22 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/contract.cpp
+        -:    1:#include "contract.h"
+        -:    2:#include <algorithm>
+        -:    3:#include <chrono>
+        -:    4:#include <random>
+        -:    5:
+       12:    6:void contract::add_to_contract(const disciplina &x) { c_list.push_back(x); }
+        -:    7:
+        8:    8:void contract::delete_all() { c_list.clear(); }
+        -:    9:
+       25:   10:const std::vector<disciplina> &contract::get_all() { return c_list; }
+        -:   11:
+        4:   12:void contract::addrandom_to_contract(std::vector<disciplina> list,
+        -:   13:                                     long unsigned int nr) {
+        4:   14:  c_list.clear();
+        4:   15:  std::shuffle(list.begin(), list.end(),
+        8:   16:               std::default_random_engine(std::random_device{}()));
+        8:   17:  while (c_list.size() < nr && list.size() > 0) {
+        4:   18:    c_list.push_back(list.back());
+        4:   19:    list.pop_back();
+        -:   20:  }
+        4:   21:}

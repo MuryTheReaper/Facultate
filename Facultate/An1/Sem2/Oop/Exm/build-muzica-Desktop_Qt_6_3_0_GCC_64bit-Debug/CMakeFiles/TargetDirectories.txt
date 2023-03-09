@@ -1,0 +1,5 @@
+/home/mury/Oop/Exm/build-muzica-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/home/mury/Oop/Exm/build-muzica-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
+/home/mury/Oop/Exm/build-muzica-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/muzica.dir
+/home/mury/Oop/Exm/build-muzica-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/muzica_autogen_timestamp_deps.dir
+/home/mury/Oop/Exm/build-muzica-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/muzica_autogen.dir

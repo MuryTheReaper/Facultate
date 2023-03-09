@@ -1,0 +1,137 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ;3/1
+    14                                      ; a db 1
+    15                                      ; b dw 2
+    16                                      ; c dd -3
+    17                                      ; d dq 4
+    18                                      
+    19                                      ;3/2
+    20                                      ; a db -1
+    21                                      ; b dw 5
+    22                                      ; c dd -20
+    23                                      ; d dq 30
+    24                                      
+    25                                      ;Inmultiri si impartiri
+    26                                      ;3.
+    27 00000000 01                          a db 1
+    28 00000001 FE                          b db -2
+    29 00000002 03000000                    c dd 3 
+    30 00000006 FC                          d db -4
+    31 00000007 0500000000000000            x dq 5
+    32                                      
+    33                                  ; our code starts here
+    34                                  segment code use32 class=code
+    35                                      start:
+    36                                          ;3. (c+d)-(a+d)+b
+    37                                          ; mov EAX, [c]    ;EAX = c = -3 (FFFFFFFDh)
+    38                                          ; cdq             ;DW to QW => EDX:EAX = c = -3 (FFFFFFFFFFFFFFFDh)
+    39                                          ; add EAX, [d+0]  ;EAX = EAX + primi 4 bytes al lui d
+    40                                          ; adc EDX, [d+4]  ;EDX = EDX + ultimi 4 bytes al lui d + CF
+    41                                                          ; ;EDX:EAX = c+d = -3+4 = 1
+    42                                          ; mov EBX, EAX    ;Copiem in EBX pe EAX
+    43                                          ; mov ECX, EDX    ;Copiem in ECX pe EDX
+    44                                                          ; ;EDX:EAX = ECX:EBX = c+d = 1
+    45                                          ; mov AL, [a]     ;AL = a = 1
+    46                                          ; cbw             ;B to W => AX = a = 1
+    47                                          ; cwde            ;W to DW => EAX = a = 1
+    48                                          ; cdq             ;DW to QW => EDX:EAX = a = 1
+    49                                          ; add EAX, [d+0]  ;EAX = EAX + primi 4 bytes al lui d
+    50                                          ; add EDX, [d+4]  ;EDX = EDX + ultimi 4 bytes al lui d + CF
+    51                                                          ; ;EDX:EAX = a+d = 5               
+    52                                          ; sub EBX, EAX    ;EBX = EBX - EAX 
+    53                                          ; sbb ECX, EDX    ;ECX = ECX - EDX - CF             
+    54                                                          ; ;ECX:EBX = ECX:EBX - EDX:EAX = (c+d)-(a+d) = 1-5 = -4 (FFFFFFFFFFFFFFFCh)
+    55                                          ; mov EAX, [b]    ;EAX = b = 2
+    56                                          ; cwde            ;W to DW => EAX = b = 2
+    57                                          ; cdq             ;DW to QW => EDX:EAX = b = 2
+    58                                          ; add EBX, EAX    ;EBX = EBX + EAX
+    59                                          ; adc ECX, EDX    ;ECX = ECX + EDX + CF
+    60                                                          ; ;ECX:EBX = (c+d)-(a+d)+b = -4+2 = -2 (FFFFFFFFFFFFFFFEh)
+    61                                          
+    62                                          ;3. (c+d)-(a+d)+b FARA SEMN
+    63                                          ; mov EAX, [c]    ;EAX = c = 4294967293 (FFFFFFFDh)
+    64                                          ; mov EDX, 0      ;DW to QW => EDX:EAX = c = 4294967293 (FFFFFFFDh)
+    65                                          ; add EAX, [d+0]  ;EAX = EAX + primi 4 bytes al lui d
+    66                                          ; adc EDX, [d+4]  ;EDX = EDX + ultimi 4 bytes al lui d + CF
+    67                                                          ; ;EDX:EAX = c+d = 4294967293+4 = 4294967297 (100000001h)
+    68                                          ; mov EBX, EAX    ;Copiem in EBX pe EAX
+    69                                          ; mov ECX, EDX    ;Copiem in ECX pe EDX
+    70                                                          ; ;EDX:EAX = ECX:EBX = c+d = 4294967297 (100000001h)
+    71                                          ; mov EAX, 0      ;EAX = 0
+    72                                          ; mov AL, [a]     ;EAX = a = 1
+    73                                          ; mov EDX, 0      ;DW to QW => EDX:EAX = a = 1
+    74                                          ; add EAX, [d+0]  ;EAX = EAX + primi 4 bytes al lui d
+    75                                          ; add EDX, [d+4]  ;EDX = EDX + ultimi 4 bytes al lui d + CF
+    76                                                          ; ;EDX:EAX = a+d = 5               
+    77                                          ; sub EBX, EAX    ;EBX = EBX - EAX 
+    78                                          ; sbb ECX, EDX    ;ECX = ECX - EDX - CF             
+    79                                                          ; ;ECX:EBX = ECX:EBX - EDX:EAX = (c+d)-(a+d) = 4294967297-5 = 4294967292 (FFFFFFFCh)
+    80                                          ; mov EAX, 0      ;EAX = 0
+    81                                          ; mov AX, [b]     ;EAX = b = 2
+    82                                          ; mov EDX, 0      ;DW to QW => EDX:EAX = b = 2
+    83                                          ; add EBX, EAX    ;EBX = EBX + EAX
+    84                                          ; adc ECX, EDX    ;ECX = ECX + EDX + CF
+    85                                                          ; ;ECX:EBX = (c+d)-(a+d)+b = 4294967292+2 = 4294967294 (FFFFFFFFFFFFFFFEh)
+    86                                          
+    87                                          ;Setul 2 adunari
+    88                                          ;3.(b+b+d)-(c+a) 
+    89                                          ; mov AX, [b]       ;AX = b = 5
+    90                                          ; add AX, [b]       ;AX = AX+b = 5+5 = 10 (Ah)
+    91                                          ; cwde              ;W to DW => EAX = b+b = 10 (Ah)
+    92                                          ; cdq               ;DW to QW => EDX:EAX = b+b = 10 (Ah)
+    93                                          ; add EAX, [d+0]    ;EAX = EAX + primi 4 bytes al lui d
+    94                                          ; adc EDX, [d+4]    ;EAX = EAX + ultimi 4 bytes al lui d + CF
+    95                                                            ; ;EDX:EAX = b+b+d = 40 (28h)
+    96                                          ; mov EBX, EAX      ;Copiem in EBX pe EAX
+    97                                          ; mov ECX, EDX      ;Copiem in ECX pe EDX
+    98                                                            ; ;ECX:EBX = EDX:EAX = b+b+d = 40 (28h)
+    99                                          ; mov AL, [a]       ;AL = a = -1 (FFh)
+   100                                          ; cbw               ;B to W => AX = a = -1 (FFFFh)
+   101                                          ; cwde              ;W to DW => EAX = a = -1 (FFFFFFFFh)
+   102                                          ; add EAX, [c]      ;EAX = EAX+c = a+c = -21 (FFFFFFEBh)
+   103                                          ; cdq               ;DW to QW => EDX:EAX = a+c = -21 (FFFFFFFFFFFFFFEBh)
+   104                                          ; sub EBX, EAX      ;EBX = EBX - EAX
+   105                                          ; sbb ECX, EDX      ;ECX = ECX - EDX - CF
+   106                                                            ; ;ECX:EBX = (b+b+d)-(c+a) = 61 (3D)
+   107                                          
+   108                                          ;Inmultiri si impartiri
+   109                                          ;3.(8-a*b*100+c)/d+x
+   110 00000000 A0[00000000]                    mov AL, [a]        ;AL = a = 1
+   111 00000005 F62D[01000000]                  imul byte [b]      ;AX = AL*b = a*b = 1*(-2) = -2 (FFFEh)
+   112 0000000B 66BB6400                        mov BX, 100        ;BX = 100 (64h)
+   113 0000000F 66F7EB                          imul BX            ;DX:AX = AX*BX = a*b*100 = -2*100 = -200 (FFFFFF38h)
+   114 00000012 6652                            push DX            ;Punem DX in stiva
+   115 00000014 6650                            push AX            ;Punem AX in stiva 
+   116 00000016 58                              pop EAX            ;EAX = DX:AX  = a*b*100 = -200 (FFFFFF38h)
+   117 00000017 F7D8                            neg EAX            ;EAX = 0-EAX = -a*b*100 = 200 (C8h)
+   118 00000019 0305[02000000]                  add EAX, [c]       ;EAX = EAX+c = -a*b*100+c = 203 (CBh)
+   119 0000001F 83C008                          add EAX, 8         ;EAX = EAX+8 = 8-a*b*100+c = 211 (D3h)
+   120 00000022 89C3                            mov EBX, EAX       ;EBX = EAX = 8-a*b*100+c = 211 (D3h)
+   121 00000024 A0[06000000]                    mov AL, [d]        ;AL = d = -4 (FCh)
+   122 00000029 6698                            cbw                ;B to W => AX = d = -4 (FFFCh)
+   123 0000002B 53                              push EBX           ;Punem EBX in stiva
+   124 0000002C 6689C3                          mov BX, AX         ;BX = AX = d = -4 (FFFCh)
+   125 0000002F 6658                            pop AX             ;Incepem sa construim DX:AX
+   126 00000031 665A                            pop DX             ;DX:AX = EBX = 8-a*b*100+c = 211 (D3h)          
+   127 00000033 66F7FB                          idiv BX            ;AX = DX:AX/BX = (8-a*b*100+c)/d = 211/(-4) = -52 (FFCCh)     DX = DX:AX%BX = 3
+   128 00000036 98                              cwde               ;W to DW => EAX = (8-a*b*100+c)/d = -52 (FFFFFFCCh) 
+   129 00000037 99                              cdq                ;DW to QW => EDX:EAX = (8-a*b*100+c)/d = -52 (FFFFFFFFFFFFFFCCh)
+   130 00000038 0305[07000000]                  add EAX, [x+0]     ;EAX = EAX + primi 4 bytes al lui x
+   131 0000003E 1315[0B000000]                  adc EDX, [x+4]     ;EDX = EDX + ultimi 4 bytes al lui x + CF
+   132                                                             ;EDX:EAX = (8-a*b*100+c)/d+x = -52+5 = -47 (FFFFFFFFFFFFFFD1h)
+   133                                          
+   134                                          
+   135                                          ; exit(0)
+   136 00000044 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   137 00000046 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,152 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/validator.cpp
+        -:    1:#include "validator.h"
+        -:    2:#include <string.h> // NOLINT
+        -:    3:
+function _ZlsRSoRK17validateException called 4 returned 100% blocks executed 80%
+        4:    4:std::ostream &operator<<(std::ostream &out, const validateException &ex) {
+       20:    5:  for (const auto &msgs : ex.msg) {
+call    0 returned 4
+call    1 returned 4
+call    2 returned 16
+call    3 returned 20
+branch  4 taken 16
+branch  5 taken 4 (fallthrough)
+       16:    6:    out << msgs + " ";
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 16
+branch  4 taken 16 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 16
+call    7 returned 16
+call    8 never executed
+        -:    7:  }
+        4:    8:  return out;
+        -:    9:}
+        -:   10:
+function _ZN9validator8validateERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 144 returned 97% blocks executed 64%
+      144:   11:void validator::validate(const std::string &denumire, const std::string &ore,
+        -:   12:                         const std::string &tip, const std::string &profesor) {
+        -:   13:
+      144:   14:  std::vector<std::string> msgs;
+call    0 returned 144
+      144:   15:  if (denumire.size() == 0) {
+call    0 returned 144
+branch  1 taken 4 (fallthrough)
+branch  2 taken 140
+        4:   16:    msgs.push_back("Denumire vida!");
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+branch  5 taken 4 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 4
+call    8 returned 4
+call    9 never executed
+call   10 never executed
+        -:   17:  }
+      144:   18:  if (tip.size() == 0) {
+call    0 returned 144
+branch  1 taken 4 (fallthrough)
+branch  2 taken 140
+        4:   19:    msgs.push_back("Tip vid!");
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+branch  5 taken 4 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 4
+call    8 returned 4
+call    9 never executed
+call   10 never executed
+        -:   20:  }
+      144:   21:  if (profesor.size() == 0) {
+call    0 returned 144
+branch  1 taken 4 (fallthrough)
+branch  2 taken 140
+        4:   22:    msgs.push_back("Profesor vid!");
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+branch  5 taken 4 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 4
+call    8 returned 4
+call    9 never executed
+call   10 never executed
+        -:   23:  }
+      316:   24:  for (const auto &c : ore) {
+call    0 returned 144
+call    1 returned 144
+call    2 returned 176
+call    3 returned 172
+call    4 returned 316
+branch  5 taken 176
+branch  6 taken 140 (fallthrough)
+      176:   25:    if (strchr("0123456789", c) == nullptr) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 172
+        4:   26:      msgs.push_back("Numar de ore invalid!");
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+branch  5 taken 4 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 4
+call    8 returned 4
+call    9 never executed
+call   10 never executed
+        4:   27:      break;
+        -:   28:    }
+        -:   29:  }
+        -:   30:
+      144:   31:  if (msgs.size() > 0) {
+call    0 returned 144
+branch  1 taken 4 (fallthrough)
+branch  2 taken 140
+        4:   32:    throw validateException(msgs);
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 4 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 4
+call    5 never executed
+        -:   33:  }
+      144:   34:}
+call    0 returned 140
+call    1 returned 4
+        -:   35:
+function _ZNK17validateException6getMsgB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   36:std::string validateException::getMsg() const {
+    #####:   37:  std::string msgs;
+call    0 never executed
+    #####:   38:  for (const auto &x : msg) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    #####:   39:    msgs.append(x);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   40:    msgs.append("\n");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   41:  }
+        -:   42:  // msgs.erase()
+    #####:   43:  return msgs;
+    =====:   44:}
+call    0 never executed

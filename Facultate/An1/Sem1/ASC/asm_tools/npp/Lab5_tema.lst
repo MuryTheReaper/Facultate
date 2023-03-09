@@ -1,0 +1,75 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                          ;3
+    14 00000000 01020304                        s1 db 1, 2, 3, 4
+    15                                          l1 equ $-s1
+    16 00000004 050607                          s2 db 5, 6, 7
+    17                                          l2 equ $-s2
+    18 00000007 00<rept>                        d times l1+l2 db 0
+    19                                          
+    20                                          ;5
+    21                                          ; s db 'a', 'A', 'b', 'B', '2', '%', 'x'
+    22                                          ; l equ $-s
+    23                                          ; d times l db 0
+    24                                          
+    25                                  ; our code starts here
+    26                                  segment code use32 class=code
+    27                                      start:
+    28                                          ;3.Se dau doua siruri de octeti S1 si S2. Sa se construiasca sirul D prin concatenarea
+    29                                          ;elementelor din sirul S1 luate de la stanga spre dreapta si a elementelor din sirul S2 luate de la dreapta spre stanga. 
+    30                                          
+    31 00000000 B904000000                      mov ECX, l1 ;punem lungimea primului sir in ECX pentru bucla loop
+    32 00000005 BE00000000                      mov ESI, 0
+    33 0000000A E30F                            jecxz sfarsit1 ;ne asiguram ca nu intram cu ECX=0 in loop
+    34                                          Repeta1:
+    35 0000000C 8A86[00000000]                      mov AL, [s1+ESI] ;Puneam in AL elementele sirului s1 in ordine
+    36 00000012 8886[07000000]                      mov [d+ESI], AL ;Punem in sirul D elementele sirului s1 in ordine
+    37 00000018 46                                  inc ESI
+    38 00000019 E2F1                            loop Repeta1
+    39                                          sfarsit1:
+    40                                          
+    41 0000001B B903000000                      mov ECX, l2   ;puneam lungimea celui de al doilea sir in ECX pentru bucla loop
+    42 00000020 BE00000000                      mov ESI, 0
+    43 00000025 E30F                            jecxz sfarsit2 ;ne asiguram ca nu intram cu ECX=0 in loop
+    44                                          Repeta2:
+    45 00000027 8A81[03000000]                      mov AL, [s2+ECX-1] ;Puneam in AL elementele sirului s2 in ordine inversa 
+    46 0000002D 8886[0B000000]                      mov [d+l1+ESI], AL ;Punem in sirul D elementele sirului s2 in ordine inversa
+    47 00000033 46                                  inc ESI
+    48 00000034 E2F1                            loop Repeta2
+    49                                          sfarsit2:
+    50                                          
+    51                                          ;5. Se da un sir de caractere S. Sa se construiasca sirul D care sa contina toate literele mici din sirul S.
+    52                                          
+    53                                          ; mov ECX, l ;Puneam in ECX lungimea sirului pentru bucla loop
+    54                                          ; mov ESI, 0
+    55                                          ; mov EBX, 0 ;Indicele pentru sirul D
+    56                                          ; jecxz sfarsit
+    57                                          ; Repeta:
+    58                                              ; mov AL, [s+ESI] ;Puneam in AL elementele sirului s
+    59                                              ; cmp AL, 61h 
+    60                                              ; jAE mare_a ;Verificam daca elementul este mai mare sau egal decat caracterul 'a'
+    61                                              ; jmp next   ;In caz negativ sarim la urmatorul element
+    62                                              ; mare_a:
+    63                                                  ; cmp AL, 7Ah
+    64                                                  ; jBE mic_z ;Daca elementul este mai mare sau egal decat 'a' verficam daca este mai mic sau egal decat 'z'
+    65                                                  ; jmp next  ;In caz negativ sarim la urmatorul element
+    66                                                  ; mic_z:
+    67                                                      ; mov [d+EBX], AL ;Daca elementul este intre 'a' si 'z' se punea in sirul D
+    68                                                      ; inc EBX         ;Indicele lui D creste cu o unitate
+    69                                              ; next:
+    70                                              ; inc ESI        
+    71                                          ; loop Repeta
+    72                                          ; sfarsit:
+    73                                          ; exit(0)
+    74 00000036 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    75 00000038 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

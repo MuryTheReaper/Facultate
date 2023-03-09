@@ -1,0 +1,66 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/raport.h
+        -:    1:#pragma once
+        -:    2:#include "disciplina.h"
+        -:    3:#include <string>
+        -:    4:#include <unordered_map>
+        -:    5:#include <vector>
+        -:    6:
+        -:    7:class profesor_frecventa {
+        -:    8:private:
+        -:    9:  std::string profesor;
+        -:   10:  int frecventa = 0;
+        -:   11:
+        -:   12:public:
+function _ZN18profesor_frecventaC2Ev called 24 returned 100% blocks executed 100%
+       24:   13:  profesor_frecventa() = default;
+call    0 returned 24
+        -:   14:
+        -:   15:  const std::string get_profesor() const noexcept { return profesor; }
+        -:   16:
+function _ZN18profesor_frecventa12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 24 returned 100% blocks executed 100%
+       24:   17:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+call    0 returned 24
+        -:   18:
+       8*:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+_ZNK18profesor_frecventa13get_frecventaEv:
+function _ZNK18profesor_frecventa13get_frecventaEv called 8 returned 100% blocks executed 100%
+        8:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+_ZNK18profesor_frecventa13get_frecventaEv:
+function _ZNK18profesor_frecventa13get_frecventaEv called 0 returned 0% blocks executed 0%
+    #####:   19:  const int get_frecventa() const noexcept { return frecventa; }
+------------------
+        -:   20:
+function _ZN18profesor_frecventa13set_frecventaERKi called 24 returned 100% blocks executed 100%
+       24:   21:  void set_frecventa(const int &x) noexcept { frecventa = x; }
+        -:   22:
+function _ZN18profesor_frecventa16change_frecventaERKi called 8 returned 100% blocks executed 100%
+        8:   23:  void change_frecventa(const int &x) noexcept { frecventa += x; }
+        -:   24:};
+        -:   25:
+        -:   26:class raport {
+        -:   27:private:
+        -:   28:  std::unordered_map<std::string, profesor_frecventa> rap_prof_frec;
+        -:   29:
+        -:   30:public:
+       8*:   31:  raport() = default;
+------------------
+_ZN6raportC2Ev:
+function _ZN6raportC2Ev called 8 returned 100% blocks executed 100%
+        8:   31:  raport() = default;
+call    0 returned 8
+------------------
+_ZN6raportC2Ev:
+function _ZN6raportC2Ev called 0 returned 0% blocks executed 0%
+    #####:   31:  raport() = default;
+call    0 never executed
+------------------
+        -:   32:
+        -:   33:  void make_raport_prof_frec(const std::vector<disciplina> &list);
+        -:   34:
+function _ZN6raport10get_raportB5cxx11Ev called 8 returned 100% blocks executed 100%
+        8:   35:  const std::unordered_map<std::string, profesor_frecventa> &get_raport() {
+        8:   36:    return rap_prof_frec;
+        -:   37:  }
+        -:   38:};

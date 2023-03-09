@@ -1,0 +1,57 @@
+[
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/main.cpp.o -c /home/mury/Oop/Lab6/main.cpp",
+  "file": "/home/mury/Oop/Lab6/main.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/disciplina.cpp.o -c /home/mury/Oop/Lab6/disciplina.cpp",
+  "file": "/home/mury/Oop/Lab6/disciplina.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/repository.cpp.o -c /home/mury/Oop/Lab6/repository.cpp",
+  "file": "/home/mury/Oop/Lab6/repository.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/services.cpp.o -c /home/mury/Oop/Lab6/services.cpp",
+  "file": "/home/mury/Oop/Lab6/services.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/ui.cpp.o -c /home/mury/Oop/Lab6/ui.cpp",
+  "file": "/home/mury/Oop/Lab6/ui.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/validator.cpp.o -c /home/mury/Oop/Lab6/validator.cpp",
+  "file": "/home/mury/Oop/Lab6/validator.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/teste.cpp.o -c /home/mury/Oop/Lab6/teste.cpp",
+  "file": "/home/mury/Oop/Lab6/teste.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/my_vector.cpp.o -c /home/mury/Oop/Lab6/my_vector.cpp",
+  "file": "/home/mury/Oop/Lab6/my_vector.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/contract.cpp.o -c /home/mury/Oop/Lab6/contract.cpp",
+  "file": "/home/mury/Oop/Lab6/contract.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/raport.cpp.o -c /home/mury/Oop/Lab6/raport.cpp",
+  "file": "/home/mury/Oop/Lab6/raport.cpp"
+},
+{
+  "directory": "/home/mury/Oop/Lab6/build",
+  "command": "/usr/bin/g++ -Wall -g -o CMakeFiles/c_app.dir/undo.cpp.o -c /home/mury/Oop/Lab6/undo.cpp",
+  "file": "/home/mury/Oop/Lab6/undo.cpp"
+}
+]

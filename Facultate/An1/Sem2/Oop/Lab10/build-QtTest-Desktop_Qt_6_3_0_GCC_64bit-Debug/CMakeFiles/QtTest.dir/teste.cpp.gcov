@@ -1,0 +1,248 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/teste.cpp
+        -:    1:#include "teste.h"
+        -:    2:#include "disciplina.h"
+        -:    3:#include "my_vector.h"
+        -:    4:#include "raport.h"
+        -:    5:#include "services.h"
+        -:    6:#include <assert.h> // NOLINT
+        -:    7:#include <fstream>
+        -:    8:#include <sstream> // NOLINT
+        -:    9:#include <string>
+        -:   10:#include <utility> // NOLINT
+        -:   11:
+        4:   12:void test_add() {
+        -:   13:
+        4:   14:  repository repo;
+        -:   15:  validator val;
+        4:   16:  services serv{repo, val};
+        -:   17:
+        4:   18:  serv.add("a", "1", "b", "c");
+       4*:   19:  assert(repo.get_all().size() == 1);
+        4:   20:  serv.add("x", "1", "b", "c");
+       4*:   21:  assert(repo.get_all().size() == 2);
+        -:   22:
+        -:   23:  try {
+      36*:   24:    serv.add("x", "1", "b", "c");assert(false);
+        4:   25:  } catch (const repoException &ex) {
+        4:   26:    std::stringstream os;
+        4:   27:    os << ex;
+        4:   28:  }
+        4:   29:}
+        4:   30:void test_remove() {
+        -:   31:
+        4:   32:  repository repo;
+        -:   33:  validator val;
+        4:   34:  services serv{repo, val};
+        -:   35:
+        4:   36:  serv.add("a", "1", "b", "c");
+       4*:   37:  assert(repo.get_all().size() == 1);
+        -:   38:
+        4:   39:  serv.remove("a", "1", "b", "c");
+       4*:   40:  assert(repo.get_all().size() == 0);
+        -:   41:
+        4:   42:  serv.add("a", "1", "b", "c");
+        4:   43:  serv.add("b", "1", "b", "c");
+        4:   44:  serv.add("c", "1", "b", "c");
+        4:   45:  serv.add("d", "1", "b", "c");
+        -:   46:
+        4:   47:  serv.remove("a", "1", "b", "c");
+       4*:   48:  assert(repo.get_all().size() == 3);
+        -:   49:
+        -:   50:  try {
+        8:   51:    disciplina x{"x", 1, "b", "c"};
+       4*:   52:    repo.remove(x);assert(false);
+        8:   53:  } catch (const repoException &ex) {
+        4:   54:    std::stringstream os;
+        4:   55:    os << ex;
+        4:   56:    assert(os.str().find("Nu exista disciplina: x") >= 0);
+        4:   57:  }
+        4:   58:}
+        -:   59:
+        4:   60:void test_modify() {
+        -:   61:
+        4:   62:  repository repo;
+        -:   63:  validator val;
+        4:   64:  services serv{repo, val};
+        -:   65:
+        4:   66:  serv.add("a", "1", "b", "c");
+       4*:   67:  assert(serv.get_all().size() == 1);
+        4:   68:  serv.modify("a", "2", "c", "d");
+        8:   69:  disciplina x = serv.find("a", "2", "c", "d");
+       4*:   70:  assert(x.get_denumire() == "a");
+       4*:   71:  assert(x.get_ore() == 2);
+       4*:   72:  assert(x.get_tip() == "c");
+       4*:   73:  assert(x.get_profesor() == "d");
+        -:   74:
+        4:   75:  x.set_disciplina("x");
+        4:   76:  x.set_tip("x");
+        4:   77:  x.set_profesor("x");
+        4:   78:  x.set_ore(1);
+        -:   79:
+        8:   80:  disciplina y{"a", 1, "b", "c"};
+        8:   81:  disciplina z{"b", 1, "b", "c"};
+        4:   82:  z = std::move(y);
+        4:   83:  y = z;
+        -:   84:
+       4*:   85:  assert(x.get_denumire() == "x");
+       4*:   86:  assert(x.get_ore() == 1);
+       4*:   87:  assert(x.get_tip() == "x");
+       4*:   88:  assert(x.get_profesor() == "x");
+        -:   89:
+        -:   90:  try {
+        8:   91:    disciplina x{"b", 2, "c", "d"};
+       4*:   92:    repo.modify(x);assert(false);
+        8:   93:  } catch (const repoException &ex) {
+        4:   94:    std::stringstream os;
+        4:   95:    os << ex;
+        4:   96:    assert(os.str().find("Nu exista disciplina: b") >= 0);
+        4:   97:  }
+        4:   98:}
+        -:   99:
+        4:  100:void test_filter() {
+        -:  101:
+        4:  102:  repository repo;
+        -:  103:  validator val;
+        4:  104:  services serv{repo, val};
+        -:  105:
+        4:  106:  serv.add("a", "1", "b", "p1");
+        4:  107:  serv.add("b", "10", "b", "p2");
+        4:  108:  serv.add("c", "20", "b", "p1");
+        -:  109:
+       4*:  110:  assert(serv.filter_ore_up("5").size() == 2);
+       4*:  111:  assert(serv.filter_profesor("p1").size() == 2);
+        4:  112:}
+        -:  113:
+        4:  114:void test_sort() {
+        -:  115:
+        4:  116:  repository repo;
+        -:  117:  validator val;
+        4:  118:  services serv{repo, val};
+        -:  119:
+        4:  120:  serv.add("x", "10", "b", "p1");
+        4:  121:  serv.add("y", "1", "b", "p2");
+        4:  122:  serv.add("a", "20", "c", "p1");
+        -:  123:
+       4*:  124:  assert(serv.sort_denumire()[0].get_denumire() == "a");
+       4*:  125:  assert(serv.sort_ore()[0].get_denumire() == "y");
+       4*:  126:  assert(serv.sort_mix()[0].get_denumire() == "x");
+        4:  127:}
+        4:  128:void test_validate() {
+        -:  129:
+        -:  130:  validator val;
+        -:  131:  try {
+        4:  132:    val.validate(".", "1", ".", ".");
+        -:  133:    assert(true);
+      36*:  134:    val.validate("", "abcd", "", "");assert(false);
+        4:  135:  } catch (const validateException &ex) {
+        4:  136:    std::stringstream os;
+        4:  137:    os << ex;
+        4:  138:    auto mesaj = os.str();
+        4:  139:    assert(mesaj.find("invalid") >= 0);
+        4:  140:    assert(mesaj.find("vid") >= 0);
+        4:  141:  }
+        4:  142:}
+        -:  143:/*void test_vector() {
+        -:  144:  vector_dinamic<int> x;
+        -:  145:  assert(x.size() == 0);
+        -:  146:  x.remove(2);
+        -:  147:  assert(x.size() == 0);
+        -:  148:}*/
+        -:  149:
+        4:  150:void test_contract() {
+        4:  151:  repository repo;
+        -:  152:  validator val;
+        4:  153:  services serv{repo, val};
+        -:  154:
+        4:  155:  serv.add("x", "10", "b", "p1");
+        4:  156:  serv.add("y", "1", "b", "p2");
+        4:  157:  serv.add("a", "20", "c", "p1");
+        -:  158:
+        4:  159:  serv.add_to_contract("x", "1", ".", ".");
+        4:  160:  serv.add_to_contract("a", "1", ".", ".");
+        -:  161:
+       4*:  162:  assert(serv.get_all_contract()[0].get_denumire() == "x");
+       4*:  163:  assert(serv.get_all_contract()[1].get_denumire() == "a");
+        -:  164:
+        4:  165:  serv.delete_all_contract();
+       4*:  166:  assert(serv.get_all_contract().size() == 0);
+        -:  167:
+        4:  168:  serv.addrandom_to_contract(1);
+       4*:  169:  assert(serv.get_all_contract()[0].get_denumire() == "x" ||
+        -:  170:         serv.get_all_contract()[0].get_denumire() == "a" ||
+        -:  171:         serv.get_all_contract()[0].get_denumire() == "y");
+        -:  172:
+        4:  173:  serv.delete_all_contract();
+        4:  174:  serv.add_to_contract("x", "1", ".", ".");
+        -:  175:
+        4:  176:  serv.export_contract("testing");
+        -:  177:
+        4:  178:  std::ifstream f("testing.csv");
+        4:  179:  std::string str;
+        4:  180:  f >> str;
+       4*:  181:  assert(str == "x,b,p1,10");
+        4:  182:}
+        -:  183:
+        4:  184:void test_raport() {
+        4:  185:  repository repo;
+        -:  186:  validator val;
+        4:  187:  services serv{repo, val};
+        -:  188:
+        4:  189:  serv.add("y", "1", "b", "p2");
+        4:  190:  serv.add("a", "20", "c", "p1");
+        4:  191:  serv.add("x", "20", "c", "p1");
+        -:  192:
+       4*:  193:  assert(serv.raport_profesor_frecventa().find("p2")->second.get_frecventa() ==
+        -:  194:         1);
+       4*:  195:  assert(serv.raport_profesor_frecventa().find("p1")->second.get_frecventa() ==
+        -:  196:         2);
+        4:  197:}
+        -:  198:
+        4:  199:void test_undo() {
+        4:  200:  repository repo;
+        -:  201:  validator val;
+        4:  202:  services serv{repo, val};
+        -:  203:
+        4:  204:  serv.add("y", "1", "b", "p2");
+       4*:  205:  assert(repo.get_all()[0].get_denumire() == "y");
+        4:  206:  serv.undo();
+       4*:  207:  assert(repo.get_all().size() == 0);
+        -:  208:
+        4:  209:  serv.add("y", "1", "b", "p2");
+        4:  210:  serv.remove("y", "1", ".", ".");
+        -:  211:
+       4*:  212:  assert(repo.get_all().size() == 0);
+        4:  213:  serv.undo();
+        -:  214:
+       4*:  215:  assert(repo.get_all()[0].get_denumire() == "y");
+        -:  216:
+        4:  217:  serv.modify("y", "2", "c", "p3");
+        -:  218:
+        4:  219:  serv.undo();
+        -:  220:
+       4*:  221:  assert(repo.get_all()[0].get_ore() == 1);
+       4*:  222:  assert(repo.get_all()[0].get_profesor() == "p2");
+       4*:  223:  assert(repo.get_all()[0].get_tip() == "b");
+        -:  224:
+        4:  225:  serv.undo();
+        -:  226:
+        -:  227:  try {
+       4*:  228:    serv.undo();assert(false);
+        4:  229:  } catch (const servException &ex) {
+        4:  230:    std::stringstream os;
+        4:  231:    os << ex;
+        -:  232:    assert(true);
+        4:  233:  }
+        4:  234:}
+        4:  235:void test_all() {
+        -:  236:
+        4:  237:  test_add();
+        4:  238:  test_remove();
+        4:  239:  test_modify();
+        4:  240:  test_filter();
+        4:  241:  test_sort();
+        4:  242:  test_validate();
+        -:  243:  // test_vector();
+        4:  244:  test_contract();
+        4:  245:  test_raport();
+        4:  246:  test_undo();
+        4:  247:}

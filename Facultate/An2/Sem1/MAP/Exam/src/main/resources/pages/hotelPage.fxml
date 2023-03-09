@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HotelPageController">
+   <children>
+      <TableView fx:id="hotelTable" onMouseClicked="#onMouseClicked" prefHeight="400.0" prefWidth="326.0">
+        <columns>
+          <TableColumn fx:id="nameColm" prefWidth="75.0" text="hotelName" />
+          <TableColumn fx:id="roomsColm" prefWidth="75.0" text="noRooms" />
+            <TableColumn fx:id="priceColm" prefWidth="75.0" text="pricePerNight" />
+            <TableColumn fx:id="typeColm" prefWidth="100.0" text="type" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <ComboBox fx:id="comboBox" layoutX="375.0" layoutY="85.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

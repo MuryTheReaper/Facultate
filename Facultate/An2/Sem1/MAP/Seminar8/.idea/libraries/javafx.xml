@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="javafx">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/openjfx-19_linux-aarch64_bin-sdk.zip!/javafx-sdk-19/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

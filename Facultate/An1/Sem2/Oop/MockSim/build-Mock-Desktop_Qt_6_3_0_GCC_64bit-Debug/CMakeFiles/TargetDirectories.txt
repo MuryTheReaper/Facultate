@@ -1,0 +1,5 @@
+/home/mury/Oop/MockSim/build-Mock-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/home/mury/Oop/MockSim/build-Mock-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
+/home/mury/Oop/MockSim/build-Mock-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Mock.dir
+/home/mury/Oop/MockSim/build-Mock-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Mock_autogen_timestamp_deps.dir
+/home/mury/Oop/MockSim/build-Mock-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Mock_autogen.dir

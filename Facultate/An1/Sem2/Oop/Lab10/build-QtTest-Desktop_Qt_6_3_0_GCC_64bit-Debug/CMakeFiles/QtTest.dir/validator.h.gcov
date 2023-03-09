@@ -1,0 +1,28 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/validator.h
+        -:    0:Graph:validator.cpp.gcno
+        -:    0:Data:validator.cpp.gcda
+        -:    0:Runs:5
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "my_vector.h"
+        -:    4:#include <string> // NOLINT
+        -:    5:#include <vector> // NOLINT
+        -:    6:
+        -:    7:class validator {
+        -:    8:
+        -:    9:public:
+        -:   10:  void validate(const std::string &denumire, const std::string &ore,
+        -:   11:                const std::string &tip, const std::string &profesor);
+        -:   12:};
+        -:   13:
+        -:   14:class validateException {
+        -:   15:
+        -:   16:private:
+        -:   17:  std::vector<std::string> msg;
+        -:   18:
+        -:   19:public:
+        5:   20:  validateException(const std::vector<std::string> &errors) : msg{errors} {}
+        -:   21:  std::string getMsg() const;
+        -:   22:  friend std::ostream &operator<<(std::ostream &out,
+        -:   23:                                  const validateException &ex);
+        -:   24:};

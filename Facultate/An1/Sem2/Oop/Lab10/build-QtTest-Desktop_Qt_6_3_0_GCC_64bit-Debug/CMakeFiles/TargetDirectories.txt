@@ -1,0 +1,5 @@
+/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
+/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/QtTest.dir
+/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/QtTest_autogen_timestamp_deps.dir
+/home/mury/Oop/Lab10/build-QtTest-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/QtTest_autogen.dir

@@ -1,0 +1,304 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/ui.cpp
+        -:    1:#include "ui.h"
+        -:    2:#include <algorithm>
+        -:    3:#include <chrono>
+        -:    4:#include <random>
+        -:    5:#include <string>
+        -:    6:
+    #####:    7:void ui::print(const std::vector<disciplina> x) {
+        -:    8:
+    #####:    9:  std::cout << "DISCIPLINE: \n\n";
+    #####:   10:  for (const auto &d : x) {
+    #####:   11:    std::cout << d.get_denumire() << " " << d.get_tip() << " "
+    #####:   12:              << d.get_profesor() << " " << d.get_ore() << "\n";
+        -:   13:  }
+    #####:   14:  std::cout << "_____________\n";
+    #####:   15:}
+        -:   16:
+    #####:   17:void ui::add_ui() {
+        -:   18:
+    #####:   19:  std::string d, t, p, o;
+        -:   20:
+    #####:   21:  std::cout << "Denumire: ";
+    #####:   22:  std::cin >> d;
+        -:   23:
+    #####:   24:  std::cout << "Tip: ";
+    #####:   25:  std::cin >> t;
+        -:   26:
+    #####:   27:  std::cout << "Profesor: ";
+    #####:   28:  std::cin >> p;
+        -:   29:
+    #####:   30:  std::cout << "Ore: ";
+    #####:   31:  std::cin >> o;
+        -:   32:
+    #####:   33:  serv.add(d, o, t, p);
+        -:   34:
+    #####:   35:  std::cout << "Adaugat cu succes\n";
+    #####:   36:}
+        -:   37:
+    #####:   38:void ui::add_random_ui() {
+        -:   39:
+    #####:   40:  std::string nr;
+    #####:   41:  std::cout << "Numar de discipline: \n";
+    #####:   42:  std::cin >> nr;
+        -:   43:
+    #####:   44:  serv.addrandom(nr);
+        -:   45:
+    #####:   46:  std::cout << "Adaugat cu succes\n";
+    #####:   47:}
+        -:   48:
+    #####:   49:void ui::remove_ui() {
+        -:   50:
+    #####:   51:  std::string d, t, p, o;
+        -:   52:
+    #####:   53:  std::cout << "Denumire: ";
+    #####:   54:  std::cin >> d;
+        -:   55:
+    #####:   56:  t = ".";
+    #####:   57:  p = ".";
+    #####:   58:  o = "1";
+    #####:   59:  serv.remove(d, o, t, p);
+        -:   60:
+    #####:   61:  std::cout << "Sters cu succes\n";
+    #####:   62:}
+        -:   63:
+    #####:   64:void ui::find_ui() {
+        -:   65:
+    #####:   66:  std::string d, t, p, o;
+        -:   67:
+    #####:   68:  std::cout << "Denumire: ";
+    #####:   69:  std::cin >> d;
+        -:   70:
+    #####:   71:  t = ".";
+    #####:   72:  p = ".";
+    #####:   73:  o = "1";
+    #####:   74:  disciplina x = serv.find(d, o, t, p);
+        -:   75:
+    #####:   76:  std::cout << x.get_denumire() << " " << x.get_tip() << " " << x.get_profesor()
+    #####:   77:            << " " << x.get_ore() << "\n";
+    #####:   78:}
+        -:   79:
+    #####:   80:void ui::modify_ui() {
+        -:   81:
+    #####:   82:  std::string d, t, p, o;
+        -:   83:
+    #####:   84:  std::cout << "Denumire disciplinei de modificat: ";
+    #####:   85:  std::cin >> d;
+        -:   86:
+    #####:   87:  std::cout << "Noul Tip: ";
+    #####:   88:  std::cin >> t;
+        -:   89:
+    #####:   90:  std::cout << "Noul Profesor: ";
+    #####:   91:  std::cin >> p;
+        -:   92:
+    #####:   93:  std::cout << "Noul numer de Ore: ";
+    #####:   94:  std::cin >> o;
+        -:   95:
+    #####:   96:  serv.modify(d, o, t, p);
+        -:   97:
+    #####:   98:  std::cout << "Modificat cu succes\n";
+    #####:   99:}
+        -:  100:
+    #####:  101:void ui::filter_ui() {
+        -:  102:
+    #####:  103:  std::string x, f;
+        -:  104:
+    #####:  105:  std::cout << "Filtrare dupa ore sau profesor(1/2): ";
+    #####:  106:  std::cin >> x;
+        -:  107:
+    #####:  108:  if (x == "1") {
+        -:  109:
+    #####:  110:    std::cout << "Mai mare decat: ";
+    #####:  111:    std::cin >> f;
+        -:  112:
+    #####:  113:    print(serv.filter_ore_up(f));
+    #####:  114:  } else if (x == "2") {
+    #####:  115:    std::cout << "Profesor: ";
+    #####:  116:    std::cin >> f;
+        -:  117:
+    #####:  118:    print(serv.filter_profesor(f));
+        -:  119:  } else {
+    #####:  120:    std::cout << "Comanda invalida\n";
+        -:  121:  }
+    #####:  122:}
+        -:  123:
+    #####:  124:void ui::sort_ui() {
+        -:  125:
+    #####:  126:  std::string x, f;
+        -:  127:
+    #####:  128:  std::cout << "Sortare dupa denumire, ore sau profesor+tip(1/2/3): ";
+    #####:  129:  std::cin >> x;
+        -:  130:
+    #####:  131:  if (x == "1") {
+    #####:  132:    print(serv.sort_denumire());
+    #####:  133:  } else if (x == "2") {
+    #####:  134:    print(serv.sort_ore());
+    #####:  135:  } else if (x == "3") {
+    #####:  136:    print(serv.sort_mix());
+        -:  137:  } else {
+    #####:  138:    std::cout << "Comanda invalida\n";
+        -:  139:  }
+    #####:  140:}
+        -:  141:
+    #####:  142:void ui::print_raport_prof_frec(
+        -:  143:    const std::unordered_map<std::string, profesor_frecventa> &x) {
+        -:  144:
+    #####:  145:  std::cout << "RAPORT PROFESOR FRECVENTA\n";
+    #####:  146:  for (const auto &p : x) {
+    #####:  147:    std::cout << p.first << " -> " << p.second.get_frecventa() << "\n";
+        -:  148:  }
+    #####:  149:  std::cout << "_____________\n";
+    #####:  150:}
+        -:  151:
+    #####:  152:void ui::raport_ui() {
+        -:  153:
+    #####:  154:  std::string x;
+        -:  155:
+    #####:  156:  std::cout << "Raport profesor frecventa(1)\n";
+    #####:  157:  std::cin >> x;
+        -:  158:
+    #####:  159:  if (x == "1") {
+    #####:  160:    print_raport_prof_frec(serv.raport_profesor_frecventa());
+        -:  161:  } else {
+    #####:  162:    std::cout << "Comanda invalida\n";
+        -:  163:  }
+    #####:  164:}
+        -:  165:
+    #####:  166:void ui::undo_ui() {
+        -:  167:
+    #####:  168:  serv.undo();
+    #####:  169:  std::cout << "Undo efectuat cu succes\n";
+    #####:  170:}
+        -:  171:
+    #####:  172:void ui::add_contract_ui() {
+        -:  173:
+    #####:  174:  std::string d, t, p, o;
+        -:  175:
+    #####:  176:  std::cout << "Denumire: ";
+    #####:  177:  std::cin >> d;
+        -:  178:
+    #####:  179:  t = ".";
+    #####:  180:  p = ".";
+    #####:  181:  o = "1";
+        -:  182:
+    #####:  183:  serv.add_to_contract(d, o, t, p);
+        -:  184:
+    #####:  185:  std::cout << "Adaugat cu succes\n";
+    #####:  186:  std::cout << "Dimensiunea contractului este: "
+    #####:  187:            << serv.get_all_contract().size() << "\n";
+    #####:  188:}
+        -:  189:
+    #####:  190:void ui::generate_contract_ui() {
+        -:  191:
+    #####:  192:  std::string n;
+        -:  193:
+    #####:  194:  std::cout << "Numar de discipline: ";
+    #####:  195:  std::cin >> n;
+        -:  196:
+        -:  197:  try {
+    #####:  198:    long unsigned int nr = std::stoi(n);
+    #####:  199:    serv.addrandom_to_contract(nr);
+        -:  200:
+    #####:  201:    std::cout << "Adaugat cu succes\n";
+    #####:  202:    std::cout << "Dimensiunea contractului este: "
+    #####:  203:              << serv.get_all_contract().size() << "\n";
+        -:  204:
+    =====:  205:  } catch (const std::invalid_argument &e) {
+    =====:  206:    std::cout << "Numar invalid\n";
+    =====:  207:  }
+    #####:  208:}
+    #####:  209:void ui::delete_contract_ui() {
+    #####:  210:  serv.delete_all_contract();
+    #####:  211:  std::cout << "Sters cu succes\n";
+    #####:  212:}
+    #####:  213:void ui::export_contract_ui() {
+    #####:  214:  std::string file;
+        -:  215:
+    #####:  216:  std::cout << "File name: ";
+    #####:  217:  std::cin >> file;
+        -:  218:
+    #####:  219:  serv.export_contract(file);
+    #####:  220:  std::cout << "Exportat cu succes\n";
+    #####:  221:}
+    #####:  222:void ui::contract_ui() {
+        -:  223:
+        -:  224:  while (true) {
+        -:  225:
+    #####:  226:    std::cout << "\nMENIU CONTRACT:\n";
+    #####:  227:    std::cout << "print\nadd\ngenerate\ndelete\nexport\nexit\nCOMANDA: ";
+        -:  228:
+    #####:  229:    std::string cmd;
+    #####:  230:    std::cin >> cmd;
+        -:  231:
+        -:  232:    try {
+    #####:  233:      if (cmd == "print") {
+    #####:  234:        print(serv.get_all_contract());
+    #####:  235:      } else if (cmd == "add") {
+    #####:  236:        add_contract_ui();
+    #####:  237:      } else if (cmd == "generate") {
+    #####:  238:        generate_contract_ui();
+    #####:  239:      } else if (cmd == "delete") {
+    #####:  240:        delete_contract_ui();
+    #####:  241:      } else if (cmd == "export") {
+    #####:  242:        export_contract_ui();
+    #####:  243:      } else if (cmd == "exit") {
+    #####:  244:        return;
+        -:  245:      } else {
+    #####:  246:        std::cout << "Comanda invalida\n";
+        -:  247:      }
+    =====:  248:    } catch (const repoException &ex) {
+    =====:  249:      std::cout << ex << "\n";
+    =====:  250:    } catch (const validateException &ex) {
+    =====:  251:      std::cout << ex << "\n";
+    =====:  252:    }
+    #####:  253:  }
+        -:  254:}
+        -:  255:
+    #####:  256:void ui::run() {
+        -:  257:
+        -:  258:  while (true) {
+        -:  259:
+    #####:  260:    std::cout << "\nMENIU: \n";
+        -:  261:    std::cout << "contract\nprint\nadd\nadd_random\nremove\nmodify\nfind\n"
+    #####:  262:                 "filter\nsort\nraport\nexit\nundo\nCOMANDA: ";
+        -:  263:
+    #####:  264:    std::string cmd;
+    #####:  265:    std::cin >> cmd;
+        -:  266:
+        -:  267:    try {
+    #####:  268:      if (cmd == "print") {
+    #####:  269:        print(serv.get_all());
+    #####:  270:      } else if (cmd == "contract") {
+    #####:  271:        contract_ui();
+    #####:  272:      } else if (cmd == "add") {
+    #####:  273:        add_ui();
+    #####:  274:      } else if (cmd == "add_random") {
+    #####:  275:        add_random_ui();
+    #####:  276:      } else if (cmd == "remove") {
+    #####:  277:        remove_ui();
+    #####:  278:      } else if (cmd == "modify") {
+    #####:  279:        modify_ui();
+    #####:  280:      } else if (cmd == "find") {
+    #####:  281:        find_ui();
+    #####:  282:      } else if (cmd == "filter") {
+    #####:  283:        filter_ui();
+    #####:  284:      } else if (cmd == "sort") {
+    #####:  285:        sort_ui();
+    #####:  286:      } else if (cmd == "raport") {
+    #####:  287:        raport_ui();
+    #####:  288:      } else if (cmd == "undo") {
+    #####:  289:        undo_ui();
+    #####:  290:      } else if (cmd == "exit") {
+    #####:  291:        return;
+        -:  292:      } else {
+    #####:  293:        std::cout << "Comanda invalida\n";
+        -:  294:      }
+    =====:  295:    } catch (const repoException &ex) {
+    =====:  296:      std::cout << ex << "\n";
+    =====:  297:    } catch (const validateException &ex) {
+    =====:  298:      std::cout << ex << "\n";
+    =====:  299:    } catch (const servException &ex) {
+    =====:  300:      std::cout << ex << "\n";
+    =====:  301:    }
+    #####:  302:  }
+        -:  303:}

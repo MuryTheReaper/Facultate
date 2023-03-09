@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ClientPageController">
+   <children>
+      <TableView fx:id="offerTable" layoutX="76.0" layoutY="22.0" prefHeight="357.0" prefWidth="412.0">
+        <columns>
+          <TableColumn fx:id="nameColm" prefWidth="75.0" text="hotelName" />
+          <TableColumn fx:id="locationColm" prefWidth="75.0" text="numeLocatie" />
+            <TableColumn fx:id="startColm" prefWidth="75.0" text="startDate" />
+            <TableColumn fx:id="endColm" prefWidth="75.0" text="endDate" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

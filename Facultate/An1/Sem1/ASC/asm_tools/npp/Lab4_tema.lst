@@ -1,0 +1,114 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ;3
+    14                                      ;Se dau cuvintele A si B. Sa se obtina dublucuvantul C:
+    15                                      ;bitii 0-2 ai lui C coincid cu bitii 12-14 ai lui A
+    16                                      ;bitii 3-8 ai lui C coincid cu bitii 0-5 ai lui B
+    17                                      ;bitii 9-15 ai lui C coincid cu bitii 3-9 ai lui A
+    18                                      ;bitii 16-31 ai lui C coincid cu bitii lui A
+    19                                  
+    20                                      ; A dw 0101101001010110b
+    21                                      ; B dw 1101010111011101b
+    22                                      ; C resd 1
+    23                                      ; C =  0101101001010110 1001010 011101 101b => 5A5694EDh
+    24                                          
+    25                                      ;10
+    26                                      ;Sa se inlocuiasca bitii 0-3 ai octetului B cu bitii 8-11 ai cuvantului A. 
+    27                                      ; A dw 1000011110001011b
+    28                                      ; B db 11111111b
+    29                                      ; B =  11110111b => F7h
+    30                                      
+    31                                      ;13
+    32                                      ;Dandu-se 4 octeti, sa se obtina in AX suma numerelor intregi reprezentate de bitii 4-6 ai celor 4 octeti. 
+    33                                      ; a db 10101101b ; => 010b=2
+    34                                      ; b db 10110110b ; => 011b=3
+    35                                      ; c db 11011110b ; => 101b=5
+    36                                      ; d db 10111101b ; => 011b=3
+    37                                      
+    38                                  ; our code starts here
+    39                                  segment code use32 class=code
+    40                                      start:
+    41                                          
+    42                                          ;3
+    43                                          ; mov EBX, 0 ;in EBX calculam rezultatul
+    44                                          
+    45                                          ; mov AX, [A] 
+    46                                          ; and AX, 0111000000000000b ;izolam bitii 12-14 al lui A
+    47                                          ; mov CL, 12
+    48                                          ; ror AX, CL ;rotim 12 pozitii la dreapta
+    49                                          ; or  BX, AX ;punem rezultatul in BX
+    50                                          ; ;BX = 5h
+    51                                          ; mov AX, [B]
+    52                                          ; and AX, 0000000000111111b ;izolam bitii 0-5 al lui B
+    53                                          ; mov CL, 3
+    54                                          ; rol AX, CL ;rotim 12 pozitii la stanga
+    55                                          ; or  BX, AX ;punem rezultatul in BX
+    56                                          ; ;BX = EDh
+    57                                          ; mov AX, [A]
+    58                                          ; and AX, 0000001111111000b ;izolam bitii 3-9 al lui A
+    59                                          ; mov CL, 6
+    60                                          ; rol AX, CL ;rotim 6 pozitii la stanga
+    61                                          ; or  BX, AX ;punem rezultatul in BX
+    62                                          ; ;BX = 94EDh
+    63                                          ; mov CL, 16
+    64                                          ; rol EBX,CL ;rotim 16 pozitii la stanga, pentru a avea acces la partea High al lui EBX
+    65                                          ; mov BX, [A];punem rezultatul in BX
+    66                                          ; rol EBX,CL ;rotim la loc 16 pozitii la stanga, pentru a aduce partea High la locul potrivit
+    67                                          ; ;EBX = 5A5694EDh
+    68                                          ; mov [C],EBX;punem rezultatul in C
+    69                                          
+    70                                          ;10
+    71                                          ; mov AX, [A] 
+    72                                          ; and AX, 0000111100000000b ;izolam bitii 8-11 al lui A
+    73                                          ; mov CL, 8
+    74                                          ; ror AX, CL ;rotim bitii 8 pozitii la dreapta
+    75                                          ; and byte [B], 11110000b ;izolam bitii 4-7 al lui B
+    76                                          ; or [B], AL ;introducem bitii lui A in B,  B = F7h
+    77                                          
+    78                                          ;13
+    79                                          ; mov BL, 0 ;punem rezultatul in BL
+    80                                          
+    81                                          ; mov AL, [a]
+    82                                          ; and AL, 01110000b ;izolam bitii 4-6 al lui a
+    83                                          ; mov CL, 4
+    84                                          ; ror AL, CL ;rotim 3 pozitii la dreapta
+    85                                          ; add BL, AL ;BL= BL+2 = 2 
+    86                                          
+    87                                          ; mov AL, [b]
+    88                                          ; and AL, 01110000b ;izolam bitii 4-6 al lui b
+    89                                          ; mov CL, 4
+    90                                          ; ror AL, CL ;rotim 3 pozitii la dreapta
+    91                                          ; add BL, AL ;BL= BL+3 = 5
+    92                                          
+    93                                          ; mov AL, [c]
+    94                                          ; and AL, 01110000b ;izolam bitii 4-6 al lui c
+    95                                          ; mov CL, 4
+    96                                          ; ror AL, CL ;rotim 3 pozitii la dreapta
+    97                                          ; add BL, AL ;BL= BL+5 = 10
+    98                                          
+    99                                          ; mov AL, [d]
+   100                                          ; and AL, 01110000b ;izolam bitii 4-6 al lui d
+   101                                          ; mov CL, 4
+   102                                          ; ror AL, CL ;rotim 3 pozitii la dreapta
+   103                                          ; add BL, AL ;BL= BL+3= 13
+   104                                          
+   105                                          
+   106                                          
+   107                                          
+   108                                          
+   109                                          
+   110                                          
+   111                                      
+   112                                          ; exit(0)
+   113 00000000 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   114 00000002 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

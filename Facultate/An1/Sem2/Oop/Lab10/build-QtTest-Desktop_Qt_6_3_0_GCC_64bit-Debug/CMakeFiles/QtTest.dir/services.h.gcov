@@ -1,0 +1,161 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/services.h
+        -:    1:#pragma once
+        -:    2:#include "contract.h"
+        -:    3:#include "raport.h"
+        -:    4:#include "repository.h"
+        -:    5:#include "undo.h"
+        -:    6:#include "validator.h"
+        -:    7:#include <functional> // NOLINT
+        -:    8:#include <memory>
+        -:    9:#include <vector>
+        -:   10:
+        -:   11:class services {
+        -:   12:
+        -:   13:private:
+        -:   14:  repository &repo;
+        -:   15:  validator &val;
+        -:   16:  contract contr;
+        -:   17:  raport rap;
+        -:   18:
+        -:   19:  std::vector<std::unique_ptr<UndoAction>> undoList;
+        -:   20:
+        -:   21:  /*const std::vector<disciplina>
+        -:   22:  filter(std::function<bool(const disciplina &)> fct) const;
+        -:   23:
+        -:   24:  const std::vector<disciplina>
+        -:   25:  sort(std::function<bool(const disciplina &, const disciplina &)> fct)
+        -:   26:  const;
+        -:   27:  */
+        -:   28:  const std::vector<disciplina>
+        -:   29:  filter_stl(std::function<bool(const disciplina &)> fct) const;
+        -:   30:
+        -:   31:  const std::vector<disciplina> sort_stl(
+        -:   32:      std::function<bool(const disciplina &, const disciplina &)> fct) const;
+        -:   33:
+        -:   34:public:
+       8*:   35:  services(repository &repo, validator &val) : repo{repo}, val{val} {}
+------------------
+_ZN8servicesC2ER10repositoryR9validator:
+        8:   35:  services(repository &repo, validator &val) : repo{repo}, val{val} {}
+------------------
+_ZN8servicesC2ER10repositoryR9validator:
+    #####:   35:  services(repository &repo, validator &val) : repo{repo}, val{val} {}
+------------------
+        -:   36:
+        -:   37:  services(const services &x) = delete;
+        -:   38:
+       8*:   39:  ~services() = default;
+------------------
+_ZN8servicesD2Ev:
+        8:   39:  ~services() = default;
+------------------
+_ZN8servicesD2Ev:
+    #####:   39:  ~services() = default;
+------------------
+        -:   40:
+        -:   41:  services &operator=(const services &) = delete;
+        -:   42:
+        -:   43:  services(services &&) = default;
+        -:   44:
+        -:   45:  services &operator=(services &&) = delete;
+        -:   46:
+        -:   47:  void add(const std::string &denumire, const std::string &ore,
+        -:   48:           const std::string &tip, const std::string &profesor);
+        -:   49:
+        -:   50:  void remove(const std::string &denumire, const std::string &ore,
+        -:   51:              const std::string &tip, const std::string &profesor);
+        -:   52:
+        -:   53:  void modify(const std::string &denumire, const std::string &ore,
+        -:   54:              const std::string &tip, const std::string &profesor);
+        -:   55:
+        -:   56:  const disciplina &find(const std::string &denumire, const std::string &ore,
+        -:   57:                         const std::string &tip, const std::string &profesor);
+        -:   58:
+       4*:   59:  const std::vector<disciplina> &get_all() const noexcept {
+       4*:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+_ZNK8services7get_allEv:
+    #####:   59:  const std::vector<disciplina> &get_all() const noexcept {
+    #####:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+_ZNK8services7get_allEv:
+        4:   59:  const std::vector<disciplina> &get_all() const noexcept {
+        4:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+_ZNK8services7get_allEv:
+    #####:   59:  const std::vector<disciplina> &get_all() const noexcept {
+    #####:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+_ZNK8services7get_allEv:
+    #####:   59:  const std::vector<disciplina> &get_all() const noexcept {
+    #####:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+_ZNK8services7get_allEv:
+    #####:   59:  const std::vector<disciplina> &get_all() const noexcept {
+    #####:   60:    return repo.get_all();
+        -:   61:  }
+------------------
+        -:   62:
+        -:   63:  const std::vector<disciplina> filter_ore_up(const std::string &ore) const;
+        -:   64:
+        -:   65:  const std::vector<disciplina>
+        -:   66:  filter_profesor(const std::string &profesor) const;
+        -:   67:
+        -:   68:  const std::vector<disciplina> sort_denumire();
+        -:   69:
+        -:   70:  const std::vector<disciplina> sort_ore();
+        -:   71:
+        -:   72:  const std::vector<disciplina> sort_mix();
+        -:   73:
+        -:   74:  void add_to_contract(const std::string &denumire, const std::string &ore,
+        -:   75:                       const std::string &tip, const std::string &profesor);
+        -:   76:
+        -:   77:  void addrandom_to_contract(long unsigned int nr);
+        -:   78:
+       8*:   79:  void delete_all_contract() { contr.delete_all(); }
+------------------
+_ZN8services19delete_all_contractEv:
+        8:   79:  void delete_all_contract() { contr.delete_all(); }
+------------------
+_ZN8services19delete_all_contractEv:
+    #####:   79:  void delete_all_contract() { contr.delete_all(); }
+------------------
+        -:   80:
+      25*:   81:  const std::vector<disciplina> &get_all_contract() { return contr.get_all(); }
+------------------
+_ZN8services16get_all_contractEv:
+       25:   81:  const std::vector<disciplina> &get_all_contract() { return contr.get_all(); }
+------------------
+_ZN8services16get_all_contractEv:
+    #####:   81:  const std::vector<disciplina> &get_all_contract() { return contr.get_all(); }
+------------------
+_ZN8services16get_all_contractEv:
+    #####:   81:  const std::vector<disciplina> &get_all_contract() { return contr.get_all(); }
+------------------
+        -:   82:
+        -:   83:  void export_contract(std::string file);
+        -:   84:
+        -:   85:  const std::unordered_map<std::string, profesor_frecventa> &
+        -:   86:  raport_profesor_frecventa();
+        -:   87:
+        -:   88:  void undo();
+        -:   89:
+        -:   90:  void addrandom(const std::string &nr);
+        -:   91:};
+        -:   92:
+        -:   93:class servException {
+        -:   94:
+        -:   95:private:
+        -:   96:  std::string msg;
+        -:   97:
+        -:   98:public:
+        4:   99:  servException(std::string m) : msg{m} {}
+    #####:  100:  std::string getMsg() const { return msg; }
+        -:  101:
+        -:  102:  friend std::ostream &operator<<(std::ostream &out, const servException &ex);
+        -:  103:};

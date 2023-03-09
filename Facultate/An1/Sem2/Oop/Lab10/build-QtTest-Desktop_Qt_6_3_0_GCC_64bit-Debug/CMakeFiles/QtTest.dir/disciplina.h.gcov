@@ -1,0 +1,235 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/disciplina.h
+        -:    1:#pragma once
+        -:    2:#include <iostream> // NOLINT
+        -:    3:#include <ostream>  // NOLINT
+        -:    4:
+        -:    5:class disciplina {
+        -:    6:
+        -:    7:private:
+        -:    8:  std::string denumire;
+        -:    9:  int ore;
+        -:   10:  std::string tip;
+        -:   11:  std::string profesor;
+        -:   12:
+        -:   13:public:
+        -:   14:  disciplina() : ore{0} {}
+        -:   15:
+     144*:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+     144*:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+------------------
+_ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_:
+      144:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+      144:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+------------------
+_ZN10disciplinaC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKiS7_S7_:
+    #####:   16:  disciplina(const std::string &denumire, const int &ore,
+        -:   17:             const std::string &tip, const std::string &profesor)
+    #####:   18:      : denumire{denumire}, ore{ore}, tip{tip}, profesor{profesor} {}
+------------------
+        -:   19:
+     161*:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+      161:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+_ZN10disciplinaD2Ev:
+    #####:   20:  ~disciplina() = default;
+------------------
+        -:   21:
+        4:   22:  disciplina &operator=(const disciplina &) = default;
+        -:   23:
+     108*:   24:  disciplina(disciplina &&) = default;
+------------------
+_ZN10disciplinaC2EOS_:
+      108:   24:  disciplina(disciplina &&) = default;
+------------------
+_ZN10disciplinaC2EOS_:
+    #####:   24:  disciplina(disciplina &&) = default;
+------------------
+_ZN10disciplinaC2EOS_:
+    #####:   24:  disciplina(disciplina &&) = default;
+------------------
+        -:   25:
+      72*:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+_ZN10disciplinaaSEOS_:
+       72:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+_ZN10disciplinaaSEOS_:
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+_ZN10disciplinaaSEOS_:
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+_ZN10disciplinaaSEOS_:
+    #####:   26:  disciplina &operator=(disciplina &&) = default;
+------------------
+        -:   27:
+     392*:   28:  disciplina(const disciplina &x)
+     392*:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+     392*:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+      392:   28:  disciplina(const disciplina &x)
+      392:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+      392:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+------------------
+_ZN10disciplinaC2ERKS_:
+    #####:   28:  disciplina(const disciplina &x)
+    #####:   29:      : denumire{x.denumire}, ore{x.ore}, tip{x.tip}, profesor{x.profesor} {
+        -:   30:    // std::cout << "Copy constructor was used\n";
+    #####:   31:  }
+------------------
+        -:   32:
+     597*:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+      597:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+_ZNK10disciplina12get_denumireB5cxx11Ev:
+    #####:   33:  const std::string get_denumire() const noexcept { return denumire; }
+------------------
+        -:   34:
+      64*:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+       64:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+_ZNK10disciplina7get_oreEv:
+    #####:   35:  const int get_ore() const noexcept { return ore; }
+------------------
+        -:   36:
+      44*:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+       44:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+_ZNK10disciplina7get_tipB5cxx11Ev:
+    #####:   37:  const std::string get_tip() const noexcept { return tip; }
+------------------
+        -:   38:
+     160*:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+      160:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+_ZNK10disciplina12get_profesorB5cxx11Ev:
+    #####:   39:  const std::string get_profesor() const noexcept { return profesor; }
+------------------
+        -:   40:
+        4:   41:  void set_disciplina(const std::string &x) noexcept { denumire = x; }
+        -:   42:
+      16*:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+------------------
+_ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+       16:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+------------------
+_ZN10disciplina7set_tipERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+    #####:   43:  void set_tip(const std::string &x) noexcept { tip = x; }
+------------------
+        -:   44:
+      16*:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+_ZN10disciplina7set_oreERKi:
+       16:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+_ZN10disciplina7set_oreERKi:
+    #####:   45:  void set_ore(const int &x) noexcept { ore = x; }
+------------------
+        -:   46:
+      16*:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+------------------
+_ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+       16:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+------------------
+_ZN10disciplina12set_profesorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+    #####:   47:  void set_profesor(const std::string &x) noexcept { profesor = x; }
+------------------
+        -:   48:
+        -:   49:  friend bool operator==(const disciplina &x, const disciplina &y);
+        -:   50:};

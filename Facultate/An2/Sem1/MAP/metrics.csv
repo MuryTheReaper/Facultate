@@ -1,0 +1,295 @@
+My metrics,Thu, 19 Jan 2023 08:57:32 EET
+Method,CogC,v(G)
+"call(CellDataFeatures<Friendship, String>)",2,n/a
+config.ApplicationContext.getPROPERTIES(),0,1
+config.Config.getProperties(),1,2
+"domain.Confidential.Confidential(Long, String, String, Long)",0,1
+"domain.Confidential.Confidential(String, String)",0,1
+"domain.Confidential.Confidential(String, String, Long)",0,1
+domain.Confidential.getPassword(),0,1
+domain.Confidential.getUserId(),0,1
+domain.Confidential.getUsername(),0,1
+domain.Confidential.setPassword(String),0,1
+domain.Confidential.setUserId(Long),0,1
+domain.Confidential.setUsername(String),0,1
+domain.Entity.getId(),0,1
+domain.Entity.isDeleted(),0,1
+domain.Entity.setDeleted(boolean),0,1
+domain.Entity.setId(ID),0,1
+"domain.Friendship.Friendship(Long, Long, LocalDateTime)",0,1
+"domain.Friendship.Friendship(Long, Long, Long, LocalDateTime)",0,1
+domain.Friendship.getDate(),0,1
+domain.Friendship.getId1(),0,1
+domain.Friendship.getId2(),0,1
+domain.Friendship.setDate(LocalDateTime),0,1
+domain.Friendship.setId1(Long),0,1
+domain.Friendship.setId2(Long),0,1
+domain.Friendship.toString(),0,1
+"domain.Message.Message(String, Long, Long)",0,1
+domain.Message.getFrom(),0,1
+domain.Message.getText(),0,1
+domain.Message.getTo(),0,1
+domain.Message.setFrom(Long),0,1
+domain.Message.setText(String),0,1
+domain.Message.setTo(Long),0,1
+"domain.User.User(Long, String, String)",0,1
+"domain.User.User(String, String)",0,1
+"domain.User.User(String, String, List<User>)",0,1
+domain.User.equals(Object),9,10
+domain.User.getFirstName(),0,1
+domain.User.getFriends(),0,1
+domain.User.getLastName(),0,1
+domain.User.hashCode(),0,1
+domain.User.setFirstName(String),0,1
+domain.User.setLastName(String),0,1
+domain.User.toString(),0,1
+domain.factory.EntityFactory.EntityFactory(),0,1
+"domain.factory.EntityFactory.createEntity(Class<E>, List<String>)",14,15
+domain.factory.EntityFactory.getInstance(),1,2
+domain.validators.ConfidentialValidator.validate(Confidential),2,3
+domain.validators.FriendshipValidator.validate(Friendship),3,4
+domain.validators.MessageValidator.validate(Message),1,2
+domain.validators.UserValidator.validate(User),15,16
+domain.validators.ValidatorException.ValidatorException(),0,1
+domain.validators.ValidatorException.ValidatorException(String),0,1
+"domain.validators.ValidatorException.ValidatorException(String, Throwable)",0,1
+"domain.validators.ValidatorException.ValidatorException(String, Throwable, boolean, boolean)",0,1
+domain.validators.ValidatorException.ValidatorException(Throwable),0,1
+main.HelloApplication.main(String[]),0,1
+main.HelloApplication.start(Stage),0,1
+main.HelloController.onHelloButtonClick(),0,1
+main.Main.createMasterServiceDB(),0,1
+main.Main.main(String[]),0,1
+main.Main.runApplication(),0,1
+main.Main.start(Stage),0,1
+repository.RepositoryException.RepositoryException(String),0,1
+"repository.database.AbstractDBRepository.AbstractDBRepository(String, String, String, Validator<E>)",0,1
+repository.database.AbstractDBRepository.delete(ID),2,3
+repository.database.AbstractDBRepository.findAll(),2,3
+repository.database.AbstractDBRepository.findOne(ID),2,3
+repository.database.AbstractDBRepository.findTrueAll(),2,3
+repository.database.AbstractDBRepository.save(E),3,4
+repository.database.AbstractDBRepository.update(E),2,3
+"repository.database.ConfidentialDBRepository.ConfidentialDBRepository(String, String, String, Validator<Confidential>)",0,1
+"repository.database.ConfidentialDBRepository.createEntity(PreparedStatement, Confidential)",1,2
+repository.database.ConfidentialDBRepository.extractEntity(ResultSet),1,2
+repository.database.ConfidentialDBRepository.getEntityClass(),0,1
+repository.database.ConfidentialDBRepository.getInsertQuery(),0,1
+repository.database.ConfidentialDBRepository.getUpdateQuery(),0,1
+"repository.database.FriendshipDBRepository.FriendshipDBRepository(String, String, String, Validator<Friendship>)",0,1
+"repository.database.FriendshipDBRepository.createEntity(PreparedStatement, Friendship)",1,2
+repository.database.FriendshipDBRepository.extractEntity(ResultSet),1,2
+repository.database.FriendshipDBRepository.getEntityClass(),0,1
+repository.database.FriendshipDBRepository.getInsertQuery(),0,1
+repository.database.FriendshipDBRepository.getUpdateQuery(),0,1
+"repository.database.MessageDBRepository.MessageDBRepository(String, String, String, Validator<Message>)",0,1
+"repository.database.MessageDBRepository.createEntity(PreparedStatement, Message)",1,2
+repository.database.MessageDBRepository.extractEntity(ResultSet),1,2
+repository.database.MessageDBRepository.getEntityClass(),0,1
+repository.database.MessageDBRepository.getInsertQuery(),0,1
+repository.database.MessageDBRepository.getUpdateQuery(),0,1
+"repository.database.UserDBRepository.UserDBRepository(String, String, String, Validator<User>)",0,1
+"repository.database.UserDBRepository.createEntity(PreparedStatement, User)",1,2
+repository.database.UserDBRepository.extractEntity(ResultSet),1,2
+repository.database.UserDBRepository.getEntityClass(),0,1
+repository.database.UserDBRepository.getInsertQuery(),0,1
+repository.database.UserDBRepository.getUpdateQuery(),0,1
+"repository.file.AbstractFileRepository.AbstractFileRepository(Validator<E>, String)",0,1
+repository.file.AbstractFileRepository.delete(ID),1,2
+repository.file.AbstractFileRepository.loadData(),3,4
+repository.file.AbstractFileRepository.save(E),1,2
+repository.file.AbstractFileRepository.saveToFile(Iterable<E>),3,3
+repository.file.AbstractFileRepository.update(E),1,2
+repository.file.AbstractFileRepository.writeToFile(E),1,2
+"repository.file.FriendshipFileRepository.FriendshipFileRepository(Validator<Friendship>, String)",0,1
+repository.file.FriendshipFileRepository.createEntityAsString(Friendship),0,1
+repository.file.FriendshipFileRepository.extractEntity(List<String>),0,1
+repository.file.FriendshipFileRepository.getEntityClass(),0,1
+"repository.file.UserFileRepository.UserFileRepository(Validator<User>, String)",0,1
+repository.file.UserFileRepository.createEntityAsString(User),0,1
+repository.file.UserFileRepository.extractEntity(List<String>),0,1
+repository.file.UserFileRepository.getEntityClass(),0,1
+repository.memory.FriendshipInMemoryRepository.FriendshipInMemoryRepository(Validator<Friendship>),0,1
+repository.memory.FriendshipInMemoryRepository.getEntityClass(),0,1
+repository.memory.InMemoryRepository.InMemoryRepository(Validator<E>),0,1
+repository.memory.InMemoryRepository.delete(ID),1,2
+repository.memory.InMemoryRepository.findAll(),2,2
+repository.memory.InMemoryRepository.findOne(ID),3,4
+repository.memory.InMemoryRepository.findTrueAll(),0,1
+repository.memory.InMemoryRepository.save(E),5,4
+repository.memory.InMemoryRepository.update(E),2,3
+repository.memory.UserInMemoryRepository.UserInMemoryRepository(Validator<User>),0,1
+repository.memory.UserInMemoryRepository.getEntityClass(),0,1
+"service.BasicService.BasicService(Repository<ID, E>)",0,1
+service.BasicService.createEntity(List<String>),0,1
+service.BasicService.delete(ID),0,1
+service.BasicService.findAll(),0,1
+service.BasicService.findOne(ID),0,1
+service.BasicService.findTrueAll(),0,1
+service.BasicService.save(List<String>),2,2
+service.BasicService.update(List<String>),0,1
+service.ConfidentialService.ConfidentialService(Repository),0,1
+service.ConfidentialService.getNextId(),3,3
+service.FriendshipService.FriendshipService(Repository),0,1
+service.FriendshipService.getCommunities(),0,1
+service.FriendshipService.getGraph(),1,2
+service.FriendshipService.getNextId(),3,3
+service.FriendshipService.getNumberOfConnectedComponents(),0,1
+"service.MasterService.MasterService(UserService, FriendshipService, ConfidentialService, MessageService)",0,1
+"service.MasterService.acceptFriendRequest(User, User)",0,1
+"service.MasterService.addFriendship(List<String>, List<String>)",3,4
+"service.MasterService.addUser(String, String)",4,5
+service.MasterService.denyFriendRequest(Friendship),0,1
+service.MasterService.findFriendRequests(User),1,2
+service.MasterService.findFriends(User),0,1
+"service.MasterService.findMessages(User, User)",7,6
+"service.MasterService.findPotentialUser(String, String)",3,3
+service.MasterService.getAllFriendships(),1,2
+service.MasterService.getAllUsers(),0,1
+"service.MasterService.getConfidential(String, String)",4,4
+service.MasterService.getFriendship(Long),4,4
+"service.MasterService.getFriendship(Long, Long)",4,4
+service.MasterService.getFriendshipSentReceived(User),6,4
+service.MasterService.getMostSociableCommunity(),20,12
+service.MasterService.getNumberOfCommunities(),0,1
+"service.MasterService.getUser(String, String)",4,4
+service.MasterService.getUserById(Long),0,1
+"service.MasterService.login(String, String)",1,2
+"service.MasterService.registerUser(String, String, String, String)",4,5
+"service.MasterService.removeFriendship(List<String>, List<String>)",4,5
+service.MasterService.removeUser(String),0,1
+"service.MasterService.sendFriendRequest(User, User)",6,6
+"service.MasterService.sendMessage(User, User, String)",0,1
+"service.MasterService.updateFriendship(List<String>, List<String>, List<String>)",4,6
+"service.MasterService.updateUser(String, String, String)",0,1
+service.MessageService.MessageService(Repository),0,1
+service.MessageService.getNextId(),3,3
+service.ServiceException.ServiceException(String),0,1
+service.UserService.UserService(Repository),0,1
+service.UserService.getNextId(),3,3
+ui.ChatPageController.initialize(),0,1
+ui.ChatPageController.onBackButtonClicked(),0,1
+ui.ChatPageController.onSendButtonClicked(),3,3
+ui.ChatPageController.refresh(),0,1
+ui.ChatPageController.setFromUser(User),0,1
+ui.ChatPageController.setService(MasterService),0,1
+ui.ChatPageController.setToUser(User),0,1
+ui.Console.Console(MasterService),0,1
+ui.Console.addFriendship(),1,2
+ui.Console.addUser(),1,2
+ui.Console.menu(),0,1
+ui.Console.readFriendship(),0,1
+ui.Console.removeFriendship(),1,2
+ui.Console.removeUser(),3,3
+ui.Console.run(),3,13
+ui.Console.showAllFriendships(),0,1
+ui.Console.showAllUsers(),0,1
+ui.Console.showMostSociableCommunity(),0,1
+ui.Console.showNumberOfCommunities(),0,1
+ui.Console.testing(),0,1
+ui.Console.updateFriendship(),1,2
+ui.Console.updateUser(),3,3
+ui.LoginPageController.onCloseButtonClicked(),0,1
+ui.LoginPageController.onLoginButtonClicked(),3,3
+ui.LoginPageController.onRegisterButtonClicked(),0,1
+ui.LoginPageController.setService(MasterService),0,1
+"ui.MainPageController.extractInfo(TableColumn<Friendship, String>, TableColumn<Friendship, String>)",6,3
+ui.MainPageController.initialize(),3,2
+ui.MainPageController.listUsersHandler(),0,1
+ui.MainPageController.onAcceptButtonClicked(),5,5
+ui.MainPageController.onCancelButtonClicked(),5,5
+ui.MainPageController.onDenyButtonClicked(),5,5
+ui.MainPageController.onFriendRequestButtonClicked(),4,4
+ui.MainPageController.onLogoutButtonClicked(),0,1
+ui.MainPageController.onOpenChatButtonClicked(),4,4
+ui.MainPageController.onRemoveFriendButtonClicked(),4,4
+ui.MainPageController.refreshFriendRequests(),0,1
+ui.MainPageController.refreshFriends(),0,1
+ui.MainPageController.setCurrentUser(User),0,1
+ui.MainPageController.setService(MasterService),0,1
+ui.RegisterPageController.onCloseButtonClicked(),0,1
+ui.RegisterPageController.onRegisterButtonClicked(),4,4
+ui.RegisterPageController.setService(MasterService),0,1
+ui.UiException.UiException(),0,1
+ui.UiException.UiException(String),0,1
+"ui.UiException.UiException(String, Throwable)",0,1
+"ui.UiException.UiException(String, Throwable, boolean, boolean)",0,1
+ui.UiException.UiException(Throwable),0,1
+utils.Graph.DFS(),3,3
+"utils.Graph.DFSUtil(int, boolean[], ArrayList<Integer>)",4,3
+utils.Graph.Graph(int),1,2
+"utils.Graph.addEdge(int, int)",0,1
+"utils.Graph.dfs(int, boolean[], int[])",4,3
+utils.Graph.getLongestPath(),6,4
+utils.Graph.getNumberOfConnectedComponents(),0,1
+utils.SceneFactory.SceneFactory(),0,1
+utils.SceneFactory.getInstance(),1,2
+"utils.SceneFactory.setScene(String, String, List<Object>, Button)",1,4
+
+Class,CBO,DIT,LCOM,NOC,WMC
+config.ApplicationContext,2,1,1,0,1
+config.Config,1,1,1,0,1
+domain.Confidential,6,2,3,0,9
+domain.Entity,25,1,2,4,4
+domain.Friendship,9,2,3,0,9
+domain.Message,6,2,3,0,7
+domain.User,12,2,3,0,15
+domain.factory.EntityFactory,8,1,2,0,11
+domain.validators.ConfidentialValidator,4,1,1,0,3
+domain.validators.FriendshipValidator,4,1,1,0,3
+domain.validators.MessageValidator,4,1,1,0,2
+domain.validators.UserValidator,4,1,1,0,14
+domain.validators.ValidatorException,8,4,0,0,5
+main.HelloApplication,0,2,2,0,2
+main.HelloController,0,1,1,0,1
+main.Main,16,2,2,0,4
+repository.RepositoryException,3,4,0,0,1
+repository.database.AbstractDBRepository,9,1,1,4,14
+repository.database.ConfidentialDBRepository,5,2,5,0,6
+repository.database.FriendshipDBRepository,5,2,5,0,6
+repository.database.MessageDBRepository,5,2,5,0,6
+repository.database.UserDBRepository,5,2,5,0,6
+repository.file.AbstractFileRepository,6,2,1,2,11
+repository.file.FriendshipFileRepository,5,3,2,0,4
+repository.file.UserFileRepository,4,3,3,0,4
+repository.memory.FriendshipInMemoryRepository,3,2,1,0,2
+repository.memory.InMemoryRepository,7,1,2,3,16
+repository.memory.UserInMemoryRepository,3,2,1,0,2
+service.BasicService,9,1,1,4,9
+service.ConfidentialService,6,2,1,0,4
+service.FriendshipService,7,2,2,0,8
+service.MasterService,20,1,2,0,68
+service.MessageService,6,2,1,0,4
+service.ServiceException,1,4,0,0,1
+service.UserService,6,2,1,0,4
+ui.ChatPageController,3,1,1,0,8
+ui.Console,2,1,1,0,30
+ui.LoginPageController,5,1,2,0,5
+ui.MainPageController,7,1,1,0,36
+ui.RegisterPageController,2,1,1,0,5
+ui.UiException,1,4,0,0,5
+utils.Constants,4,1,0,0,0
+utils.Graph,2,1,1,0,17
+utils.SceneFactory,5,1,2,0,4
+
+Interface,CBO
+domain.Deletable,1
+domain.factory.Factory,2
+domain.validators.Validator,16
+repository.Repository,10
+service.Service,2
+
+Package,Ca,Ce,I
+config,24,0,0.00
+domain,476,0,0.00
+domain.factory,4,20,0.83
+domain.validators,24,29,0.55
+main,0,44,1.00
+repository,29,2,0.06
+repository.database,4,77,0.95
+repository.file,0,47,1.00
+repository.memory,9,31,0.78
+service,66,273,0.81
+ui,14,153,0.92
+utils,41,15,0.27
+

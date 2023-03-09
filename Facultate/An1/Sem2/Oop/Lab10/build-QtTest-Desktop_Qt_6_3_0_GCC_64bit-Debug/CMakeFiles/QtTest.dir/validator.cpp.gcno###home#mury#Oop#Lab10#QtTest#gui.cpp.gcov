@@ -1,0 +1,1480 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/gui.cpp
+        -:    1:#include "gui.h"
+        -:    2:#include <QFormLayout>
+        -:    3:#include <QLabel>
+        -:    4:#include <QMessageBox>
+        -:    5:
+function _ZN7guiMain7initGUIEv called 0 returned 0% blocks executed 0%
+    #####:    6:void guiMain::initGUI() {
+    #####:    7:  setLayout(mainly);
+call    0 never executed
+        -:    8:
+        -:    9:  // formul din dreapta
+    #####:   10:  QWidget *widForm = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   11:  QFormLayout *formLayout = (new QFormLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   12:
+    #####:   13:  widForm->setLayout(formLayout);
+call    0 never executed
+        -:   14:
+    #####:   15:  QLabel *x = (new QLabel("Denumire:"));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+    #####:   16:  formLayout->addRow(x, txtDenumire);
+call    0 never executed
+        -:   17:
+    #####:   18:  x = (new QLabel("Tip:"));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+    #####:   19:  formLayout->addRow(x, txtTip);
+call    0 never executed
+        -:   20:
+    #####:   21:  x = (new QLabel("Profesor:"));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+    #####:   22:  formLayout->addRow(x, txtProfesor);
+call    0 never executed
+        -:   23:
+    #####:   24:  x = (new QLabel("Ore:"));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+    #####:   25:  formLayout->addRow(x, txtOre);
+call    0 never executed
+        -:   26:
+        -:   27:  // butoane de sub form
+        -:   28:  // butoane pt introducere txt
+    #####:   29:  QWidget *formbtn1 = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   30:  QWidget *formbtn2 = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   31:  QHBoxLayout *formbtnLayout1 = (new QHBoxLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   32:  QHBoxLayout *formbtnLayout2 = (new QHBoxLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   33:
+    #####:   34:  formbtn1->setLayout(formbtnLayout1);
+call    0 never executed
+        -:   35:
+    #####:   36:  formbtnLayout1->addWidget(btnAdd);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   37:  formbtnLayout1->addWidget(btnModify);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   38:  formbtnLayout1->addWidget(btnFind);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   39:
+    #####:   40:  formbtn2->setLayout(formbtnLayout2);
+call    0 never executed
+        -:   41:
+    #####:   42:  formbtnLayout2->addWidget(btnRemove);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   43:  formbtnLayout2->addWidget(btnUndo);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   44:
+    #####:   45:  formLayout->addRow(formbtn1);
+call    0 never executed
+    #####:   46:  formLayout->addRow(formbtn2);
+call    0 never executed
+        -:   47:
+        -:   48:  // butoane pentru filtrare
+    #####:   49:  QWidget *formbtnfilter = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   50:  QHBoxLayout *formbtnfilterLayout = (new QHBoxLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   51:
+    #####:   52:  formbtnfilter->setLayout(formbtnfilterLayout);
+call    0 never executed
+        -:   53:
+    #####:   54:  formbtnfilterLayout->addWidget(btnFilterByProf);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   55:  formbtnfilterLayout->addWidget(btnFilterByOre);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   56:
+    #####:   57:  formLayout->addRow(formbtnfilter);
+call    0 never executed
+        -:   58:
+        -:   59:  // lista cu date
+    #####:   60:  QWidget *widList = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   61:  QVBoxLayout *ListLayout = (new QVBoxLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   62:  widList->setLayout(ListLayout);
+call    0 never executed
+    #####:   63:  ListLayout->addWidget(list);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   64:
+        -:   65:  // butoane de sub lista
+    #####:   66:  QWidget *listbtn = (new QWidget);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   67:  QHBoxLayout *listbtnLayout = (new QHBoxLayout);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   68:
+    #####:   69:  listbtn->setLayout(listbtnLayout);
+call    0 never executed
+        -:   70:
+    #####:   71:  listbtnLayout->addWidget(btnSortByDenumire);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   72:  listbtnLayout->addWidget(btnSortByOre);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   73:  listbtnLayout->addWidget(btnSortByMixt);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   74:
+    #####:   75:  ListLayout->addWidget(listbtn);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:   76:
+        -:   77:  // construire fereastra
+    #####:   78:  mainly->addWidget(widList);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:   79:  mainly->addWidget(widForm);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   80:}
+        -:   81:
+function _ZN7guiMain15connect_signalsEv called 0 returned 0% blocks executed 0%
+    #####:   82:void guiMain::connect_signals() {
+    #####:   83:  QObject::connect(btnAdd, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   84:                   &guiMain::addDisciplina);
+        -:   85:
+    #####:   86:  QObject::connect(btnModify, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   87:                   &guiMain::modifyDisciplina);
+        -:   88:
+    #####:   89:  QObject::connect(btnRemove, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   90:                   &guiMain::removeDisciplina);
+        -:   91:
+    #####:   92:  QObject::connect(btnFind, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   93:                   &guiMain::findDisciplina);
+        -:   94:
+    #####:   95:  QObject::connect(btnUndo, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   96:                   &guiMain::undoDisciplina);
+        -:   97:
+    #####:   98:  QObject::connect(btnFilterByOre, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:   99:                   &guiMain::filterByOreDisciplina);
+        -:  100:
+    #####:  101:  QObject::connect(btnFilterByProf, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:  102:                   &guiMain::filterByProfDisciplina);
+        -:  103:
+    #####:  104:  QObject::connect(btnSortByDenumire, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:  105:                   &guiMain::sortByDenumireDisciplina);
+        -:  106:
+    #####:  107:  QObject::connect(btnSortByOre, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:  108:                   &guiMain::sortByOreDisciplina);
+        -:  109:
+    #####:  110:  QObject::connect(btnSortByMixt, &QPushButton::clicked, this,
+call    0 never executed
+call    1 never executed
+        -:  111:                   &guiMain::sortByMixtDisciplina);
+        -:  112:
+function _ZZN7guiMain15connect_signalsEvENKUlvE_clEv called 0 returned 0% blocks executed 0%
+    #####:  113:  QObject::connect(list, &QListWidget::itemSelectionChanged, this, [&]() {
+call    0 never executed
+call    1 never executed
+    #####:  114:    auto selected = list->selectedItems();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  115:    if (selected.isEmpty()) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  116:      txtDenumire->setText("");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  117:      txtTip->setText("");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  118:      txtProfesor->setText("");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  119:      txtOre->setText("");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+        -:  120:    } else {
+    #####:  121:      auto item = selected.at(0);
+call    0 never executed
+    #####:  122:      auto denumire = item->data(Qt::UserRole).toString().toStdString();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+    #####:  123:      disciplina x = serv.find(denumire, "1", ".", ".");
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+    #####:  124:      txtDenumire->setText(QString::fromStdString(x.get_denumire()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+    #####:  125:      txtTip->setText(QString::fromStdString(x.get_tip()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+    #####:  126:      txtProfesor->setText(QString::fromStdString(x.get_profesor()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+    #####:  127:      txtOre->setText(QString::fromStdString(std::to_string(x.get_ore())));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+    #####:  128:    }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:  129:  });
+call    0 never executed
+call    1 never executed
+    #####:  130:}
+        -:  131:
+function _ZN7guiMain13addDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  132:void guiMain::addDisciplina() {
+        -:  133:  try {
+    #####:  134:    serv.add(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+    #####:  135:             txtTip->text().toStdString(), txtProfesor->text().toStdString());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+    #####:  136:    reloadList(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    =====:  137:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  138:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  139:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  140:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  141:  }
+call    0 never executed
+call    1 never executed
+    #####:  142:}
+        -:  143:
+function _ZN7guiMain16modifyDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  144:void guiMain::modifyDisciplina() {
+        -:  145:  try {
+    #####:  146:    serv.modify(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+    #####:  147:                txtTip->text().toStdString(),
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+    #####:  148:                txtProfesor->text().toStdString());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+    #####:  149:    reloadList(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    =====:  150:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  151:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  152:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  153:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  154:  }
+call    0 never executed
+call    1 never executed
+    #####:  155:}
+        -:  156:
+function _ZN7guiMain16removeDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  157:void guiMain::removeDisciplina() {
+        -:  158:  try {
+    #####:  159:    serv.remove(txtDenumire->text().toStdString(), txtOre->text().toStdString(),
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+    #####:  160:                txtTip->text().toStdString(),
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+    #####:  161:                txtProfesor->text().toStdString());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+    #####:  162:    reloadList(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    =====:  163:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  164:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  165:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  166:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  167:  }
+call    0 never executed
+call    1 never executed
+    #####:  168:}
+        -:  169:
+function _ZN7guiMain14findDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  170:void guiMain::findDisciplina() {
+        -:  171:  try {
+        -:  172:    disciplina const &x =
+    #####:  173:        serv.find(txtDenumire->text().toStdString(), "1", ".", ".");
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+        -:  174:
+    #####:  175:    auto items = list->findItems(QString::fromStdString(x.get_denumire()),
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    #####:  176:                                 Qt::MatchContains);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  177:    items[0]->setData(Qt::BackgroundRole, QBrush{Qt::green, Qt::SolidPattern});
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+    #####:  178:  } catch (repoException &ex) {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+    =====:  179:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  180:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  181:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  182:  }
+call    0 never executed
+call    1 never executed
+    #####:  183:}
+        -:  184:
+function _ZN7guiMain14undoDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  185:void guiMain::undoDisciplina() {
+        -:  186:  try {
+    #####:  187:    serv.undo();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  188:    reloadList(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    =====:  189:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    =====:  190:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  191:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  192:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  193:  } catch (servException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  194:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  195:  }
+call    0 never executed
+call    1 never executed
+    #####:  196:}
+        -:  197:
+function _ZN7guiMain22filterByProfDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  198:void guiMain::filterByProfDisciplina() {
+        -:  199:  try {
+    #####:  200:    reloadList(serv.filter_profesor(txtProfesor->text().toStdString()));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+    =====:  201:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  202:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  203:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  204:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  205:  }
+call    0 never executed
+call    1 never executed
+    #####:  206:}
+        -:  207:
+function _ZN7guiMain21filterByOreDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  208:void guiMain::filterByOreDisciplina() {
+        -:  209:  try {
+    #####:  210:    reloadList(serv.filter_ore_up(txtOre->text().toStdString()));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+    =====:  211:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  212:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  213:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  214:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  215:  }
+call    0 never executed
+call    1 never executed
+    #####:  216:}
+        -:  217:
+function _ZN7guiMain24sortByDenumireDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  218:void guiMain::sortByDenumireDisciplina() {
+        -:  219:  try {
+    #####:  220:    reloadList(serv.sort_denumire());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    =====:  221:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  222:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  223:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  224:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  225:  }
+call    0 never executed
+call    1 never executed
+    #####:  226:}
+        -:  227:
+function _ZN7guiMain19sortByOreDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  228:void guiMain::sortByOreDisciplina() {
+        -:  229:  try {
+    #####:  230:    reloadList(serv.sort_ore());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    =====:  231:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  232:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  233:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  234:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  235:  }
+call    0 never executed
+call    1 never executed
+    #####:  236:}
+        -:  237:
+function _ZN7guiMain20sortByMixtDisciplinaEv called 0 returned 0% blocks executed 0%
+    #####:  238:void guiMain::sortByMixtDisciplina() {
+        -:  239:  try {
+    #####:  240:    reloadList(serv.sort_mix());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    =====:  241:  } catch (repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  242:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  243:  } catch (validateException &ex) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    =====:  244:    QMessageBox::warning(this, "Warning", QString::fromStdString(ex.getMsg()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+    =====:  245:  }
+call    0 never executed
+call    1 never executed
+    #####:  246:}
+        -:  247:
+function _ZN7guiMain10reloadListERKSt6vectorI10disciplinaSaIS1_EE called 0 returned 0% blocks executed 0%
+    #####:  248:void guiMain::reloadList(const std::vector<disciplina> &list) {
+    #####:  249:  this->list->clear();
+call    0 never executed
+    #####:  250:  for (const auto &x : list) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    #####:  251:    QListWidgetItem *item = (new QListWidgetItem);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+        -:  252:
+        -:  253:    std::string txt =
+    #####:  254:        x.get_denumire() + " | " + x.get_tip() + " | " + x.get_profesor();
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+    #####:  255:    txt.append(" | ");
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  256:    txt.append(std::to_string(x.get_ore()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+        -:  257:
+    #####:  258:    item->setText(QString::fromStdString(txt));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  259:    item->setData(Qt::UserRole, QString::fromStdString(x.get_denumire()));
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+    #####:  260:    this->list->addItem(item);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  261:  }
+call    0 never executed
+call    1 never executed
+    #####:  262:}

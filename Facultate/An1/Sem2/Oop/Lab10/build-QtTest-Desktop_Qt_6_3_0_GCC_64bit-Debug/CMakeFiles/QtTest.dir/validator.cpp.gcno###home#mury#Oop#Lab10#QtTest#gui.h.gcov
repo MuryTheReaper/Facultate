@@ -1,0 +1,236 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/gui.h
+        -:    1:#ifndef GUI_H
+        -:    2:#define GUI_H
+        -:    3:
+        -:    4:#include "disciplina.h"
+        -:    5:#include "services.h"
+        -:    6:#include <QHBoxLayout>
+        -:    7:#include <QLineEdit>
+        -:    8:#include <QListWidget>
+        -:    9:#include <QPushButton>
+        -:   10:#include <QWidget>
+        -:   11:
+        -:   12:class guiMain : public QWidget {
+        -:   13:
+        -:   14:private:
+        -:   15:  services &serv;
+        -:   16:  QHBoxLayout *mainly = (new QHBoxLayout);
+        -:   17:  QLineEdit *txtDenumire = (new QLineEdit);
+        -:   18:  QLineEdit *txtTip = (new QLineEdit);
+        -:   19:  QLineEdit *txtProfesor = (new QLineEdit);
+        -:   20:  QLineEdit *txtOre = (new QLineEdit);
+        -:   21:  QListWidget *list = (new QListWidget);
+        -:   22:  QPushButton *btnAdd = (new QPushButton("Add"));
+        -:   23:  QPushButton *btnModify = (new QPushButton("Modify"));
+        -:   24:  QPushButton *btnFind = (new QPushButton("Find"));
+        -:   25:  QPushButton *btnRemove = (new QPushButton("Remove"));
+        -:   26:  QPushButton *btnUndo = (new QPushButton("Undo"));
+        -:   27:  QPushButton *btnFilterByProf = (new QPushButton("FilterByProfesor"));
+        -:   28:  QPushButton *btnFilterByOre = (new QPushButton("FilterByOreUp"));
+        -:   29:  QPushButton *btnSortByDenumire = (new QPushButton("SortByDenumire"));
+        -:   30:  QPushButton *btnSortByOre = (new QPushButton("SortByOre"));
+        -:   31:  QPushButton *btnSortByMixt = (new QPushButton("SortByMixt"));
+        -:   32:
+        -:   33:  void initGUI();
+        -:   34:  void connect_signals();
+        -:   35:  void reloadList(const std::vector<disciplina> &list);
+        -:   36:
+        -:   37:  void addDisciplina();
+        -:   38:  void modifyDisciplina();
+        -:   39:  void removeDisciplina();
+        -:   40:  void findDisciplina();
+        -:   41:  void undoDisciplina();
+        -:   42:  void filterByProfDisciplina();
+        -:   43:  void filterByOreDisciplina();
+        -:   44:  void sortByDenumireDisciplina();
+        -:   45:  void sortByOreDisciplina();
+        -:   46:  void sortByMixtDisciplina();
+        -:   47:
+        -:   48:public:
+function _ZN7guiMainC2ER8services called 0 returned 0% blocks executed 0%
+    #####:   49:  guiMain(services &serv) : serv{serv} {
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+call   19 never executed
+branch 20 never executed
+branch 21 never executed
+call   22 never executed
+branch 23 never executed
+branch 24 never executed
+call   25 never executed
+branch 26 never executed
+branch 27 never executed
+call   28 never executed
+branch 29 never executed
+branch 30 never executed
+call   31 never executed
+branch 32 never executed
+branch 33 never executed
+call   34 never executed
+branch 35 never executed
+branch 36 never executed
+call   37 never executed
+branch 38 never executed
+branch 39 never executed
+call   40 never executed
+branch 41 never executed
+branch 42 never executed
+call   43 never executed
+branch 44 never executed
+branch 45 never executed
+call   46 never executed
+branch 47 never executed
+branch 48 never executed
+call   49 never executed
+call   50 never executed
+branch 51 never executed
+branch 52 never executed
+call   53 never executed
+branch 54 never executed
+branch 55 never executed
+call   56 never executed
+branch 57 never executed
+branch 58 never executed
+call   59 never executed
+call   60 never executed
+branch 61 never executed
+branch 62 never executed
+call   63 never executed
+branch 64 never executed
+branch 65 never executed
+call   66 never executed
+branch 67 never executed
+branch 68 never executed
+call   69 never executed
+call   70 never executed
+branch 71 never executed
+branch 72 never executed
+call   73 never executed
+branch 74 never executed
+branch 75 never executed
+call   76 never executed
+branch 77 never executed
+branch 78 never executed
+call   79 never executed
+call   80 never executed
+branch 81 never executed
+branch 82 never executed
+call   83 never executed
+branch 84 never executed
+branch 85 never executed
+call   86 never executed
+branch 87 never executed
+branch 88 never executed
+call   89 never executed
+call   90 never executed
+branch 91 never executed
+branch 92 never executed
+call   93 never executed
+branch 94 never executed
+branch 95 never executed
+call   96 never executed
+branch 97 never executed
+branch 98 never executed
+call   99 never executed
+call   100 never executed
+branch 101 never executed
+branch 102 never executed
+call   103 never executed
+branch 104 never executed
+branch 105 never executed
+call   106 never executed
+branch 107 never executed
+branch 108 never executed
+call   109 never executed
+call   110 never executed
+branch 111 never executed
+branch 112 never executed
+call   113 never executed
+branch 114 never executed
+branch 115 never executed
+call   116 never executed
+branch 117 never executed
+branch 118 never executed
+call   119 never executed
+call   120 never executed
+branch 121 never executed
+branch 122 never executed
+call   123 never executed
+branch 124 never executed
+branch 125 never executed
+call   126 never executed
+branch 127 never executed
+branch 128 never executed
+call   129 never executed
+call   130 never executed
+branch 131 never executed
+branch 132 never executed
+call   133 never executed
+branch 134 never executed
+branch 135 never executed
+call   136 never executed
+branch 137 never executed
+branch 138 never executed
+call   139 never executed
+call   140 never executed
+call   141 never executed
+call   142 never executed
+call   143 never executed
+call   144 never executed
+call   145 never executed
+call   146 never executed
+call   147 never executed
+call   148 never executed
+call   149 never executed
+call   150 never executed
+call   151 never executed
+call   152 never executed
+call   153 never executed
+call   154 never executed
+call   155 never executed
+call   156 never executed
+call   157 never executed
+call   158 never executed
+call   159 never executed
+call   160 never executed
+call   161 never executed
+call   162 never executed
+call   163 never executed
+call   164 never executed
+call   165 never executed
+call   166 never executed
+    #####:   50:    initGUI();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   51:    connect_signals();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   52:    reloadList(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   53:  }
+call    0 never executed
+        -:   54:};
+        -:   55:
+        -:   56:#endif // GUI_H

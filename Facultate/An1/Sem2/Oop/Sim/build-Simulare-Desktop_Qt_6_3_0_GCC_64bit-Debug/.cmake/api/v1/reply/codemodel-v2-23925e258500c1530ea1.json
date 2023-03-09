@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Simulare",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Simulare::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Simulare-Debug-076d0590e56210684124.json",
+					"name" : "Simulare",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Simulare_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Simulare_autogen-Debug-7b557eb6f53d54e5a79f.json",
+					"name" : "Simulare_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Simulare_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Simulare_autogen_timestamp_deps-Debug-78be35790ee279baa782.json",
+					"name" : "Simulare_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug",
+		"source" : "/home/mury/Oop/Sim/Simulare"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

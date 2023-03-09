@@ -1,0 +1,1026 @@
+        -:    0:Source:/home/mury/Oop/Lab10/QtTest/ui.cpp
+        -:    1:#include "ui.h"
+        -:    2:#include <algorithm>
+        -:    3:#include <chrono>
+        -:    4:#include <random>
+        -:    5:#include <string>
+        -:    6:
+function _ZN2ui5printESt6vectorI10disciplinaSaIS1_EE called 0 returned 0% blocks executed 0%
+    #####:    7:void ui::print(const std::vector<disciplina> x) {
+        -:    8:
+    #####:    9:  std::cout << "DISCIPLINE: \n\n";
+call    0 never executed
+    #####:   10:  for (const auto &d : x) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   11:    std::cout << d.get_denumire() << " " << d.get_tip() << " "
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+    #####:   12:              << d.get_profesor() << " " << d.get_ore() << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+call   20 never executed
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+        -:   13:  }
+    #####:   14:  std::cout << "_____________\n";
+call    0 never executed
+    #####:   15:}
+        -:   16:
+function _ZN2ui6add_uiEv called 0 returned 0% blocks executed 0%
+    #####:   17:void ui::add_ui() {
+        -:   18:
+    #####:   19:  std::string d, t, p, o;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:   20:
+    #####:   21:  std::cout << "Denumire: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   22:  std::cin >> d;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   23:
+    #####:   24:  std::cout << "Tip: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   25:  std::cin >> t;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   26:
+    #####:   27:  std::cout << "Profesor: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   28:  std::cin >> p;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   29:
+    #####:   30:  std::cout << "Ore: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   31:  std::cin >> o;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   32:
+    #####:   33:  serv.add(d, o, t, p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   34:
+    #####:   35:  std::cout << "Adaugat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   36:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   37:
+function _ZN2ui13add_random_uiEv called 0 returned 0% blocks executed 0%
+    #####:   38:void ui::add_random_ui() {
+        -:   39:
+    #####:   40:  std::string nr;
+call    0 never executed
+    #####:   41:  std::cout << "Numar de discipline: \n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   42:  std::cin >> nr;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   43:
+    #####:   44:  serv.addrandom(nr);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   45:
+    #####:   46:  std::cout << "Adaugat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   47:}
+call    0 never executed
+call    1 never executed
+        -:   48:
+function _ZN2ui9remove_uiEv called 0 returned 0% blocks executed 0%
+    #####:   49:void ui::remove_ui() {
+        -:   50:
+    #####:   51:  std::string d, t, p, o;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:   52:
+    #####:   53:  std::cout << "Denumire: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   54:  std::cin >> d;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   55:
+    #####:   56:  t = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   57:  p = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   58:  o = "1";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   59:  serv.remove(d, o, t, p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   60:
+    #####:   61:  std::cout << "Sters cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   62:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   63:
+function _ZN2ui7find_uiEv called 0 returned 0% blocks executed 0%
+    #####:   64:void ui::find_ui() {
+        -:   65:
+    #####:   66:  std::string d, t, p, o;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:   67:
+    #####:   68:  std::cout << "Denumire: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   69:  std::cin >> d;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   70:
+    #####:   71:  t = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   72:  p = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   73:  o = "1";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   74:  disciplina x = serv.find(d, o, t, p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:   75:
+    #####:   76:  std::cout << x.get_denumire() << " " << x.get_tip() << " " << x.get_profesor()
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+    #####:   77:            << " " << x.get_ore() << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+call   20 never executed
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+    #####:   78:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+        -:   79:
+function _ZN2ui9modify_uiEv called 0 returned 0% blocks executed 0%
+    #####:   80:void ui::modify_ui() {
+        -:   81:
+    #####:   82:  std::string d, t, p, o;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:   83:
+    #####:   84:  std::cout << "Denumire disciplinei de modificat: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   85:  std::cin >> d;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   86:
+    #####:   87:  std::cout << "Noul Tip: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   88:  std::cin >> t;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   89:
+    #####:   90:  std::cout << "Noul Profesor: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   91:  std::cin >> p;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   92:
+    #####:   93:  std::cout << "Noul numer de Ore: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   94:  std::cin >> o;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   95:
+    #####:   96:  serv.modify(d, o, t, p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   97:
+    #####:   98:  std::cout << "Modificat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   99:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:  100:
+function _ZN2ui9filter_uiEv called 0 returned 0% blocks executed 0%
+    #####:  101:void ui::filter_ui() {
+        -:  102:
+    #####:  103:  std::string x, f;
+call    0 never executed
+call    1 never executed
+        -:  104:
+    #####:  105:  std::cout << "Filtrare dupa ore sau profesor(1/2): ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  106:  std::cin >> x;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  107:
+    #####:  108:  if (x == "1") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  109:
+    #####:  110:    std::cout << "Mai mare decat: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  111:    std::cin >> f;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  112:
+    #####:  113:    print(serv.filter_ore_up(f));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  114:  } else if (x == "2") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  115:    std::cout << "Profesor: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  116:    std::cin >> f;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  117:
+    #####:  118:    print(serv.filter_profesor(f));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+        -:  119:  } else {
+    #####:  120:    std::cout << "Comanda invalida\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  121:  }
+    #####:  122:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:  123:
+function _ZN2ui7sort_uiEv called 0 returned 0% blocks executed 0%
+    #####:  124:void ui::sort_ui() {
+        -:  125:
+    #####:  126:  std::string x, f;
+call    0 never executed
+call    1 never executed
+        -:  127:
+    #####:  128:  std::cout << "Sortare dupa denumire, ore sau profesor+tip(1/2/3): ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  129:  std::cin >> x;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  130:
+    #####:  131:  if (x == "1") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  132:    print(serv.sort_denumire());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  133:  } else if (x == "2") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  134:    print(serv.sort_ore());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  135:  } else if (x == "3") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  136:    print(serv.sort_mix());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+        -:  137:  } else {
+    #####:  138:    std::cout << "Comanda invalida\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  139:  }
+    #####:  140:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:  141:
+function _ZN2ui22print_raport_prof_frecERKSt13unordered_mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE18profesor_frecventaSt4hashIS6_ESt8equal_toIS6_ESaISt4pairIKS6_S7_EEE called 0 returned 0% blocks executed 0%
+    #####:  142:void ui::print_raport_prof_frec(
+        -:  143:    const std::unordered_map<std::string, profesor_frecventa> &x) {
+        -:  144:
+    #####:  145:  std::cout << "RAPORT PROFESOR FRECVENTA\n";
+call    0 never executed
+    #####:  146:  for (const auto &p : x) {
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    #####:  147:    std::cout << p.first << " -> " << p.second.get_frecventa() << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+        -:  148:  }
+    #####:  149:  std::cout << "_____________\n";
+call    0 never executed
+    #####:  150:}
+        -:  151:
+function _ZN2ui9raport_uiEv called 0 returned 0% blocks executed 0%
+    #####:  152:void ui::raport_ui() {
+        -:  153:
+    #####:  154:  std::string x;
+call    0 never executed
+        -:  155:
+    #####:  156:  std::cout << "Raport profesor frecventa(1)\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  157:  std::cin >> x;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  158:
+    #####:  159:  if (x == "1") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  160:    print_raport_prof_frec(serv.raport_profesor_frecventa());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:  161:  } else {
+    #####:  162:    std::cout << "Comanda invalida\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  163:  }
+    #####:  164:}
+call    0 never executed
+call    1 never executed
+        -:  165:
+function _ZN2ui7undo_uiEv called 0 returned 0% blocks executed 0%
+    #####:  166:void ui::undo_ui() {
+        -:  167:
+    #####:  168:  serv.undo();
+call    0 never executed
+    #####:  169:  std::cout << "Undo efectuat cu succes\n";
+call    0 never executed
+    #####:  170:}
+        -:  171:
+function _ZN2ui15add_contract_uiEv called 0 returned 0% blocks executed 0%
+    #####:  172:void ui::add_contract_ui() {
+        -:  173:
+    #####:  174:  std::string d, t, p, o;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:  175:
+    #####:  176:  std::cout << "Denumire: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  177:  std::cin >> d;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  178:
+    #####:  179:  t = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  180:  p = ".";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  181:  o = "1";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  182:
+    #####:  183:  serv.add_to_contract(d, o, t, p);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  184:
+    #####:  185:  std::cout << "Adaugat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  186:  std::cout << "Dimensiunea contractului este: "
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  187:            << serv.get_all_contract().size() << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    #####:  188:}
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:  189:
+function _ZN2ui20generate_contract_uiEv called 0 returned 0% blocks executed 0%
+    #####:  190:void ui::generate_contract_ui() {
+        -:  191:
+    #####:  192:  std::string n;
+call    0 never executed
+        -:  193:
+    #####:  194:  std::cout << "Numar de discipline: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  195:  std::cin >> n;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  196:
+        -:  197:  try {
+    #####:  198:    long unsigned int nr = std::stoi(n);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  199:    serv.addrandom_to_contract(nr);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  200:
+    #####:  201:    std::cout << "Adaugat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  202:    std::cout << "Dimensiunea contractului este: "
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  203:              << serv.get_all_contract().size() << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+        -:  204:
+    =====:  205:  } catch (const std::invalid_argument &e) {
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+    =====:  206:    std::cout << "Numar invalid\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    =====:  207:  }
+call    0 never executed
+call    1 never executed
+    #####:  208:}
+call    0 never executed
+call    1 never executed
+function _ZN2ui18delete_contract_uiEv called 0 returned 0% blocks executed 0%
+    #####:  209:void ui::delete_contract_ui() {
+    #####:  210:  serv.delete_all_contract();
+call    0 never executed
+    #####:  211:  std::cout << "Sters cu succes\n";
+call    0 never executed
+    #####:  212:}
+function _ZN2ui18export_contract_uiEv called 0 returned 0% blocks executed 0%
+    #####:  213:void ui::export_contract_ui() {
+    #####:  214:  std::string file;
+call    0 never executed
+        -:  215:
+    #####:  216:  std::cout << "File name: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  217:  std::cin >> file;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  218:
+    #####:  219:  serv.export_contract(file);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:  220:  std::cout << "Exportat cu succes\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  221:}
+call    0 never executed
+call    1 never executed
+function _ZN2ui11contract_uiEv called 0 returned 0% blocks executed 0%
+    #####:  222:void ui::contract_ui() {
+        -:  223:
+        -:  224:  while (true) {
+        -:  225:
+    #####:  226:    std::cout << "\nMENIU CONTRACT:\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  227:    std::cout << "print\nadd\ngenerate\ndelete\nexport\nexit\nCOMANDA: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  228:
+    #####:  229:    std::string cmd;
+call    0 never executed
+    #####:  230:    std::cin >> cmd;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  231:
+        -:  232:    try {
+    #####:  233:      if (cmd == "print") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  234:        print(serv.get_all_contract());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+call   10 never executed
+    #####:  235:      } else if (cmd == "add") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  236:        add_contract_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  237:      } else if (cmd == "generate") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  238:        generate_contract_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  239:      } else if (cmd == "delete") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  240:        delete_contract_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  241:      } else if (cmd == "export") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  242:        export_contract_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  243:      } else if (cmd == "exit") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  244:        return;
+        -:  245:      } else {
+    #####:  246:        std::cout << "Comanda invalida\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  247:      }
+    =====:  248:    } catch (const repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    =====:  249:      std::cout << ex << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    =====:  250:    } catch (const validateException &ex) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+    =====:  251:      std::cout << ex << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    =====:  252:    }
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    #####:  253:  }
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+        -:  254:}
+        -:  255:
+function _ZN2ui3runEv called 0 returned 0% blocks executed 0%
+    #####:  256:void ui::run() {
+        -:  257:
+        -:  258:  while (true) {
+        -:  259:
+    #####:  260:    std::cout << "\nMENIU: \n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  261:    std::cout << "contract\nprint\nadd\nadd_random\nremove\nmodify\nfind\n"
+    #####:  262:                 "filter\nsort\nraport\nexit\nundo\nCOMANDA: ";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  263:
+    #####:  264:    std::string cmd;
+call    0 never executed
+    #####:  265:    std::cin >> cmd;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  266:
+        -:  267:    try {
+    #####:  268:      if (cmd == "print") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  269:        print(serv.get_all());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+call    8 never executed
+    #####:  270:      } else if (cmd == "contract") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  271:        contract_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  272:      } else if (cmd == "add") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  273:        add_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  274:      } else if (cmd == "add_random") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  275:        add_random_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  276:      } else if (cmd == "remove") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  277:        remove_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  278:      } else if (cmd == "modify") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  279:        modify_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  280:      } else if (cmd == "find") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  281:        find_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  282:      } else if (cmd == "filter") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  283:        filter_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  284:      } else if (cmd == "sort") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  285:        sort_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  286:      } else if (cmd == "raport") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  287:        raport_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  288:      } else if (cmd == "undo") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  289:        undo_ui();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  290:      } else if (cmd == "exit") {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  291:        return;
+        -:  292:      } else {
+    #####:  293:        std::cout << "Comanda invalida\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  294:      }
+    =====:  295:    } catch (const repoException &ex) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+    =====:  296:      std::cout << ex << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    =====:  297:    } catch (const validateException &ex) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+    =====:  298:      std::cout << ex << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    =====:  299:    } catch (const servException &ex) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+    =====:  300:      std::cout << ex << "\n";
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    =====:  301:    }
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+    #####:  302:  }
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+        -:  303:}

@@ -1,0 +1,14 @@
+# ninja log v5
+3	65	1650459291842111679	CMakeFiles/c_app.dir/undo.cpp.o	2ff311b0be68dde8
+1268	1401	1650524614787266504	c_app	5629df16c6b3ad47
+1	1758	1650459731151179261	CMakeFiles/c_app.dir/services.cpp.o	a2a9362c6533f287
+2	55	1649197632661853702	CMakeFiles/c_app.dir/my_vector.cpp.o	12ae4dcca4098dc5
+2	1517	1650477450560998520	CMakeFiles/c_app.dir/teste.cpp.o	55f291a4c99e7cb8
+1	2072	1650459654559196632	CMakeFiles/c_app.dir/ui.cpp.o	25811612c58e061f
+0	24	1650913285423718054	build.ninja	91a4d4205f4bf1dd
+1	1053	1650477450096978851	CMakeFiles/c_app.dir/repository.cpp.o	aab5a338ce81deeb
+1	1445	1649877765082089497	CMakeFiles/c_app.dir/contract.cpp.o	c261d3d139150cc0
+1	1268	1650524614655268899	CMakeFiles/c_app.dir/main.cpp.o	9cf86c1bcaf1fa46
+2	1066	1649873572128742629	CMakeFiles/c_app.dir/validator.cpp.o	55cca6fb90a0b235
+0	745	1649237929659706349	CMakeFiles/c_app.dir/disciplina.cpp.o	3d04c103b425cdf4
+2	1056	1649911613510718504	CMakeFiles/c_app.dir/raport.cpp.o	566b34d553f4db9c

@@ -1,0 +1,5 @@
+/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
+/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Simulare.dir
+/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Simulare_autogen_timestamp_deps.dir
+/home/mury/Oop/Sim/build-Simulare-Desktop_Qt_6_3_0_GCC_64bit-Debug/CMakeFiles/Simulare_autogen.dir

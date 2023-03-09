@@ -1,0 +1,272 @@
+        -:    0:Source:/home/mury/Qt/6.3.0/gcc_64/include/QtCore/qatomic.h
+        -:    1:/****************************************************************************
+        -:    2:**
+        -:    3:** Copyright (C) 2017 The Qt Company Ltd.
+        -:    4:** Copyright (C) 2016 Intel Corporation.
+        -:    5:** Contact: https://www.qt.io/licensing/
+        -:    6:**
+        -:    7:** This file is part of the QtCore module of the Qt Toolkit.
+        -:    8:**
+        -:    9:** $QT_BEGIN_LICENSE:LGPL$
+        -:   10:** Commercial License Usage
+        -:   11:** Licensees holding valid commercial Qt licenses may use this file in
+        -:   12:** accordance with the commercial license agreement provided with the
+        -:   13:** Software or, alternatively, in accordance with the terms contained in
+        -:   14:** a written agreement between you and The Qt Company. For licensing terms
+        -:   15:** and conditions see https://www.qt.io/terms-conditions. For further
+        -:   16:** information use the contact form at https://www.qt.io/contact-us.
+        -:   17:**
+        -:   18:** GNU Lesser General Public License Usage
+        -:   19:** Alternatively, this file may be used under the terms of the GNU Lesser
+        -:   20:** General Public License version 3 as published by the Free Software
+        -:   21:** Foundation and appearing in the file LICENSE.LGPL3 included in the
+        -:   22:** packaging of this file. Please review the following information to
+        -:   23:** ensure the GNU Lesser General Public License version 3 requirements
+        -:   24:** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+        -:   25:**
+        -:   26:** GNU General Public License Usage
+        -:   27:** Alternatively, this file may be used under the terms of the GNU
+        -:   28:** General Public License version 2.0 or (at your option) the GNU General
+        -:   29:** Public license version 3 or any later version approved by the KDE Free
+        -:   30:** Qt Foundation. The licenses are as published by the Free Software
+        -:   31:** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
+        -:   32:** included in the packaging of this file. Please review the following
+        -:   33:** information to ensure the GNU General Public License requirements will
+        -:   34:** be met: https://www.gnu.org/licenses/gpl-2.0.html and
+        -:   35:** https://www.gnu.org/licenses/gpl-3.0.html.
+        -:   36:**
+        -:   37:** $QT_END_LICENSE$
+        -:   38:**
+        -:   39:****************************************************************************/
+        -:   40:
+        -:   41:#include <QtCore/qglobal.h>
+        -:   42:
+        -:   43:#ifndef QATOMIC_H
+        -:   44:#define QATOMIC_H
+        -:   45:
+        -:   46:#include <QtCore/qbasicatomic.h>
+        -:   47:
+        -:   48:QT_BEGIN_NAMESPACE
+        -:   49:
+        -:   50:QT_WARNING_PUSH
+        -:   51:QT_WARNING_DISABLE_GCC("-Wextra")
+        -:   52:
+        -:   53:#ifdef Q_CLANG_QDOC
+        -:   54:#  undef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:   55:#endif
+        -:   56:
+        -:   57:// High-level atomic integer operations
+        -:   58:template <typename T>
+        -:   59:class QAtomicInteger : public QBasicAtomicInteger<T>
+        -:   60:{
+        -:   61:public:
+        -:   62:    // Non-atomic API
+        -:   63:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+    #####:   64:    constexpr QAtomicInteger(T value = 0) noexcept : QBasicAtomicInteger<T>(value) {}
+        -:   65:#else
+        -:   66:    inline QAtomicInteger(T value = 0) noexcept
+        -:   67:    {
+        -:   68:        this->_q_value = value;
+        -:   69:    }
+        -:   70:#endif
+        -:   71:
+        -:   72:    inline QAtomicInteger(const QAtomicInteger &other) noexcept
+        -:   73:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:   74:        : QBasicAtomicInteger<T>()
+        -:   75:#endif
+        -:   76:    {
+        -:   77:        this->storeRelease(other.loadAcquire());
+        -:   78:    }
+        -:   79:
+        -:   80:    inline QAtomicInteger &operator=(const QAtomicInteger &other) noexcept
+        -:   81:    {
+        -:   82:        this->storeRelease(other.loadAcquire());
+        -:   83:        return *this;
+        -:   84:    }
+        -:   85:
+        -:   86:#ifdef Q_CLANG_QDOC
+        -:   87:    T loadRelaxed() const;
+        -:   88:    T loadAcquire() const;
+        -:   89:    void storeRelaxed(T newValue);
+        -:   90:    void storeRelease(T newValue);
+        -:   91:
+        -:   92:    operator T() const;
+        -:   93:    QAtomicInteger &operator=(T);
+        -:   94:
+        -:   95:    static constexpr bool isReferenceCountingNative();
+        -:   96:    static constexpr bool isReferenceCountingWaitFree();
+        -:   97:
+        -:   98:    bool ref();
+        -:   99:    bool deref();
+        -:  100:
+        -:  101:    static constexpr bool isTestAndSetNative();
+        -:  102:    static constexpr bool isTestAndSetWaitFree();
+        -:  103:
+        -:  104:    bool testAndSetRelaxed(T expectedValue, T newValue);
+        -:  105:    bool testAndSetAcquire(T expectedValue, T newValue);
+        -:  106:    bool testAndSetRelease(T expectedValue, T newValue);
+        -:  107:    bool testAndSetOrdered(T expectedValue, T newValue);
+        -:  108:
+        -:  109:    static constexpr bool isFetchAndStoreNative();
+        -:  110:    static constexpr bool isFetchAndStoreWaitFree();
+        -:  111:
+        -:  112:    T fetchAndStoreRelaxed(T newValue);
+        -:  113:    T fetchAndStoreAcquire(T newValue);
+        -:  114:    T fetchAndStoreRelease(T newValue);
+        -:  115:    T fetchAndStoreOrdered(T newValue);
+        -:  116:
+        -:  117:    static constexpr bool isFetchAndAddNative();
+        -:  118:    static constexpr bool isFetchAndAddWaitFree();
+        -:  119:
+        -:  120:    T fetchAndAddRelaxed(T valueToAdd);
+        -:  121:    T fetchAndAddAcquire(T valueToAdd);
+        -:  122:    T fetchAndAddRelease(T valueToAdd);
+        -:  123:    T fetchAndAddOrdered(T valueToAdd);
+        -:  124:
+        -:  125:    T fetchAndSubRelaxed(T valueToSub);
+        -:  126:    T fetchAndSubAcquire(T valueToSub);
+        -:  127:    T fetchAndSubRelease(T valueToSub);
+        -:  128:    T fetchAndSubOrdered(T valueToSub);
+        -:  129:
+        -:  130:    T fetchAndOrRelaxed(T valueToOr);
+        -:  131:    T fetchAndOrAcquire(T valueToOr);
+        -:  132:    T fetchAndOrRelease(T valueToOr);
+        -:  133:    T fetchAndOrOrdered(T valueToOr);
+        -:  134:
+        -:  135:    T fetchAndAndRelaxed(T valueToAnd);
+        -:  136:    T fetchAndAndAcquire(T valueToAnd);
+        -:  137:    T fetchAndAndRelease(T valueToAnd);
+        -:  138:    T fetchAndAndOrdered(T valueToAnd);
+        -:  139:
+        -:  140:    T fetchAndXorRelaxed(T valueToXor);
+        -:  141:    T fetchAndXorAcquire(T valueToXor);
+        -:  142:    T fetchAndXorRelease(T valueToXor);
+        -:  143:    T fetchAndXorOrdered(T valueToXor);
+        -:  144:
+        -:  145:    T operator++();
+        -:  146:    T operator++(int);
+        -:  147:    T operator--();
+        -:  148:    T operator--(int);
+        -:  149:    T operator+=(T value);
+        -:  150:    T operator-=(T value);
+        -:  151:    T operator|=(T value);
+        -:  152:    T operator&=(T value);
+        -:  153:    T operator^=(T value);
+        -:  154:#endif
+        -:  155:};
+        -:  156:
+        -:  157:class QAtomicInt : public QAtomicInteger<int>
+        -:  158:{
+        -:  159:public:
+        -:  160:    // Non-atomic API
+        -:  161:    // We could use QT_COMPILER_INHERITING_CONSTRUCTORS, but we need only one;
+        -:  162:    // the implicit definition for all the others is fine.
+        -:  163:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  164:    constexpr
+        -:  165:#endif
+    #####:  166:    QAtomicInt(int value = 0) noexcept : QAtomicInteger<int>(value) {}
+        -:  167:};
+        -:  168:
+        -:  169:// High-level atomic pointer operations
+        -:  170:template <typename T>
+        -:  171:class QAtomicPointer : public QBasicAtomicPointer<T>
+        -:  172:{
+        -:  173:public:
+        -:  174:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  175:    constexpr QAtomicPointer(T *value = nullptr) noexcept : QBasicAtomicPointer<T>(value) {}
+        -:  176:#else
+        -:  177:    inline QAtomicPointer(T *value = nullptr) noexcept
+        -:  178:    {
+        -:  179:        this->storeRelaxed(value);
+        -:  180:    }
+        -:  181:#endif
+        -:  182:    inline QAtomicPointer(const QAtomicPointer<T> &other) noexcept
+        -:  183:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  184:        : QBasicAtomicPointer<T>()
+        -:  185:#endif
+        -:  186:    {
+        -:  187:        this->storeRelease(other.loadAcquire());
+        -:  188:    }
+        -:  189:
+        -:  190:    inline QAtomicPointer<T> &operator=(const QAtomicPointer<T> &other) noexcept
+        -:  191:    {
+        -:  192:        this->storeRelease(other.loadAcquire());
+        -:  193:        return *this;
+        -:  194:    }
+        -:  195:
+        -:  196:#ifdef Q_QDOC
+        -:  197:    T *loadAcquire() const;
+        -:  198:    T *loadRelaxed() const;
+        -:  199:    void storeRelaxed(T *newValue);
+        -:  200:    void storeRelease(T *newValue);
+        -:  201:
+        -:  202:    static constexpr bool isTestAndSetNative();
+        -:  203:    static constexpr bool isTestAndSetWaitFree();
+        -:  204:
+        -:  205:    bool testAndSetRelaxed(T *expectedValue, T *newValue);
+        -:  206:    bool testAndSetAcquire(T *expectedValue, T *newValue);
+        -:  207:    bool testAndSetRelease(T *expectedValue, T *newValue);
+        -:  208:    bool testAndSetOrdered(T *expectedValue, T *newValue);
+        -:  209:
+        -:  210:    static constexpr bool isFetchAndStoreNative();
+        -:  211:    static constexpr bool isFetchAndStoreWaitFree();
+        -:  212:
+        -:  213:    T *fetchAndStoreRelaxed(T *newValue);
+        -:  214:    T *fetchAndStoreAcquire(T *newValue);
+        -:  215:    T *fetchAndStoreRelease(T *newValue);
+        -:  216:    T *fetchAndStoreOrdered(T *newValue);
+        -:  217:
+        -:  218:    static constexpr bool isFetchAndAddNative();
+        -:  219:    static constexpr bool isFetchAndAddWaitFree();
+        -:  220:
+        -:  221:    T *fetchAndAddRelaxed(qptrdiff valueToAdd);
+        -:  222:    T *fetchAndAddAcquire(qptrdiff valueToAdd);
+        -:  223:    T *fetchAndAddRelease(qptrdiff valueToAdd);
+        -:  224:    T *fetchAndAddOrdered(qptrdiff valueToAdd);
+        -:  225:#endif
+        -:  226:};
+        -:  227:
+        -:  228:QT_WARNING_POP
+        -:  229:
+        -:  230:#ifdef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  231:#  undef QT_BASIC_ATOMIC_HAS_CONSTRUCTORS
+        -:  232:#endif
+        -:  233:
+        -:  234:/*!
+        -:  235:    This is a helper for the assignment operators of implicitly
+        -:  236:    shared classes. Your assignment operator should look like this:
+        -:  237:
+        -:  238:    \snippet code/src.corelib.thread.qatomic.h 0
+        -:  239:*/
+        -:  240:template <typename T>
+        -:  241:inline void qAtomicAssign(T *&d, T *x)
+        -:  242:{
+        -:  243:    if (d == x)
+        -:  244:        return;
+        -:  245:    x->ref.ref();
+        -:  246:    if (!d->ref.deref())
+        -:  247:        delete d;
+        -:  248:    d = x;
+        -:  249:}
+        -:  250:
+        -:  251:/*!
+        -:  252:    This is a helper for the detach method of implicitly shared
+        -:  253:    classes. Your private class needs a copy constructor which copies
+        -:  254:    the members and sets the refcount to 1. After that, your detach
+        -:  255:    function should look like this:
+        -:  256:
+        -:  257:    \snippet code/src.corelib.thread.qatomic.h 1
+        -:  258:*/
+        -:  259:template <typename T>
+        -:  260:inline void qAtomicDetach(T *&d)
+        -:  261:{
+        -:  262:    if (d->ref.loadRelaxed() == 1)
+        -:  263:        return;
+        -:  264:    T *x = d;
+        -:  265:    d = new T(*d);
+        -:  266:    if (!x->ref.deref())
+        -:  267:        delete x;
+        -:  268:}
+        -:  269:
+        -:  270:QT_END_NAMESPACE
+        -:  271:#endif // QATOMIC_H
